@@ -15,11 +15,17 @@
     </parent>
     <modules>
         <module>AOP-Test</module>
+        <module>Caffeine-Test</module>
     </modules>
     <properties>
         <spring.boot.version>2.3.4.RELEASE</spring.boot.version>
     </properties>
     <dependencies>
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter</artifactId>
+            <scope>test</scope>
+        </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter</artifactId>
