@@ -16,7 +16,7 @@ public class Application implements CommandLineRunner {
     static CountDownLatch countDownLatch = new CountDownLatch(1);
     public static void main(String[] args) {
         SpringApplication.run(Application.class);
-        log.debug("============================================");
+        log.info("============================================");
         try {
             countDownLatch.await();
         } catch (InterruptedException e) {
