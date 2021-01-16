@@ -21,6 +21,7 @@ public class NeedProxyAspect {
     @Around("@annotation(NeedProxyAnn)")
     public void  logExecutionTime(ProceedingJoinPoint joinPoint) throws Throwable {
         log.info("@@@@@@@");
+
 //        joinPoint.proceed();
     }
 

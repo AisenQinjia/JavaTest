@@ -17,6 +17,7 @@
         <module>AOP-Test</module>
         <module>Caffeine-Test</module>
         <module>MultiThreading-Test</module>
+        <module>EffectiveJava</module>
     </modules>
     <properties>
         <spring.boot.version>2.3.4.RELEASE</spring.boot.version>
