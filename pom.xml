@@ -17,9 +17,13 @@
         <module>AOP-Test</module>
         <module>Caffeine-Test</module>
         <module>MultiThreading-Test</module>
+        <module>EffectiveJava</module>
+        <module>Serialization-Test</module>
+        <module>Utils</module>
     </modules>
     <properties>
         <spring.boot.version>2.3.4.RELEASE</spring.boot.version>
+        <test.version>1.0-SNAPSHOT</test.version>
     </properties>
     <dependencies>
         <dependency>
@@ -60,6 +64,15 @@
             <scope>provided</scope>
         </dependency>
     </dependencies>
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.example</groupId>
+                <artifactId>Utils</artifactId>
+                <version>${test.version}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
     <build>
         <plugins>
             <plugin>

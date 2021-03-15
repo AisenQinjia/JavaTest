@@ -16,7 +16,12 @@ public class Application implements CommandLineRunner {
     static CountDownLatch countDownLatch = new CountDownLatch(1);
     public static void main(String[] args) {
         SpringApplication.run(Application.class);
-        log.info("============================================");
+//        Integer a = Integer.valueOf(5);
+//        Integer b = Integer.valueOf(5);
+//        log.info("{}", a == b );
+        Integer a = 5;
+        Integer b = 5;
+        log.info("a==b: {}", a ==b);
         try {
             countDownLatch.await();
         } catch (InterruptedException e) {
