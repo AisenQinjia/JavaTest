@@ -3,19 +3,50 @@ package org.example.zhc.multithread;
 import lombok.Getter;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
+import lombok.val;
 import org.springframework.boot.SpringApplication;
 
 import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.function.Predicate;
 
 @Slf4j
 public class ZhcThread  {
+    public static List<Integer> getList(){
+        return null;
+    }
+    private  class InnerClass{
+
+        int get(){
+            return a;
+        }
+    }
     public static SynchronizedClass sharedClass = new SynchronizedClass();
     public static Map<String,String> sharedMap = new HashMap<>();
+    public int a;
     public static void main(String[] args){
         SpringApplication.run(ZhcThread.class);
         log.info("current thread: {}, state: {}", Thread.currentThread().getName(), Thread.currentThread().getState());
+
+        List<Integer> integerList = getList();
+        for(val in:integerList){
+            log.info("sdf1");
+        }
+        String[] strs = new String[3];
+
+        integerList.removeIf(new Predicate<Integer>() {
+            @Override
+            public boolean test(Integer integer) {
+                return integer.equals(1);
+            }
+        });
+        for(Iterator<Integer> it = integerList.iterator(); it.hasNext();){
+
+        }
+
 //        Thread thread1 = new Thread(new Runnable() {
 //            @SneakyThrows
 //            @Override
@@ -64,6 +95,10 @@ public class ZhcThread  {
 
     }
 
+    public void init(){
+        InnerClass a = new InnerClass();
+        a.get();
+    }
 }
 @Getter
 @Slf4j
