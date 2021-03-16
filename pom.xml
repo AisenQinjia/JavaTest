@@ -20,6 +20,7 @@
         <module>EffectiveJava</module>
         <module>Serialization-Test</module>
         <module>Utils</module>
+        <module>MongoDB-Test</module>
     </modules>
     <properties>
         <spring.boot.version>2.3.4.RELEASE</spring.boot.version>
