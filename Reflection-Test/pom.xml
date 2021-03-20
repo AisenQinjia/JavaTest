@@ -9,13 +9,13 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>MongoDB-Test</artifactId>
+    <artifactId>Reflection-Test</artifactId>
+    <dependencies>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+        </dependency>
+    </dependencies>
 
-<dependencies>
-    <dependency>
-        <groupId>org.mongodb</groupId>
-        <artifactId>mongodb-driver-reactivestreams</artifactId>
-        <version>4.0.0</version>
-    </dependency>
-</dependencies>
+
 </project>
