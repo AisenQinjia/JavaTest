@@ -9,10 +9,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>Reflection-Test</artifactId>
-    <dependencies>
-
-    </dependencies>
+    <artifactId>Generic-Test</artifactId>
 
 
 </project>
