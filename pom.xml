@@ -22,12 +22,17 @@
         <module>Utils</module>
         <module>MongoDB-Test</module>
         <module>Reflection-Test</module>
+        <module>Generic-Test</module>
     </modules>
     <properties>
         <spring.boot.version>2.3.4.RELEASE</spring.boot.version>
         <test.version>1.0-SNAPSHOT</test.version>
     </properties>
     <dependencies>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+        </dependency>
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter</artifactId>
