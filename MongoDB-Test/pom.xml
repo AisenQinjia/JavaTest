@@ -17,5 +17,10 @@
         <artifactId>mongodb-driver-reactivestreams</artifactId>
         <version>4.0.0</version>
     </dependency>
+    <dependency>
+        <groupId>io.projectreactor</groupId>
+        <artifactId>reactor-core</artifactId>
+        <version>3.3.10.RELEASE</version>
+    </dependency>
 </dependencies>
 </project>

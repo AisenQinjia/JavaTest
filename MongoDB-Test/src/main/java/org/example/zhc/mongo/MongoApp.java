@@ -3,12 +3,10 @@ package org.example.zhc.mongo;
 import com.mongodb.ConnectionString;
 import com.mongodb.MongoClientSettings;
 import com.mongodb.client.model.*;
+import com.mongodb.client.result.UpdateResult;
 import com.mongodb.internal.operation.FindAndUpdateOperation;
 import com.mongodb.internal.operation.UpdateOperation;
-import com.mongodb.reactivestreams.client.MongoClient;
-import com.mongodb.reactivestreams.client.MongoClients;
-import com.mongodb.reactivestreams.client.MongoCollection;
-import com.mongodb.reactivestreams.client.MongoDatabase;
+import com.mongodb.reactivestreams.client.*;
 import lombok.val;
 import org.bson.Document;
 import org.bson.conversions.Bson;
@@ -20,15 +18,19 @@ import org.reactivestreams.Subscription;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.mongo.MongoReactiveAutoConfiguration;
+import reactor.core.publisher.Flux;
+import reactor.core.publisher.Mono;
 
 import java.util.Arrays;
 import java.util.concurrent.CountDownLatch;
+import java.util.function.Consumer;
 
-@SpringBootApplication
+@SpringBootApplication(exclude = {MongoReactiveAutoConfiguration.class})
 public class MongoApp implements CommandLineRunner {
     static CountDownLatch countDownLatch = new CountDownLatch(1);
-
-    public MongoCollection testCollection;
+    MongoClient mongoClient;
+    public MongoCollection<Document> testCollection;
     public static void main(String[] args){
         Log.info("start mongo main");
         SpringApplication.run(MongoApp.class);
@@ -83,11 +85,31 @@ public class MongoApp implements CommandLineRunner {
         publisher.subscribe(sub);
     }
 
+
     public void update(){
-        val publisher = testCollection.updateOne(Filters.eq("main_id","sdfsdfsdf"),
-                Updates.combine(Updates.set("updateAdd","sdfsdf")),
-                new UpdateOptions().upsert(true));
-        subscribe(publisher);
+        Mono.from(testCollection.updateOne(Filters.eq("main_id","22"),
+                Updates.combine(Updates.set("updateAdd","22")),
+                new UpdateOptions().upsert(true))
+        ).flatMap(rel->Mono.just(rel.getModifiedCount())).subscribe();
+    }
+
+    public void session(){
+        ClientSession[] clientSessions = new ClientSession[1];
+        Mono.from(mongoClient.startSession())
+                .flatMap(clientSession->{
+                    clientSessions[0] = clientSession;
+                    clientSession.startTransaction();
+                    Log.info("11111");
+                    return Mono.from(testCollection.updateOne(clientSession,Filters.eq("ite", "fsdf"),
+                            Updates.set("session","1 update"),
+                            new UpdateOptions().upsert(true)));
+
+                }).flatMap(rel->{
+                    Log.info("22222222");
+                    ClientSession clientSession = clientSessions[0];
+                    val ss = clientSession.commitTransaction();
+                    return Mono.from(ss);
+                 }).subscribe(rel->{ Log.info("rellll");},throwable -> {Log.info("throwable: %s", throwable);});
     }
 
     public void find(){
@@ -147,15 +169,17 @@ public class MongoApp implements CommandLineRunner {
     public void run(String... args) throws Exception {
         Log.info("Application run!");
         ConnectionString connString = new ConnectionString(
-                "mongodb://root:BEL2ow54Ny@10.100.1.166:27017/?authSource=admin"
+                "mongodb://root:H8oM55SbN4@10.100.2.90:27017/?authSource=admin"
         );
         MongoClientSettings settings = MongoClientSettings.builder()
                 .applyConnectionString(connString)
                 .retryWrites(true)
                 .build();
-        MongoClient mongoClient = MongoClients.create(settings);
+        mongoClient = MongoClients.create(settings);
         MongoDatabase database = mongoClient.getDatabase("tpf_storage");
+
         testCollection = database.getCollection("test-collection2");
-        createIndexAndOther();
+
+        session();
     }
 }
