@@ -22,6 +22,9 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.concurrent.CountDownLatch;
 
 @SpringBootApplication
@@ -40,6 +43,9 @@ public class MongoApp implements CommandLineRunner {
     }
 
     public void addDoc(){
+        List<String> tds = Arrays.asList("a","b");
+        Map<String,String> tt = new HashMap<>();
+        tt.keySet();
         Log.info("async add document");
 
         Log.info("111");
