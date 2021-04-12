@@ -23,7 +23,12 @@
         <module>MongoDB-Test</module>
         <module>Reflection-Test</module>
         <module>Generic-Test</module>
+<<<<<<< HEAD
         <module>Lsp-Test</module>
+=======
+        <module>Asynchronous-Test</module>
+        <module>Mysql-Test</module>
+>>>>>>> e8816d37e4c5ac2b87efbe714584d056074b3743
     </modules>
     <properties>
         <spring.boot.version>2.3.4.RELEASE</spring.boot.version>

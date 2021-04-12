@@ -3,9 +3,6 @@ package org.example.zhc.mongo;
 import com.mongodb.ConnectionString;
 import com.mongodb.MongoClientSettings;
 import com.mongodb.client.model.*;
-import com.mongodb.client.result.UpdateResult;
-import com.mongodb.internal.operation.FindAndUpdateOperation;
-import com.mongodb.internal.operation.UpdateOperation;
 import com.mongodb.reactivestreams.client.*;
 import lombok.val;
 import org.bson.Document;
@@ -20,14 +17,11 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.mongo.MongoReactiveAutoConfiguration;
-import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
+
 import java.util.concurrent.CountDownLatch;
-import java.util.function.Consumer;
 
 @SpringBootApplication(exclude = {MongoReactiveAutoConfiguration.class})
 public class MongoApp implements CommandLineRunner {
@@ -46,6 +40,9 @@ public class MongoApp implements CommandLineRunner {
     }
 
     public void addDoc(){
+        List<String> tds = Arrays.asList("a","b");
+        Map<String,String> tt = new HashMap<>();
+        tt.keySet();
         Log.info("async add document");
 
         Log.info("111");
