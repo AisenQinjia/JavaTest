@@ -22,5 +22,9 @@
         <artifactId>reactor-core</artifactId>
         <version>3.3.10.RELEASE</version>
     </dependency>
+    <dependency>
+        <groupId>org.example</groupId>
+        <artifactId>Utils</artifactId>
+    </dependency>
 </dependencies>
 </project>

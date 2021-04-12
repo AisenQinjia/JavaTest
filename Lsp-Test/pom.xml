@@ -9,16 +9,12 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>AOP-Test</artifactId>
+    <artifactId>Lsp-Test</artifactId>
+
 <dependencies>
-    <dependency>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-starter-aop</artifactId>
-    </dependency>
     <dependency>
         <groupId>org.example</groupId>
         <artifactId>Utils</artifactId>
     </dependency>
 </dependencies>
-
 </project>

@@ -17,5 +17,9 @@
             <artifactId>fastjson</artifactId>
             <version>1.2.75</version>
         </dependency>
+        <dependency>
+            <groupId>org.example</groupId>
+            <artifactId>Utils</artifactId>
+        </dependency>
     </dependencies>
 </project>

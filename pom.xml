@@ -23,6 +23,7 @@
         <module>MongoDB-Test</module>
         <module>Reflection-Test</module>
         <module>Generic-Test</module>
+        <module>Lsp-Test</module>
     </modules>
     <properties>
         <spring.boot.version>2.3.4.RELEASE</spring.boot.version>
@@ -70,15 +71,15 @@
             <version>6.0.53</version>
             <scope>provided</scope>
         </dependency>
-        <dependency>
-            <groupId>org.example</groupId>
-            <artifactId>Utils</artifactId>
-            <version>${test.version}</version>
-        </dependency>
+
     </dependencies>
     <dependencyManagement>
         <dependencies>
-
+            <dependency>
+                <groupId>org.example</groupId>
+                <artifactId>Utils</artifactId>
+                <version>${test.version}</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
     <build>

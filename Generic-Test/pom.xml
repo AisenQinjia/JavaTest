@@ -11,5 +11,10 @@
 
     <artifactId>Generic-Test</artifactId>
 
-
+<dependencies>
+    <dependency>
+        <groupId>org.example</groupId>
+        <artifactId>Utils</artifactId>
+    </dependency>
+</dependencies>
 </project>
