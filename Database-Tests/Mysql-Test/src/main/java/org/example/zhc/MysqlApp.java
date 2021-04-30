@@ -12,7 +12,7 @@ public class MysqlApp {
     public static String homeConnect_root = "root";
     public static String homeConnect_password = "";
 
-    public static String companyConnect = "jdbc:mysql://10.100.2.54:30006/tpf_storage";
+    public static String companyConnect = "jdbc:mysql://10.100.1.41:30006/tpf_storage";
     public static String companyConnect_root = "root";
     public static String companyConnect_password = "password";
 

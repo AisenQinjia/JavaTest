@@ -25,8 +25,8 @@
         <module>Generic-Test</module>
         <module>Lsp-Test</module>
         <module>Asynchronous-Test</module>
-        <module>Mysql-Test</module>
         <module>Spring-Property-Test</module>
+        <module>Database-Tests</module>
     </modules>
     <properties>
         <spring.boot.version>2.3.4.RELEASE</spring.boot.version>

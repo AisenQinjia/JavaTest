@@ -9,13 +9,12 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>Mysql-Test</artifactId>
+    <artifactId>Database-Tests</artifactId>
+    <packaging>pom</packaging>
+    <modules>
+    <module>Mysql-Test</module>
+        <module>HikariCP-Test</module>
+        <module>Mybatis-Test</module>
+    </modules>
 
-<dependencies>
-    <dependency>
-        <groupId>mysql</groupId>
-        <artifactId>mysql-connector-java</artifactId>
-        <version>8.0.23</version>
-    </dependency>
-</dependencies>
 </project>
