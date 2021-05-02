@@ -8,14 +8,8 @@
         <version>${revision}</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
+<packaging>pom</packaging>
+    <artifactId>ThirdLib</artifactId>
 
-    <artifactId>Database-Tests</artifactId>
-    <packaging>pom</packaging>
-    <modules>
-        <module>HikariCP-Test</module>
-        <module>Mybatis-Test</module>
-        <module>Mysql-Test</module>
-        <module>MongoDB-Test</module>
-    </modules>
 
 </project>

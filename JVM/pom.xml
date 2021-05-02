@@ -7,15 +7,12 @@
         <groupId>org.example</groupId>
         <version>${revision}</version>
     </parent>
-    <modelVersion>4.0.0</modelVersion>
-
-    <artifactId>Database-Tests</artifactId>
     <packaging>pom</packaging>
-    <modules>
-        <module>HikariCP-Test</module>
-        <module>Mybatis-Test</module>
-        <module>Mysql-Test</module>
-        <module>MongoDB-Test</module>
-    </modules>
+    <modelVersion>4.0.0</modelVersion>
+<modules>
+    <module>Jvm-Memory-Test</module>
+</modules>
+    <artifactId>JVM</artifactId>
+
 
 </project>
