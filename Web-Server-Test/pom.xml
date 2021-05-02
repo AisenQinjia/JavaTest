@@ -9,12 +9,12 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>Generic-Test</artifactId>
+    <artifactId>Web-Server-Test</artifactId>
 
 <dependencies>
     <dependency>
-        <groupId>org.example</groupId>
-        <artifactId>Utils</artifactId>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-web</artifactId>
     </dependency>
 </dependencies>
 </project>

@@ -1,11 +1,17 @@
 package org.example.zhc;
 
+import lombok.SneakyThrows;
+import lombok.extern.slf4j.Slf4j;
+import lombok.val;
 import org.example.Log;
 import org.junit.Test;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
-import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.*;
 
+@Slf4j
 public class AsyncApp {
     public static void main(String[] args){
 
@@ -35,5 +41,27 @@ public class AsyncApp {
             thread.start();
         }
         countDownLatch.await();
+    }
+
+    @SneakyThrows
+    @Test
+    public void futureTask(){
+        ExecutorService threadPool = Executors.newCachedThreadPool();
+        String[] strs = new String[]{"a","b","c"};
+        List<Future<String>> tasks = new ArrayList<>();
+        for(String str: strs){
+            Future<String> futureTask = threadPool.submit(()-> str);
+            tasks.add(futureTask);
+        }
+        for(val task: tasks){
+            log.error("task: {}", task.get());
+        }
+    }
+
+    @SneakyThrows
+    @Test
+    public void completableFuture(){
+        CompletableFuture<Double> completableFuture = CompletableFuture.supplyAsync(()->Math.pow(2,13));
+        log.error("res: {}",completableFuture.get());
     }
 }

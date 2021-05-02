@@ -7,7 +7,7 @@
     <groupId>org.example</groupId>
     <artifactId>JavaTest</artifactId>
     <packaging>pom</packaging>
-    <version>1.0-SNAPSHOT</version>
+    <version>${revision}</version>
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-dependencies</artifactId>
@@ -26,8 +26,12 @@
         <module>Lsp-Test</module>
         <module>Asynchronous-Test</module>
         <module>Mysql-Test</module>
+        <module>Async-Programming-Test</module>
+        <module>Web-Server-Test</module>
+        <module>Jvm-Memory-Test</module>
     </modules>
     <properties>
+        <revision>0.0.0.1</revision>
         <spring.boot.version>2.3.4.RELEASE</spring.boot.version>
         <test.version>1.0-SNAPSHOT</test.version>
     </properties>
