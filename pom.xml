@@ -25,10 +25,10 @@
         <module>Generic-Test</module>
         <module>Lsp-Test</module>
         <module>Asynchronous-Test</module>
-        <module>Mysql-Test</module>
-        <module>Async-Programming-Test</module>
         <module>Web-Server-Test</module>
         <module>Jvm-Memory-Test</module>
+        <module>Spring-Property-Test</module>
+        <module>Database-Tests</module>
     </modules>
     <properties>
         <revision>0.0.0.1</revision>
