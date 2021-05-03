@@ -1,5 +1,6 @@
 package org.example.zhc.jvm;
 
+import java.applet.Applet;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
