@@ -18,5 +18,6 @@
     <module>Reflection-Test</module>
     <module>Serialization-Test</module>
     <module>Resource</module>
+    <module>IO</module>
 </modules>
 </project>
