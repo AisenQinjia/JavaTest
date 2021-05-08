@@ -19,5 +19,6 @@
     <module>Serialization-Test</module>
     <module>Resource</module>
     <module>IO</module>
+    <module>Stream</module>
 </modules>
 </project>
