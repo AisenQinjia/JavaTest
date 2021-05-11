@@ -20,5 +20,7 @@
     <module>Resource</module>
     <module>IO</module>
     <module>Stream</module>
+    <module>Exception</module>
+    <module>IterableOrMap</module>
 </modules>
 </project>
