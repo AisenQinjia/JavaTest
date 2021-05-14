@@ -1,10 +1,15 @@
 package org.example.zhc.serialization;
 
 import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.TypeReference;
 import lombok.extern.slf4j.Slf4j;
 import lombok.val;
 import org.example.Log;
+import org.junit.Test;
+
+import java.util.HashMap;
+import java.util.Map;
 
 @Slf4j
 public class SerialTest {
@@ -26,5 +31,17 @@ public class SerialTest {
         for(val s:ss){
 
         }
+    }
+
+    @Test
+    public void iterableSer(){
+        Map<String, Map<String,String>> m = new HashMap<>();
+        Map<String,String> mm = new HashMap<>();
+        mm.put("sdf","so what");
+        mm.put("but","what else");
+        m.put("1", mm);
+        JSONArray result = new JSONArray();
+        result.addAll(m.get("1").entrySet());
+        System.out.println(result.toJSONString());
     }
 }

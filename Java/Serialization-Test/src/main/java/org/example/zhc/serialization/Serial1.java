@@ -1,14 +1,11 @@
 package org.example.zhc.serialization;
 
-import com.alibaba.fastjson.annotation.JSONField;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 
 import java.io.Serializable;
-import java.util.HashMap;
-import java.util.Map;
 
 @Builder
 @AllArgsConstructor
