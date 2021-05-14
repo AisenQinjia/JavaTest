@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 import java.util.concurrent.*;
+import java.util.function.Function;
 
 @Slf4j
 public class AsyncApp {
@@ -51,17 +52,29 @@ public class AsyncApp {
         List<Future<String>> tasks = new ArrayList<>();
         for(String str: strs){
             Future<String> futureTask = threadPool.submit(()-> str);
+
             tasks.add(futureTask);
         }
         for(val task: tasks){
             log.error("task: {}", task.get());
         }
     }
+    private double ttt(){
+        throw new RuntimeException("timeOut");
+    }
 
     @SneakyThrows
     @Test
     public void completableFuture(){
-        CompletableFuture<Double> completableFuture = CompletableFuture.supplyAsync(()->Math.pow(2,13));
-        log.error("res: {}",completableFuture.get());
+        CompletableFuture<Double> completableFuture = CompletableFuture.supplyAsync(()->ttt());
+        completableFuture.whenComplete((a,throwable)->{Log.info("111");})
+                .thenRun(()->{Log.info("22222");})
+                .exceptionally(new Function<Throwable, Void>() {
+                    @Override
+                    public Void apply(Throwable throwable) {
+                        Log.info(throwable.toString());
+                        return null;
+                    }
+                });
     }
 }
