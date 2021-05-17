@@ -6,6 +6,7 @@ import lombok.val;
 import org.example.Log;
 import org.junit.Test;
 
+import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
@@ -60,21 +61,25 @@ public class AsyncApp {
         }
     }
     private double ttt(){
-        throw new RuntimeException("timeOut");
+        throw new RuntimeException("time out");
     }
 
     @SneakyThrows
     @Test
     public void completableFuture(){
-        CompletableFuture<Double> completableFuture = CompletableFuture.supplyAsync(()->ttt());
-        completableFuture.whenComplete((a,throwable)->{Log.info("111");})
-                .thenRun(()->{Log.info("22222");})
-                .exceptionally(new Function<Throwable, Void>() {
+
+//        CompletableFuture<Double> completableFuture = CompletableFuture.supplyAsync(()->ttt());
+        CompletableFuture<Double> completableFuture = CompletableFuture.supplyAsync(()->Math.pow(2,3));
+        completableFuture
+                .whenComplete((a,throwable)->{Log.info(throwable.toString());})
+//                .whenComplete((a,throwable)->{throw new RuntimeException("fff");})
+//                .thenRun(()->{Log.info("22222");})
+                .exceptionally(new Function<Throwable, Double>() {
                     @Override
-                    public Void apply(Throwable throwable) {
+                    public Double apply(Throwable throwable) {
                         Log.info(throwable.toString());
                         return null;
                     }
-                });
+                }).thenRun(()->{Log.info("33333");});
     }
 }

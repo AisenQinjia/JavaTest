@@ -4,6 +4,7 @@ import lombok.ToString;
 import org.junit.Test;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 
@@ -20,6 +21,5 @@ public class IoApp {
     @Test
     public void fileReader() throws FileNotFoundException {
         FileReader fr = new FileReader("/test");
-
     }
 }

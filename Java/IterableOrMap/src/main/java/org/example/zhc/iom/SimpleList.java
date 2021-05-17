@@ -13,6 +13,7 @@ import java.util.ListIterator;
  */
 public class SimpleList<T> implements List<T> {
     private Object[] elements;
+    //包含的元素数
     private int size;
     public SimpleList(){
         elements  = new Object[0];
@@ -69,8 +70,8 @@ public class SimpleList<T> implements List<T> {
     @Override
     public boolean add(T t) {
         try {
-            if(size < (elements.length -1)){
-                elements[size + 1] = t;
+            if(size < elements.length){
+                elements[size] = t;
                 size++;
             }else{
                 reSize(size()*2 + 1);
@@ -92,10 +93,10 @@ public class SimpleList<T> implements List<T> {
 
     @Override
     public boolean remove(Object o) {
-        for(int i =0;i<elements.length;i++){
+        for(int i =0;i<size();i++){
             if(o.equals(elements[i])){
                 elements[i] = null;
-                shift(i+1,size,-1);
+                shift(i+1,size-1,-1);
                 size--;
                 return true;
             }
@@ -153,22 +154,33 @@ public class SimpleList<T> implements List<T> {
 
     @Override
     public T get(int index) {
-        return null;
+        return (T)elements[index];
     }
 
     @Override
     public T set(int index, T element) {
-        return null;
+        Object tmp = elements[index];
+        elements[index] = element;
+        elements[index] = element;
+        if(index >= size()){
+            size++;
+        }
+        return (T)tmp;
     }
 
     @Override
     public void add(int index, T element) {
-
+        shift(index,size()-1,1);
+        size++;
+        set(index,element);
     }
 
     @Override
     public T remove(int index) {
-        return null;
+        Object tmp = elements[index];
+        shift(index,size()-1,-1);
+        size--;
+        return (T)tmp;
     }
 
     @Override

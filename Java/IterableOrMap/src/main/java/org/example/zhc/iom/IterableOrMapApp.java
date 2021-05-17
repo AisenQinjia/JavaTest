@@ -11,8 +11,15 @@ public class IterableOrMapApp {
     }
     @Test
     public void simpleArray(){
-
+        List<String> simpleList = new SimpleList<>();
+        simpleList.add("love");
+        simpleList.add("and");
+        simpleList.add("peace");
+        for(String str: simpleList){
+            System.out.println(str);
+        }
     }
+
     private class Ref1{
         int a;
     }
