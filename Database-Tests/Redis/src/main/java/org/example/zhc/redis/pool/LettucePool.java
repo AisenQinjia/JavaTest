@@ -57,6 +57,11 @@ public class LettucePool {
         return commands.eval(script, ScriptOutputType.MULTI, keys, args);
     }
 
+    public Flux<Object> evalAsyncReactive(String script, String[] keys, String... args){
+        RedisReactiveCommands<String, String> commands = connection.reactive();
+        return commands.eval(script, ScriptOutputType.MULTI, keys, args);
+    }
+
 //    public Object eval(String script, String[] keys, byte[]... args){
 //        RedisCommands<String, byte[]> commands = stringByteConnection.sync();
 //        return commands.eval(script, ScriptOutputType.MULTI, keys, args);

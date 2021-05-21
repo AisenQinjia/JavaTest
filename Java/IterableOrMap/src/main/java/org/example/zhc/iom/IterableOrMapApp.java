@@ -35,5 +35,7 @@ public class IterableOrMapApp {
         System.out.println(String.format("a1: %s",((Ref1)refArray[0]).a));
         refs.get(0).a = 2;
         System.out.println(String.format("a2: %s",((Ref1)refArray[0]).a));
+
+
     }
 }

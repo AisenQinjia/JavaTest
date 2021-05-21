@@ -2,21 +2,14 @@ package org.example.zhc.redis;
 
 import io.lettuce.core.RedisClient;
 import io.lettuce.core.RedisURI;
-import io.lettuce.core.resource.ClientResources;
-import io.lettuce.core.resource.DefaultClientResources;
-import io.lettuce.core.resource.DefaultEventLoopGroupProvider;
-import io.lettuce.core.resource.Delay;
-import io.netty.channel.nio.NioEventLoopGroup;
 import org.example.Log;
 import org.example.zhc.redis.pool.LettucePool;
-import org.example.zhc.redis.util.LuaScript;
+import org.example.zhc.redis.util.LuaScriptConfig;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import reactor.core.publisher.Flux;
 
-import java.nio.charset.StandardCharsets;
-import java.time.Duration;
 import java.util.List;
 import java.util.concurrent.CountDownLatch;
 
@@ -31,7 +24,13 @@ public class RedisApp {
     public static final int DATABASE =0;
 
     public RedisClient redisClient;
-
+    private static final String REDIS_UID_KEY_TMPL = "stateful:{%s:%s:%d}linking:%s";
+    private static final String REDIS_SERVICE_STATE_KEY_TMPL = "stateful:{%s:%s:%d}state:%s";
+    private static final String appId = "1";
+    private static final String regionId = "1";
+    private static final Integer logicType = 1;
+    private static final String uid = "player_1";
+    private static final String serviceName = "servicetype3:30002";
 
     public static void main(String[] args){}
     public void createLettuceClient(){
@@ -61,19 +60,28 @@ public class RedisApp {
     @Test
     public void lettucePool(){
         try {
-            LettucePool lettucePool = new LettucePool(redisClient);
-            String[] keys = {"testLink","zzzz"};
-            byte[][] args = new byte[2][];
-            args[0] = "stateful-word".getBytes();
-            args[1] = "1621394822001".getBytes();
-            Flux<Object> result =  lettucePool.evalAsyncReactive(LuaScript.statefulGet(),keys,args);
-            result.subscribe(ret->{
-                List<byte[]> a = (List)ret;
-                for(byte[] bytes: a){
-
-                    Log.info(new String(bytes, StandardCharsets.UTF_8));
+            LettucePool lettucePool =  new LettucePool(redisClient);
+            String uidKey = String.format(REDIS_UID_KEY_TMPL,appId,regionId,logicType,uid);
+            String serviceKey = String.format(REDIS_SERVICE_STATE_KEY_TMPL,appId,regionId,logicType,serviceName);
+            String[] keys = {uidKey,serviceKey};
+            String[] args = new String[2];
+            args[0] = serviceName;
+            args[1] = "1621480477661";
+            String getLinkScript = LuaScriptConfig.statefulGet();
+            Flux<Object> publisher = lettucePool.evalAsyncReactive(getLinkScript,keys,args);
+            publisher.subscribe(ret->{
+                try {
+                    List<String> podList = (List<String>)ret;
+                    String podNumStr = podList.get(0);
+                    int podNum = Integer.parseInt(podNumStr);
+                    if(podNum == -1){
+                        Log.info("can not find a pod for uid: %s sevice:%s",uid,serviceName);
+                    }else{
+                        Log.info("getLinked Pod success: uid:%s service:%s,podId:%s",uid,serviceName,podNum);
+                    }
+                }catch (Exception e){
+                    Log.info("getLinkedPod subscribe catch exception", e);
                 }
-                ret = null;
             });
         }catch (Exception e){
             Log.info(e.getMessage());

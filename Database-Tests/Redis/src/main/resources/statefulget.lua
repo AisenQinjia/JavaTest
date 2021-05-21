@@ -30,7 +30,6 @@ else
     local beginTimeStamp = ARGV[2]
 
     local stateList = redis.call('ZRANGEBYSCORE', serviceQueryKey,beginTimeStamp,'+inf','WITHSCORES')
-
     local stateTable = {}
     -- 获取状态表: {podNum : {score,state}}
     for i =1,#stateList, 2 do
@@ -43,7 +42,6 @@ else
             stateTable[podNum].state = podState
         end
     end
-    --todo: 定期清理有序集合
     local podNum   = nil
     local podState = nil
     for key,val in pairs(stateTable) do

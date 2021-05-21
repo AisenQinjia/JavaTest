@@ -96,7 +96,7 @@ public class SimpleList<T> implements List<T> {
         for(int i =0;i<size();i++){
             if(o.equals(elements[i])){
                 elements[i] = null;
-                shift(i+1,size-1,-1);
+                shift(i+1,size()-1,-1);
                 size--;
                 return true;
             }
@@ -117,7 +117,7 @@ public class SimpleList<T> implements List<T> {
             moveCount = elements.length + moveCount;
         }
         for(;headIndex<= tailIndex;headIndex++){
-            int index = (headIndex + moveCount)%moveCount;
+            int index = (headIndex + moveCount )% elements.length;
             elements[index] = elements[headIndex];
         }
     }
@@ -212,7 +212,7 @@ public class SimpleList<T> implements List<T> {
         private int currentIndex;
         @Override
         public boolean hasNext() {
-            return currentIndex < elements.length;
+            return currentIndex < size();
         }
 
         @Override

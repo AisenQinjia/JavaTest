@@ -9,8 +9,8 @@ import java.nio.charset.StandardCharsets;
 /**
  * @author lua脚本获取
  */
-public final class LuaScript {
-    private LuaScript(){}
+public final class LuaScriptConfig {
+    private LuaScriptConfig(){}
     public static String STATEFUL_GET_SCRIPT;
     public static String statefulGet() {
         if(STATEFUL_GET_SCRIPT == null){
