@@ -1,7 +1,5 @@
 package org.example.zhc.iom;
 
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
-
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
@@ -124,27 +122,27 @@ public class SimpleList<T> implements List<T> {
 
     @Override
     public boolean containsAll(Collection<?> c) {
-        throw new NotImplementedException();
+        return false;
     }
 
     @Override
     public boolean addAll(Collection<? extends T> c) {
-        throw new NotImplementedException();
+        return false;
     }
 
     @Override
     public boolean addAll(int index, Collection<? extends T> c) {
-        throw new NotImplementedException();
+        return false;
     }
 
     @Override
     public boolean removeAll(Collection<?> c) {
-        throw new NotImplementedException();
+        return false;
     }
 
     @Override
     public boolean retainAll(Collection<?> c) {
-        throw new NotImplementedException();
+        return false;
     }
 
     @Override

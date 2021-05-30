@@ -16,20 +16,20 @@ public class StreamApp {
     public static void main(String[] args){
 
     }
-//    @Test
-//    public void array2String(){
-//        String[] strs1 = new String[4];
+    @Test
+    public void array2String(){
+        String[] strs1 = new String[4];
 //        strs[0] = "l";
 //        strs[1] = "o";
 //        strs[2] = "v";
 //        strs[3] = "e";
-//        Collection<String> strs = new HashSet<>();
-//       String[] a =   strs.stream().filter(new Predicate<String>() {
-//            @Override
-//            public boolean test(String s) {
-//                return s.equals("l");
-//            }
-//        }).toArray(String[]::new);
-//
-//    }
+        Collection<String> strs = new HashSet<>();
+       String[] a =   strs.stream().filter(new Predicate<String>() {
+            @Override
+            public boolean test(String s) {
+                return s.equals("l");
+            }
+        }).toArray(String[]::new);
+
+    }
 }

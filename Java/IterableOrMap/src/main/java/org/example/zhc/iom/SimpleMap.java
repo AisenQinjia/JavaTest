@@ -91,7 +91,6 @@ public class SimpleMap<K,V> implements Map<K,V> {
             }
         }
         prevNode.nextNode = toAddNode;
-        size++;
         return null;
     }
 
@@ -115,6 +114,27 @@ public class SimpleMap<K,V> implements Map<K,V> {
     @Override
     public V remove(Object key) {
         int index = getIndex(key);
+        Node<K,V> node = nodes[index];
+        if(node == null){
+            return null;
+        }
+        if(node.key.equals(key)){
+            Node<K,V> nextNode = node.nextNode;
+            nodes[index] = nextNode;
+            size--;
+            return node.value;
+        }
+        Node<K,V> preNode = node;
+        Node<K,V> nextNode = node.nextNode;
+        while (nextNode != null){
+            if(nextNode.key.equals(key)){
+                preNode.nextNode = nextNode.nextNode;
+                size--;
+                return nextNode.value;
+            }else {
+                nextNode = nextNode.nextNode;
+            }
+        }
         return null;
     }
 
