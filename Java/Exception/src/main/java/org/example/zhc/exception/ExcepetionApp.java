@@ -12,8 +12,13 @@ public class ExcepetionApp {
     public static void main(String[] args){
 
     }
+
     @Test
     public void ttt(){
+
+    }
+
+    private void chcekedException() throws IndexOutOfBoundsException{
 
     }
 }

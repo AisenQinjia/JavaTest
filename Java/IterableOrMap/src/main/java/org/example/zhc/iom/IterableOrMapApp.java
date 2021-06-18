@@ -2,14 +2,23 @@ package org.example.zhc.iom;
 
 import org.junit.Test;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.function.Predicate;
 
 public class IterableOrMapApp {
     public static void main(String[] args){
 
+    }
+    @Test
+    public void removeAll(){
+        Set<String> a = new HashSet<>();
+        Set<String> b = new HashSet<>();
+        String key1 = "sdf";
+        a.add(key1);
+        b.add(key1);
+        a.add("dsfs");
+        a.removeAll(b);
+        System.out.println("fsdf");
     }
     @Test
     public void simpleArray(){

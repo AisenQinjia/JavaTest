@@ -27,24 +27,19 @@ public class ZhcThread  {
     public static Map<String,String> sharedMap = new HashMap<>();
     public int a;
     public static void main(String[] args){
-        SpringApplication.run(ZhcThread.class);
-        log.info("current thread: {}, state: {}", Thread.currentThread().getName(), Thread.currentThread().getState());
-
-        List<Integer> integerList = getList();
-        for(val in:integerList){
-            log.info("sdf1");
-        }
-        String[] strs = new String[3];
-
-        integerList.removeIf(new Predicate<Integer>() {
-            @Override
-            public boolean test(Integer integer) {
-                return integer.equals(1);
-            }
-        });
-        for(Iterator<Integer> it = integerList.iterator(); it.hasNext();){
-
-        }
+//        SpringApplication.run(ZhcThread.class);
+//        log.info("current thread: {}, state: {}", Thread.currentThread().getName(), Thread.currentThread().getState());
+//
+//        List<Integer> integerList = getList();
+//        for(val in:integerList){
+//            log.info("sdf1");
+//        }
+//        String[] strs = new String[3];
+//
+//        integerList.removeIf(integer -> integer.equals(1));
+//        for(Iterator<Integer> it = integerList.iterator(); it.hasNext();){
+//
+//        }
 
 //        Thread thread1 = new Thread(new Runnable() {
 //            @SneakyThrows
@@ -65,39 +60,39 @@ public class ZhcThread  {
 //                log.info("thread2 read: {}", ZhcThread.sharedClass.getB());
 //            }
 //        });
-        Thread thread1 = new Thread(new Runnable() {
-            @Override
-            public void run() {
-                 for(int i = 0; i < 9999; i++){
-                     log.info("thread1 <<<<<<<<<");
-                     ZhcThread.sharedMap.put("thread","1");
-                     log.info("thread1 >>>>>>>>>");
-                     synchronized (this){
-
-                     }
-                 }
-            }
-        });
-        Thread thread2 = new Thread(new Runnable() {
-            @SneakyThrows
-            @Override
-            public void run() {
-                for(int i = 0; i <9999; i++){
-                    log.info("thread2 <<<<<<<<");
-                    ZhcThread.sharedMap.put("thread","2");
-                    log.info("thread2 >>>>>>>>");
-                }
-            }
-        });
-        thread1.start();
-        thread2.start();
-
+//        Thread thread1 = new Thread(new Runnable() {
+//            @Override
+//            public void run() {
+//                 for(int i = 0; i < 9999; i++){
+//                     log.info("thread1 <<<<<<<<<");
+//                     ZhcThread.sharedMap.put("thread","1");
+//                     log.info("thread1 >>>>>>>>>");
+//                     synchronized (this){
+//
+//                     }
+//                 }
+//            }
+//        });
+//        Thread thread2 = new Thread(new Runnable() {
+//            @SneakyThrows
+//            @Override
+//            public void run() {
+//                for(int i = 0; i <9999; i++){
+//                    log.info("thread2 <<<<<<<<");
+//                    ZhcThread.sharedMap.put("thread","2");
+//                    log.info("thread2 >>>>>>>>");
+//                }
+//            }
+//        });
+//        thread1.start();
+//        thread2.start();
     }
 
     public void init(){
         InnerClass a = new InnerClass();
         a.get();
     }
+
 }
 @Getter
 @Slf4j

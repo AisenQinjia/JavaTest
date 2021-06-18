@@ -21,6 +21,7 @@
     <module>Stream</module>
     <module>Exception</module>
     <module>IterableOrMap</module>
+    <module>Array</module>
 </modules>
 
 </project>
