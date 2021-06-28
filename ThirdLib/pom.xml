@@ -12,6 +12,7 @@
     <modules>
         <module>Gson</module>
         <module>Caffeine-Test</module>
+        <module>Jenkins</module>
     </modules>
     <artifactId>ThirdLib</artifactId>
 

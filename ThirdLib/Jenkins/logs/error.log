@@ -1,0 +1,7 @@
+2021-06-24 16:57:02.157 [ERROR] [main] o.e.z.JenkinsApp                                   :  systemInfo: SystemInfo{errors=[], hudsonVersion=1.395, jenkinsVersion=2.249, jenkinsSession=2df888ff, instanceIdentity=MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAlaQ5ZTtyzH7Zb+EhleRFLBK2wpYyj2WXYOSL5TYyMbkEBfbqLkk/casmqAXY9TDkIeCqR81J+xjP8qrfEf0tUys/t7GWth1LVNxJEtRShebd6eOw+cUU/LZG9d4NoPbjMVUGqbKRMXpuB/QQ8S2x66a/9PtBuzL0F8z3i49BM+visOxObO4pyolRUqLahDaU7Wz103k+GbfAtT8LvH5QFl+wiEh0rWB0G9/1gTfyg/93XhcphWr7UNexcxn3t7Obm4Jf9pLggFeM8jR7N1Nk4HfkQL6D7273s48TPiXtwePwYhcHuQZVwiI/TwzX0D/DTg+DU2Zs46qELd8OCkGgLwIDAQAB, sshEndpoint=null, server=Jetty(9.4.30.v20200611)}
+2021-06-24 17:48:10.996 [ERROR] [main] o.e.z.JenkinsApp                                   :  Exception: org.jclouds.rest.ResourceNotFoundException
+2021-06-24 17:49:17.294 [ERROR] [main] o.e.z.JenkinsApp                                   :  Exception: org.jclouds.rest.ResourceNotFoundException
+2021-06-24 17:49:30.972 [ERROR] [main] o.e.z.JenkinsApp                                   :  Exception: {}org.jclouds.rest.ResourceNotFoundException
+2021-06-24 17:49:47.448 [ERROR] [main] o.e.z.JenkinsApp                                   :  Exception: org.jclouds.rest.ResourceNotFoundException
+2021-06-24 21:17:04.427 [ERROR] [main] o.e.z.JenkinsApp                                   :  Exception: org.jclouds.http.HttpResponseException
+2021-06-24 21:18:52.943 [ERROR] [main] o.e.z.JenkinsApp                                   :  Exception: org.jclouds.http.HttpResponseException
