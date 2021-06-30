@@ -19,7 +19,10 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
+import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * jenkins 测试模块
@@ -30,13 +33,13 @@ public class JenkinsApp {
     public static JenkinsClient client;
     JobsApi jobsApi;
     public static final String ENDPOINT="http://10.100.3.3:8080";
-    public static final String USER = "aisen";
+    public static final String USER = "hvyt";
     public static final String PASSWORD = "123456";
     @Before
     public void createClient(){
         client = JenkinsClient.builder()
                 .endPoint(ENDPOINT)
-                .credentials(USER+":"+PASSWORD)
+                .credentials("aisen:123456")
                 .build();
         jobsApi = client.api().jobsApi();
 
@@ -80,8 +83,9 @@ public class JenkinsApp {
             log.info("job {} found",jobName);
         }
 
-
-        IntegerResponse queueId = jobsApi.build(JOB_ROOT_FOLDER,jobName);
+        Map<String,List<String>> buildParams = new HashMap<>();
+        buildParams.put("paramStr", Collections.singletonList("tttttttt"));
+        IntegerResponse queueId = jobsApi.buildWithParameters(JOB_ROOT_FOLDER,jobName,buildParams);
         dealWithErrors("Unable to submit build", queueId.errors());
         log.info("Build successfuly submitted with queue id: " + queueId.value());
         QueueItem queueItem = client.api().queueApi().queueItem(queueId.value());
