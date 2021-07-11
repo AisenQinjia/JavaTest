@@ -14,11 +14,13 @@ public class IterableOrMapApp {
         Set<String> a = new HashSet<>();
         Set<String> b = new HashSet<>();
         String key1 = "sdf";
+        String key2 = "dsfs";
         a.add(key1);
+        a.add(key2);
         b.add(key1);
-        a.add("dsfs");
         a.removeAll(b);
-        System.out.println("fsdf");
+        System.out.println(a.size());
+        System.out.println(b.size());
     }
     @Test
     public void simpleArray(){
