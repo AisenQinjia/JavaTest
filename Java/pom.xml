@@ -22,6 +22,7 @@
     <module>Exception</module>
     <module>IterableOrMap</module>
     <module>Array</module>
+    <module>Concurrency</module>
 </modules>
 
 </project>
