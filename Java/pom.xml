@@ -23,6 +23,7 @@
     <module>IterableOrMap</module>
     <module>Array</module>
     <module>Concurrency</module>
+    <module>Socket</module>
 </modules>
 
 </project>

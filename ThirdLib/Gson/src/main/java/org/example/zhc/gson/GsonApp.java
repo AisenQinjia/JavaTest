@@ -35,6 +35,8 @@ public class GsonApp {
         Map<String, Object> oo = ((Map<String, Object>) ((Map<String, Object>) ((Map<String, Object>) o.get("192.168.10.51")).get("dev")).get("/shitou/tpf-game-server"));
         List<String> svcs = (List<String>)oo.get("tag");
         System.out.println(svcs.get(0));
+
+         String jsonStr =  gson.toJson(o);
     }
 
     private static void ee(){

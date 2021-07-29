@@ -15,7 +15,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
@@ -119,4 +118,5 @@ public class JenkinsApp {
             throw new RuntimeException(msg);
         }
     }
+
 }
