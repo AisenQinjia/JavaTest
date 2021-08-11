@@ -39,8 +39,14 @@ public class ReflectApp {
     }
 
     @Test
-    public void setAll(){
-
+    public void isAnnotationPresent(){
+        ServiceChild sc = new ServiceChild();
+        System.out.println(String.format("serviceChild isAnnotationPresent OneAnnotation: %s",sc.getClass().isAnnotationPresent(OneAnnotation.class)));
     }
 
+//    @Test
+//    public void isAnnotationPresent2(){
+//        ServiceChild sc = new ServiceChild();
+//        System.out.println(String.format("serviceChild isAnnotationPresent OneAnnotation: %s",sc.getClass().isAnnotation(OneAnnotation.class)));
+//    }
 }

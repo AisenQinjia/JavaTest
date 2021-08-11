@@ -4,10 +4,15 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.googlecode.protobuf.format.JsonFormat;
 import org.example.msg.proto.Msg;
+import org.junit.Test;
 
 
 public class FastJsonTestApp {
     public static void main(String[] args){
+
+    }
+    @Test
+    void parseGson(){
         Msg msg = Msg.newBuilder()
                 .setMsgId("main")
                 .build();
@@ -18,4 +23,6 @@ public class FastJsonTestApp {
         Msg pbMsg = jsonObject.toJavaObject(Msg.class);
         System.out.println(pbMsg.getMsgId());
     }
+
+
 }
