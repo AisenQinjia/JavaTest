@@ -2,6 +2,9 @@ package org.example.zhc;
 
 import org.junit.Test;
 
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * array 测试
  * @author aisen
@@ -32,4 +35,14 @@ public class ArrayApp {
     class Child extends Parent{
 
     }
+
+    @Test
+    public void zeroArray(){
+        String[] zs = null ;
+//        System.out.println("zs length: " + zs.length);
+        for(String str: zs){
+            System.out.println("str: " + str);
+        }
+    }
+
 }
