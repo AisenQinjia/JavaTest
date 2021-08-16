@@ -8,10 +8,11 @@ import java.io.InputStream;
 
 public class CustomClassLoader extends ClassLoader {
     @Override
-    protected Class<?> findClass(String name) throws ClassNotFoundException {
+    protected Class<?> findClass(String name)  {
         byte[] bytes = loadClassFromFile(name);
         return defineClass(name,bytes,0,bytes.length);
     }
+
     private byte[] loadClassFromFile(String fileName)  {
         InputStream inputStream = getClass().getClassLoader().getResourceAsStream(
                 fileName.replace('.', File.separatorChar) + ".class");
