@@ -2,6 +2,10 @@ package org.example.zhc;
 
 import org.junit.Test;
 
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;
 
@@ -27,5 +31,21 @@ public class ConcurrencyApp {
         TimeUnit.SECONDS.sleep(1);
         shouldStop = true;
         countDownLatch.await();
+    }
+    private static final Set<String> lock = new HashSet<>();
+    private void lockObj(){
+
+        synchronized (lock){
+            System.out.println("lock success!");
+        }
+    }
+
+    @Test
+    public void testLock(){
+        lock.add("1");
+        lock.add("2");
+        for(String str: lock){
+            lock.remove("1");
+        }
     }
 }
