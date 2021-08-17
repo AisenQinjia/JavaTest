@@ -10,28 +10,18 @@ import java.net.URLClassLoader;
 public class PandoraClassLoader extends URLClassLoader {
 
     public PandoraClassLoader(URL[] urls){
-        super(urls,Thread.currentThread().getContextClassLoader());
+        super(urls,null);
     }
-
-    public static final Object loadLock = new Object();
 
     @Override
-    public Class<?> loadClass(String name) throws ClassNotFoundException {
-        Class<?> z = loadClass(name,false);
-        if(z == null){
-            return super.loadClass(name);
-        }else{
-            return z;
-        }
-    }
-
     public Class<?> loadClass(String name, boolean resolve) throws ClassNotFoundException {
-        synchronized (loadLock){
-            Class<?> c = findClass(name);
-            if(resolve){
-                resolveClass(c);
-            }
-            return c;
+        try
+        {
+            return findClass(name);
+        }
+        catch( ClassNotFoundException e )
+        {
+            return super.loadClass(name, resolve);
         }
     }
 }
