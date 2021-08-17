@@ -10,5 +10,11 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>ClassLoader</artifactId>
-
+<dependencies>
+    <dependency>
+        <groupId>com.fasterxml.woodstox</groupId>
+        <artifactId>woodstox-core</artifactId>
+        <version>6.2.3</version>
+    </dependency>
+</dependencies>
 </project>
