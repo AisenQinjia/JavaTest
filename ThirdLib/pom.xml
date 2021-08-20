@@ -17,6 +17,7 @@
         <module>Metrics</module>
         <module>FastJson</module>
         <module>TestProto</module>
+        <module>K8S</module>
     </modules>
     <artifactId>ThirdLib</artifactId>
 
