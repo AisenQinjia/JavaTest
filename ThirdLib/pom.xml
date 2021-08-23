@@ -18,6 +18,7 @@
         <module>FastJson</module>
         <module>TestProto</module>
         <module>K8S</module>
+        <module>ApolloOpenApi</module>
     </modules>
     <artifactId>ThirdLib</artifactId>
 
