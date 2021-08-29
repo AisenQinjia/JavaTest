@@ -16,5 +16,12 @@
     <module>AOP-Test</module>
     <module>Spring-Property-Test</module>
     <module>Web-Server-Test</module>
+    <module>LifeCycle</module>
 </modules>
+    <dependencies>
+        <dependency>
+            <groupId>org.example</groupId>
+            <artifactId>Utils</artifactId>
+        </dependency>
+    </dependencies>
 </project>
