@@ -2,8 +2,8 @@ package org.example.zhc;
 
 import org.junit.Test;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * array 测试
@@ -43,6 +43,15 @@ public class ArrayApp {
         for(String str: zs){
             System.out.println("str: " + str);
         }
+    }
+
+    @Test
+    public void sort(){
+        List<Long> l = new ArrayList<>();
+        l.add(2L);
+        l.add(1L);
+//        l.sort(null);
+        l.forEach(System.out::println);
     }
 
 }

@@ -21,6 +21,7 @@
         <module>Spring</module>
         <module>Java</module>
         <module>ThirdLib</module>
+        <module>Maven</module>
     </modules>
     <properties>
         <revision>0.0.0.1</revision>
