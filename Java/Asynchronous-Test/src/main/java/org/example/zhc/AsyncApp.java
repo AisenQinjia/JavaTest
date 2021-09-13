@@ -70,6 +70,7 @@ public class AsyncApp {
 
 //        CompletableFuture<Double> completableFuture = CompletableFuture.supplyAsync(()->ttt());
         CompletableFuture<Double> completableFuture = CompletableFuture.supplyAsync(()->Math.pow(2,3));
+        completableFuture.wait();
         completableFuture
                 .whenComplete((a,throwable)->{Log.info(throwable.toString());})
 //                .whenComplete((a,throwable)->{throw new RuntimeException("fff");})
