@@ -33,7 +33,6 @@ public class JenkinsApp {
     JobsApi jobsApi;
     public static final String ENDPOINT="http://10.100.3.3:8080";
     public static final String USER = "hvyt";
-    public static final String PASSWORD = "123456";
     @Before
     public void createClient(){
         client = JenkinsClient.builder()
@@ -52,9 +51,8 @@ public class JenkinsApp {
     public static final String JOB_NAME_PREFIX = "deploy_";
     @Test
     public void findJob(){
-        JobList jobList = jobsApi.jobList("");
-        JobInfo jobInfo = jobsApi.jobInfo(null,"deploy");
-        log.info("jobInfo: {}",jobInfo);
+        JobList jobList = jobsApi.jobList("deploy");
+        log.info("jobInfo: {}",jobList);
     }
     @Test
     public void remoteDeploy() throws InterruptedException, IOException {
@@ -109,7 +107,14 @@ public class JenkinsApp {
         }
         log.info("Build status: {}", buildInfo.result());
     }
+    @Test
+    public void deleteJobAndWorkspace(){
+        //貌似只能删除master上的
+        boolean b1 = false;
+        boolean b2 = false;
 
+        System.out.println(String.format("%s",b1==b2) );
+    }
     void dealWithErrors(String msg, List<Error> errors) {
         if (errors.size() > 0) {
             for (Error error : errors) {

@@ -19,6 +19,7 @@
         <module>TestProto</module>
         <module>K8S</module>
         <module>ApolloOpenApi</module>
+        <module>OkHttp</module>
     </modules>
     <artifactId>ThirdLib</artifactId>
 
