@@ -17,6 +17,7 @@
         <module>Mysql-Test</module>
         <module>MongoDB-Test</module>
         <module>Redis</module>
+        <module>Elastic</module>
     </modules>
 
 </project>
