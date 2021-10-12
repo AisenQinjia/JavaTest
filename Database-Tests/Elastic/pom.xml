@@ -5,11 +5,17 @@
     <parent>
         <artifactId>Database-Tests</artifactId>
         <groupId>org.example</groupId>
-        <version>0.0.0.1</version>
+        <version>${revision}</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>Elastic</artifactId>
 
-
+<dependencies>
+    <dependency>
+        <groupId>org.elasticsearch.client</groupId>
+        <artifactId>elasticsearch-rest-client</artifactId>
+        <version>7.15.0</version>
+    </dependency>
+</dependencies>
 </project>

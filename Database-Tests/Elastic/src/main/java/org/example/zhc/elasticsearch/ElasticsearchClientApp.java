@@ -16,7 +16,7 @@ public class ElasticsearchClientApp {
     static RestClient restClient;
     static Request req;
     static String jsonData =  "{\"timestamp\":\"1100000\",\"value\":3}";
-    //remember the last line must add a newline :(
+    //remember the last line must add a newline as well :(
     static String bulkData = "{ \"index\" : { \"_index\" : \"customer\"} }\n" +
             "{ \"field1\" : \"value1\" }\n" +
             "{ \"index\" : { \"_index\" : \"customer\"} }\n" +
