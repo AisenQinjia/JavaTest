@@ -21,6 +21,13 @@ public class ElasticsearchClientApp {
             "{ \"field1\" : \"value1\" }\n" +
             "{ \"index\" : { \"_index\" : \"customer\"} }\n" +
             "{ \"field1\" : \"value1\" }\n";
+
+    static String bulkStream = "{ \"create\":{ } }\n" +
+            "{\"@timestamp\":1634562370973,\"regionId\":\"region2\", \"value\":10,\"name\":\"gauge\"}\n" +
+            "{ \"create\":{ } }\n" +
+            "{\"@timestamp\":1634562470974,\"regionId\":\"region2\", \"value\":10,\"name\":\"gauge\"}\n" +
+            "{ \"create\":{ } }\n" +
+            "{\"@timestamp\":1634562570976,\"regionId\":\"region2\", \"value\":10,\"name\":\"gauge\"}\n";
     @Before
     public void init(){
         RestClientBuilder builder = RestClient.builder(new HttpHost("10.100.3.2",9200));
@@ -54,6 +61,12 @@ public class ElasticsearchClientApp {
         req = new Request("POST", "/_bulk");
 
         req.setJsonEntity(bulkData);
+    }
+
+    @Test
+    public void bulkStream(){
+        req = new Request("PUT","/my-metrics-stream/_bulk");
+        req.setJsonEntity(bulkStream);
     }
 
     @After

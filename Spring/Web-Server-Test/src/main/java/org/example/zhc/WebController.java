@@ -5,8 +5,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class WebController {
-    @RequestMapping("/")
+    @RequestMapping("/test/ClientMsgHead")
     public String index(){
-        return "hello web";
+        System.out.println("request!");
+        return "";
     }
 }
