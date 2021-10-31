@@ -13,9 +13,9 @@
     <artifactId>Spring</artifactId>
 
 <modules>
-    <module>AOP-Test</module>
-    <module>Spring-Property-Test</module>
-    <module>Web-Server-Test</module>
+    <module>AOP</module>
+    <module>Spring-Property</module>
+    <module>Web-Server</module>
     <module>LifeCycle</module>
 </modules>
     <dependencies>

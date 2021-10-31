@@ -11,11 +11,11 @@
     <packaging>pom</packaging>
     <artifactId>Java</artifactId>
 <modules>
-    <module>Asynchronous-Test</module>
-    <module>Generic-Test</module>
-    <module>MultiThreading-Test</module>
-    <module>Reflection-Test</module>
-    <module>Serialization-Test</module>
+    <module>Asynchronous</module>
+    <module>Generic</module>
+    <module>MultiThreading</module>
+    <module>Reflection</module>
+    <module>Serialization</module>
     <module>Resource</module>
     <module>IO</module>
     <module>Stream</module>

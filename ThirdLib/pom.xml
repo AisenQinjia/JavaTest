@@ -12,7 +12,7 @@
 
     <modules>
         <module>Gson</module>
-        <module>Caffeine-Test</module>
+        <module>Caffeine</module>
         <module>Jenkins</module>
         <module>Metrics</module>
         <module>FastJson</module>
