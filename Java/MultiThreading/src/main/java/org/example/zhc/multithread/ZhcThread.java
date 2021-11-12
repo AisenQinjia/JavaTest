@@ -4,16 +4,20 @@ import lombok.Getter;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import lombok.val;
+import org.junit.After;
+import org.junit.Test;
 import org.springframework.boot.SpringApplication;
 
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.CountDownLatch;
 import java.util.function.Predicate;
 
 @Slf4j
 public class ZhcThread  {
+    static CountDownLatch countDownLatch = new CountDownLatch(1);
     public static List<Integer> getList(){
         return null;
     }
@@ -87,10 +91,34 @@ public class ZhcThread  {
 //        thread1.start();
 //        thread2.start();
     }
-
+    @After
+    public void after() throws InterruptedException {
+        countDownLatch.await();
+    }
     public void init(){
         InnerClass a = new InnerClass();
         a.get();
+    }
+    public ThreadLocal<String> localThing = new ThreadLocal<>();
+
+    @Test
+    public void threadLocal(){
+        for(int i =0;i<3;i++){
+            final int  ii = i;
+            Thread thread = new Thread(() -> {
+                System.out.println(Thread.currentThread().getName()+ " this thread num:" + localThing.get());
+                localThing.set(String.valueOf(ii));
+                System.out.println(Thread.currentThread().getName()+" this thread num:" + localThing.get());
+                try {
+                    Thread.sleep(1000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                System.out.println(Thread.currentThread().getName()+" this thread num:" + localThing.get());
+            });
+            thread.start();
+        }
+
     }
 
 }

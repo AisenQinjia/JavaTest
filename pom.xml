@@ -16,7 +16,7 @@
     <modules>
         <module>DesignPattern</module>
         <module>Utils</module>
-        <module>Database-Tests</module>
+        <module>Database</module>
         <module>JVM</module>
         <module>Spring</module>
         <module>Java</module>

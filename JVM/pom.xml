@@ -10,7 +10,7 @@
     <packaging>pom</packaging>
     <modelVersion>4.0.0</modelVersion>
 <modules>
-    <module>Jvm-Memory-Test</module>
+    <module>Jvm-Memory</module>
     <module>ClassLoader</module>
 </modules>
     <artifactId>JVM</artifactId>
