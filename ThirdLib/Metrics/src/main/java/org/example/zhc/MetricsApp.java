@@ -76,9 +76,24 @@ public class MetricsApp {
     }
 
     @Test
-    public void EDRHistogram(){
+    public void resumeReporter(){
+        Thread thread = new Thread(new Runnable() {
+            int i = 0;
+            @SneakyThrows
+            @Override
+            public void run() {
+                Thread.sleep(2000);
+                System.out.println("stop");
+                reporter.stop();
 
+                Thread.sleep(2000);
+                System.out.println("start");
+                reporter.start(1,TimeUnit.SECONDS);
+            }
+        });
+        thread.start();
     }
+
 
     /**
      *
