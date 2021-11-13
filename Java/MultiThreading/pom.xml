@@ -9,7 +9,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>MultiThreading-Test</artifactId>
+    <artifactId>MultiThreading</artifactId>
 
 <dependencies>
     <dependency>

@@ -9,7 +9,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>HikariCP-Test</artifactId>
+    <artifactId>HikariCP</artifactId>
 <dependencies>
     <dependency>
         <groupId>com.zaxxer</groupId>
