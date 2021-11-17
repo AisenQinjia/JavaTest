@@ -12,6 +12,7 @@
 <modules>
     <module>Jvm-Memory</module>
     <module>ClassLoader</module>
+    <module>gc-info</module>
 </modules>
     <artifactId>JVM</artifactId>
 
