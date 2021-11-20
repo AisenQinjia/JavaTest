@@ -1,6 +1,9 @@
 package org.example.zhc;
 
 import com.codahale.metrics.*;
+import com.codahale.metrics.jvm.CachedThreadStatesGaugeSet;
+import com.codahale.metrics.jvm.GarbageCollectorMetricSet;
+import com.codahale.metrics.jvm.MemoryUsageGaugeSet;
 import lombok.SneakyThrows;
 import org.junit.After;
 import org.junit.Before;
@@ -33,7 +36,11 @@ public class MetricsApp {
 //
 //        customReporter.start(1,TimeUnit.SECONDS);
     }
-
+    @Test
+    public void jvm(){
+        registry.register("gc", new GarbageCollectorMetricSet());
+        registry.register("memory", new MemoryUsageGaugeSet());
+    }
     @Test
     public void meter(){
         Meter requests = registry.meter("requests1");

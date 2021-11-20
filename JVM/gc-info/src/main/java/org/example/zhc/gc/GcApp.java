@@ -1,8 +1,4 @@
 package org.example.zhc.gc;
-
-
-
-
 import org.junit.Test;
 
 import java.lang.management.ClassLoadingMXBean;
@@ -17,6 +13,7 @@ import java.lang.management.ThreadMXBean;
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
 import java.text.NumberFormat;
+import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
@@ -51,7 +48,7 @@ public class GcApp {
         System.out.printf("jvm.name (JVM名称-版本号-供应商):%s | version: %s | vendor: %s  %n", runtime.getVmName(), runtime.getVmVersion(), runtime.getVmVendor());
         System.out.printf("jvm.spec.name (JVM规范名称-版本号-供应商):%s | version: %s | vendor: %s  %n", runtime.getSpecName(), runtime.getSpecVersion(), runtime.getSpecVendor());
         System.out.printf("jvm.java.version (JVM JAVA版本):%s%n", System.getProperty("java.version"));
-        System.out.printf("jvm.start.time (Java虚拟机的启动时间):%s%n", toDuration(runtime.getStartTime()));
+        System.out.printf("jvm.start.time (Java虚拟机的启动时间):%s%n", toDate(runtime.getStartTime()));
         System.out.printf("jvm.uptime (Java虚拟机的正常运行时间):%s%n", toDuration(runtime.getUptime()));
 
         System.out.println("------------------------------------------------------------------------------------------------------");
@@ -212,4 +209,8 @@ public class GcApp {
         return s;
     }
 
+    protected static String toDate(long timestampMillis){
+        Date date = new Date(timestampMillis);
+        return date.toString();
+    }
 }
