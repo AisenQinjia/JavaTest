@@ -2,10 +2,21 @@ package org.example.zhc.apollo;
 
 import com.ctrip.framework.apollo.openapi.client.ApolloOpenApiClient;
 import com.ctrip.framework.apollo.openapi.dto.NamespaceReleaseDTO;
+import com.ctrip.framework.apollo.openapi.dto.OpenEnvClusterDTO;
 import com.ctrip.framework.apollo.openapi.dto.OpenItemDTO;
 import com.ctrip.framework.apollo.openapi.dto.OpenNamespaceDTO;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
+import org.apache.logging.log4j.core.util.FileUtils;
 import org.junit.Before;
 import org.junit.Test;
+
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Set;
 
 public class OpenApiApp {
     public static String COMPANY_PORTAL_URL = "http://192.168.10.142:28070";
@@ -25,6 +36,33 @@ public class OpenApiApp {
                 .withPortalUrl(COMPANY_PORTAL_URL)
                 .withToken(COMPANY_TOKEN)
                 .build();
+    }
+
+    @Test
+    public void outPrintInfo() throws IOException {
+        List<OpenNamespaceDTO> ns =client.getNamespaces(APPID,ENV,CLUSTER_AISEN);
+        JsonObject config = new JsonObject();
+        JsonObject namespaces = new JsonObject();
+        config.addProperty("env",ENV);
+        config.addProperty("cluster",CLUSTER_AISEN);
+        config.add(APPID,namespaces);
+
+        ns.forEach(e->{
+            JsonObject namespace = new JsonObject();
+            e.getItems().forEach(openItemDTO -> {
+                namespace.addProperty(openItemDTO.getKey(),openItemDTO.getValue());
+            });
+            namespaces.add(e.getNamespaceName(),namespace);
+        });
+        BufferedWriter writer = new BufferedWriter(new FileWriter("config"));
+        writer.write(config.toString());
+        writer.close();
+    }
+
+    @Test
+    public void getEnvClusterInfo(){
+        List<OpenEnvClusterDTO> clusterDTOS=  client.getEnvClusterInfo(APPID);
+        System.out.println("clusterDTOS:"+ clusterDTOS);
     }
 
     @Test
