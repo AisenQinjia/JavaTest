@@ -1,10 +1,7 @@
 package org.example.zhc.apollo;
 
 import com.ctrip.framework.apollo.openapi.client.ApolloOpenApiClient;
-import com.ctrip.framework.apollo.openapi.dto.NamespaceReleaseDTO;
-import com.ctrip.framework.apollo.openapi.dto.OpenEnvClusterDTO;
-import com.ctrip.framework.apollo.openapi.dto.OpenItemDTO;
-import com.ctrip.framework.apollo.openapi.dto.OpenNamespaceDTO;
+import com.ctrip.framework.apollo.openapi.dto.*;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import org.apache.logging.log4j.core.util.FileUtils;
@@ -16,16 +13,24 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 public class OpenApiApp {
-    public static String COMPANY_PORTAL_URL = "http://192.168.10.142:28070";
-    public static String COMPANY_TOKEN =  "5f9862364d15224e02ea877d9a3abddfa8951292";
-    public static String APPID = "tpf-game-server-common";
+//    public static String COMPANY_PORTAL_URL = "http://192.168.10.142:28070";
+//    public static String COMPANY_TOKEN =  "5f9862364d15224e02ea877d9a3abddfa8951292";
+//    public static String APPID = "tpf-game-server-common";
+//    public static String ENV = "PRO";
+//    public static String NAMESPACE = "tpf.env.custom";
+//    public static String CLUSTER_AISEN = "wuhui-dev-aisen";
+//    public static String CLUSTER_DEFAULT = "default";
 
-    public static String ENV = "PRO";
-    public static String NAMESPACE = "tpf.env.custom";
-    public static String CLUSTER_AISEN = "wuhui-dev-aisen";
+    public static String COMPANY_PORTAL_URL = "http://106.54.227.205:80";
+    public static String COMPANY_TOKEN =  "744abf7cde03693b9d7e3d1e31fa60421d6b369e";
+    public static String APPID = "toms";
+    public static String ENV = "DEV";
+    public static String NAMESPACE = "development.test1020";
+    public static String CLUSTER_AISEN = "default";
     public static String CLUSTER_DEFAULT = "default";
 
 
@@ -73,16 +78,30 @@ public class OpenApiApp {
             System.out.println(String.format("item key_%s, value_%s",item.getKey(),item.getValue()));
         });
     }
+    @Test
+    public void createNamespace(){
+        OpenAppNamespaceDTO openNamespaceDTO = new OpenAppNamespaceDTO();
+        openNamespaceDTO.setAppId(APPID);
+        openNamespaceDTO.setPublic(false);
+        openNamespaceDTO.setFormat("properties");
+        openNamespaceDTO.setName("test-1");
+        openNamespaceDTO.setDataChangeCreatedBy("tpf");
+        client.createAppNamespace(openNamespaceDTO);
+    }
 
     @Test
     public void modifyItem(){
-        OpenNamespaceDTO openNamespaceDTO = client.getNamespace(APPID,ENV,CLUSTER_DEFAULT,NAMESPACE);
-        OpenItemDTO dto = openNamespaceDTO.getItems().get(0);
-        String value = "1Gi";
-        dto.setValue(value);
 
+//        OpenNamespaceDTO openNamespaceDTO = client.getNamespace(APPID,ENV,CLUSTER_AISEN,NAMESPACE);
+//        OpenItemDTO dto = openNamespaceDTO.getItems().get(0);
+        OpenItemDTO dto = new OpenItemDTO();
+        dto.setKey("ipman");
+        String value = "0Gi";
+        dto.setValue(value);
+        dto.setDataChangeCreatedBy("tpf");
         System.out.println(String.format("modify Item_%s's  to %s",dto.getKey(), value));
-        client.updateItem(APPID,ENV,CLUSTER_DEFAULT,NAMESPACE,dto);
+        client.createOrUpdateItem(APPID,ENV,CLUSTER_AISEN,NAMESPACE,dto);
+
     }
 
     @Test
@@ -96,6 +115,6 @@ public class OpenApiApp {
         NamespaceReleaseDTO releaseDTO = new NamespaceReleaseDTO();
         releaseDTO.setReleaseTitle("20210823202958-release");
         releaseDTO.setReleasedBy("tpf");
-        client.publishNamespace(APPID,ENV,CLUSTER_DEFAULT,NAMESPACE,releaseDTO);
+        client.publishNamespace(APPID,ENV,CLUSTER_AISEN,NAMESPACE,releaseDTO);
     }
 }
