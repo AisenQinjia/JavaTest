@@ -19,4 +19,12 @@ public class FileUtil {
         }
         return textBuilder.toString();
     }
+    //获取文本文件内容
+    public static String readCharacterFileToStr(String pathName,boolean isResource) throws IOException {
+        InputStream fileInputStream = isResource? Thread.currentThread().getContextClassLoader().getResourceAsStream(pathName):new FileInputStream(pathName);
+        byte[] bytes =new byte[fileInputStream.available()];
+        fileInputStream.read(bytes);
+        fileInputStream.close();
+        return new String(bytes, StandardCharsets.UTF_8);
+    }
 }

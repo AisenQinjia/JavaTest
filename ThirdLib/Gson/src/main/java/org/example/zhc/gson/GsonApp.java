@@ -1,7 +1,15 @@
 package org.example.zhc.gson;
 
 import com.google.gson.Gson;
+import com.google.gson.JsonArray;
+import com.google.gson.reflect.TypeToken;
+import org.example.FileUtil;
+import org.example.zhc.gson.serialize.RegionDefine;
+import org.junit.Before;
+import org.junit.Test;
 
+import java.io.IOException;
+import java.lang.reflect.Type;
 import java.util.List;
 import java.util.Map;
 
@@ -28,7 +36,8 @@ public class GsonApp {
             "]";
     public static void main(String[] strs){
         Gson gson = new Gson();
-        List<Object> m = gson.fromJson(jArr, List.class);
+        JsonArray m = gson.fromJson(jArr, JsonArray.class);
+
         Map<String,Object> o = (Map<String,Object>)m.get(0);
         Map<String, Object> oo = ((Map<String, Object>) ((Map<String, Object>) ((Map<String, Object>) o.get("192.168.10.51")).get("dev")).get("/shitou/tpf-game-server"));
         List<String> svcs = (List<String>)oo.get("tag");
@@ -36,12 +45,20 @@ public class GsonApp {
 
          String jsonStr =  gson.toJson(o);
     }
-
-    private static void ee(){
-        if(true){
-
-        }else{
-            System.out.println("sdf");
-        }
+    static Gson gson;
+    @Before
+    public void init(){
+        gson = new Gson();
     }
+    @Test
+    public void regionTest() throws IOException {
+        String regionStr = FileUtil.readCharacterFileToStr("3RegionDefine.json",false);
+        Type regionType = new TypeToken<Map<String, RegionDefine>>() {}.getType();
+        Map<String, RegionDefine> regionDefine = gson.fromJson(regionStr, regionType);
+        RegionDefine a = new RegionDefine();
+
+
+        System.out.println("regionDefine: " + regionDefine.keySet().iterator().next());
+    }
+
 }

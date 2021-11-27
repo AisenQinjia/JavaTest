@@ -17,5 +17,9 @@
         <artifactId>gson</artifactId>
         <version>2.2.4</version>
     </dependency>
+    <dependency>
+        <groupId>org.example</groupId>
+        <artifactId>Utils</artifactId>
+    </dependency>
 </dependencies>
 </project>
