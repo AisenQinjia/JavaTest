@@ -5,6 +5,7 @@ import org.junit.Test;
 import org.junit.experimental.theories.suppliers.TestedOn;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 class Fruit {}
@@ -49,5 +50,11 @@ public class VariantApp {
     private void ivt(List<? super Apple> fs){
         fs.add(new Apple());
         fs.add(new Jonathan());
+    }
+
+    @Test
+    public void typeWildcards(){
+        List<String> nums = new ArrayList<>();
+
     }
 }

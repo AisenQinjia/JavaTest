@@ -1,6 +1,6 @@
 {
     "tpfdemo-dev-aisen" : {
-        "apolloIdc": "wuhui-dev-aisen",
+//        "apolloIdc": "wuhui-dev-aisen",
         "configCenter": {
             "productName": "wuhui",
             "productIdc": "aisen"

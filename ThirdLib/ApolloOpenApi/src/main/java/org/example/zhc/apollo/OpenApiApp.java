@@ -1,5 +1,6 @@
 package org.example.zhc.apollo;
 
+import com.ctrip.framework.apollo.core.enums.Env;
 import com.ctrip.framework.apollo.openapi.client.ApolloOpenApiClient;
 import com.ctrip.framework.apollo.openapi.dto.*;
 import com.google.gson.JsonArray;
@@ -17,21 +18,22 @@ import java.util.Map;
 import java.util.Set;
 
 public class OpenApiApp {
-//    public static String COMPANY_PORTAL_URL = "http://192.168.10.142:28070";
-//    public static String COMPANY_TOKEN =  "5f9862364d15224e02ea877d9a3abddfa8951292";
-//    public static String APPID = "tpf-game-server-common";
-//    public static String ENV = "PRO";
-//    public static String NAMESPACE = "tpf.env.custom";
-//    public static String CLUSTER_AISEN = "wuhui-dev-aisen";
-//    public static String CLUSTER_DEFAULT = "default";
-
-    public static String COMPANY_PORTAL_URL = "http://106.54.227.205:80";
-    public static String COMPANY_TOKEN =  "744abf7cde03693b9d7e3d1e31fa60421d6b369e";
-    public static String APPID = "toms";
-    public static String ENV = "DEV";
-    public static String NAMESPACE = "development.test1020";
-    public static String CLUSTER_AISEN = "default";
+    public static String COMPANY_PORTAL_URL = "http://192.168.10.142:28070";
+    public static String COMPANY_TOKEN =  "5f9862364d15224e02ea877d9a3abddfa8951292";
+    public static String APPID = "tpf-game-server-common";
+//    public static String APPID = "tpf-announcement";
+    public static String ENV = "PRO";
+    public static String NAMESPACE = "application";
+    public static String CLUSTER_AISEN = "wuhui-dev-aisen";
     public static String CLUSTER_DEFAULT = "default";
+
+//    public static String COMPANY_PORTAL_URL = "http://106.54.227.205:80";
+//    public static String COMPANY_TOKEN =  "744abf7cde03693b9d7e3d1e31fa60421d6b369e";
+//    public static String APPID = "toms";
+//    public static String ENV = "DEV";
+//    public static String NAMESPACE = "development.test1020";
+//    public static String CLUSTER_AISEN = "default";
+//    public static String CLUSTER_DEFAULT = "default";
 
 
     public static ApolloOpenApiClient client;
@@ -49,7 +51,7 @@ public class OpenApiApp {
         JsonObject config = new JsonObject();
         JsonObject namespaces = new JsonObject();
         config.addProperty("env",ENV);
-        config.addProperty("cluster",CLUSTER_AISEN);
+        config.addProperty("cluster",CLUSTER_DEFAULT);
         config.add(APPID,namespaces);
 
         ns.forEach(e->{
@@ -72,11 +74,15 @@ public class OpenApiApp {
 
     @Test
     public void readNamespace(){
-        OpenNamespaceDTO openNamespaceDTO = client.getNamespace(APPID,ENV,CLUSTER_AISEN,NAMESPACE);
+        OpenNamespaceDTO openNamespaceDTO = client.getNamespace(APPID,ENV,CLUSTER_DEFAULT,NAMESPACE);
         System.out.println(String.format("reading namespace_%s, cluster_%s",NAMESPACE, CLUSTER_DEFAULT));
         openNamespaceDTO.getItems().stream().forEach(item->{
             System.out.println(String.format("item key_%s, value_%s",item.getKey(),item.getValue()));
         });
+    }
+    @Test
+    public void createCluster(){
+
     }
     @Test
     public void createNamespace(){

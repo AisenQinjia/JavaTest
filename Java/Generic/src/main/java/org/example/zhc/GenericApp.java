@@ -38,4 +38,13 @@ public class GenericApp {
         Class b = new ArrayList<String>().getClass();
         Log.info("a==b: %s",a==b);
     }
+
+    @Test
+    public void getMyType(){
+        String a = "1";
+
+        GenericClass<String> genericClass = new GenericClass<>(String.class);
+
+//        GenericClass<String> genericClass2 = new GenericClass<String>(a.getClass());
+    }
 }

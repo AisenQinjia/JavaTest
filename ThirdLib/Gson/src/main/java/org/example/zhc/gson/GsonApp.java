@@ -3,6 +3,7 @@ package org.example.zhc.gson;
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.reflect.TypeToken;
+import com.sun.org.apache.xerces.internal.xs.datatypes.ObjectList;
 import org.example.FileUtil;
 import org.example.zhc.gson.serialize.RegionDefine;
 import org.junit.Before;
@@ -10,6 +11,7 @@ import org.junit.Test;
 
 import java.io.IOException;
 import java.lang.reflect.Type;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -54,8 +56,13 @@ public class GsonApp {
     public void regionTest() throws IOException {
         String regionStr = FileUtil.readCharacterFileToStr("3RegionDefine.json",false);
         Type regionType = new TypeToken<Map<String, RegionDefine>>() {}.getType();
+//        List<String> strings = new ArrayList<? extends Object>();
+
+        Map<String, RegionDefine> regionDefine1 = gson.fromJson(regionStr,regionType);
+        RegionDefine r = regionDefine1.get("tpfdemo-dev-aisen");
+
         Map<String, RegionDefine> regionDefine = gson.fromJson(regionStr, regionType);
-        RegionDefine a = new RegionDefine();
+//        RegionDefine a = new RegionDefine();
 
 
         System.out.println("regionDefine: " + regionDefine.keySet().iterator().next());

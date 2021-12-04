@@ -25,6 +25,7 @@
     <module>Concurrency</module>
     <module>Socket</module>
     <module>String</module>
+    <module>ClassAndType</module>
 </modules>
 
 </project>
