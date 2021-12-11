@@ -83,6 +83,11 @@ public class MetricsApp {
     }
 
     @Test
+    public void HistogramSet(){
+
+    }
+
+    @Test
     public void resumeReporter(){
         Thread thread = new Thread(new Runnable() {
             int i = 0;
