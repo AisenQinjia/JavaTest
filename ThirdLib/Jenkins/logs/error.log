@@ -1,7 +1,0 @@
-2021-06-29 11:41:07.961 [ERROR] [main] o.e.z.JenkinsApp                                   :  Exception: java.lang.IllegalArgumentException
-2021-06-29 13:43:25.495 [ERROR] [main] o.e.z.JenkinsApp                                   :  Exception: org.jclouds.http.HttpResponseException
-2021-06-29 13:44:05.063 [ERROR] [main] o.e.z.JenkinsApp                                   :  Exception: org.jclouds.http.HttpResponseException
-2021-06-29 13:44:16.382 [ERROR] [main] o.e.z.JenkinsApp                                   :  Exception: org.jclouds.http.HttpResponseException
-2021-06-29 13:45:46.556 [ERROR] [main] o.e.z.JenkinsApp                                   :  Exception: org.jclouds.http.HttpResponseException
-2021-06-29 14:09:46.741 [ERROR] [main] o.e.z.JenkinsApp                                   :  Exception: org.jclouds.http.HttpResponseException
-2021-06-29 14:10:50.907 [ERROR] [main] o.e.z.JenkinsApp                                   :  Exception: org.jclouds.http.HttpResponseException
