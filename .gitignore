@@ -12,6 +12,7 @@ hs_err_pid*
 
 # Maven
 target/
+logs/
 .flattened-pom.xml
 
 # IntelliJ
