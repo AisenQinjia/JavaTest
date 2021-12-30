@@ -2,10 +2,14 @@ package org.example.zhc.iom;
 
 import org.junit.Test;
 
+import java.io.PrintStream;
 import java.util.*;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.function.Predicate;
 
 public class IterableOrMapApp {
+    public static PrintStream out = System.out;
+
     public static void main(String[] args){
 
     }
@@ -65,5 +69,12 @@ public class IterableOrMapApp {
         System.out.println(simpleMap.get("love2"));
         simpleMap.remove("lov");
         System.out.println(simpleMap.size());
+    }
+
+    @Test
+    public void mapContains(){
+        Map<String,String> ssMap = new ConcurrentHashMap<>();
+        ssMap.computeIfAbsent("ss",key->null);
+        out.println("contains key : " + ssMap.containsKey("ss"));
     }
 }

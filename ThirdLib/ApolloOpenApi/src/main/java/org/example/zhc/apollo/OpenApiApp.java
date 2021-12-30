@@ -1,21 +1,15 @@
 package org.example.zhc.apollo;
 
-import com.ctrip.framework.apollo.core.enums.Env;
 import com.ctrip.framework.apollo.openapi.client.ApolloOpenApiClient;
 import com.ctrip.framework.apollo.openapi.dto.*;
-import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
-import org.apache.logging.log4j.core.util.FileUtils;
 import org.junit.Before;
 import org.junit.Test;
 
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
-import java.util.Set;
 
 public class OpenApiApp {
     public static String COMPANY_PORTAL_URL = "http://192.168.10.142:28070";

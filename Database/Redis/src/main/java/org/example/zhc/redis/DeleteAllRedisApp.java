@@ -25,58 +25,27 @@ public class DeleteAllRedisApp {
             }
 
             jedis.select(Integer.parseInt(args[3]));
-            Set<String> removeKeys = new HashSet();
-            removeKeys.addAll(jedis.keys("sg:{1000004:100:700200:*}"));
-            removeKeys.addAll(jedis.keys("sg:{1000004:100:700130:*}"));
-            removeKeys.addAll(jedis.keys("sg:{1000004:100:700150:*}"));
-            removeKeys.addAll(jedis.keys("sg:{1000004:100:700175:*}"));
-            removeKeys.addAll(jedis.keys("sg:{1000004:101:700200:*}"));
-            removeKeys.addAll(jedis.keys("sg:{1000004:101:700130:*}"));
-            removeKeys.addAll(jedis.keys("sg:{1000004:101:700150:*}"));
-            removeKeys.addAll(jedis.keys("sg:{1000004:101:700175:*}"));
-            removeKeys.addAll(jedis.keys("sg:{1000004:102:700200:*}"));
-            removeKeys.addAll(jedis.keys("sg:{1000004:102:700130:*}"));
-            removeKeys.addAll(jedis.keys("sg:{1000004:102:700150:*}"));
-            removeKeys.addAll(jedis.keys("sg:{1000004:102:700175:*}"));
-            removeKeys.addAll(jedis.keys("sg:{1000004:11:700200:*}"));
-            removeKeys.addAll(jedis.keys("sg:{1000004:11:700130:*}"));
-            removeKeys.addAll(jedis.keys("sg:{1000004:11:700150:*}"));
-            removeKeys.addAll(jedis.keys("sg:{1000004:11:700175:*}"));
-            removeKeys.addAll(jedis.keys("sg:{1000004:12:700200:*}"));
-            removeKeys.addAll(jedis.keys("sg:{1000004:12:700130:*}"));
-            removeKeys.addAll(jedis.keys("sg:{1000004:12:700150:*}"));
-            removeKeys.addAll(jedis.keys("sg:{1000004:12:700175:*}"));
-            removeKeys.addAll(jedis.keys("sg:{1000004:13:700200:*}"));
-            removeKeys.addAll(jedis.keys("sg:{1000004:13:700130:*}"));
-            removeKeys.addAll(jedis.keys("sg:{1000004:13:700150:*}"));
-            removeKeys.addAll(jedis.keys("sg:{1000004:13:700175:*}"));
-            removeKeys.addAll(jedis.keys("sg:{1000004:14:700200:*}"));
-            removeKeys.addAll(jedis.keys("sg:{1000004:14:700130:*}"));
-            removeKeys.addAll(jedis.keys("sg:{1000004:14:700150:*}"));
-            removeKeys.addAll(jedis.keys("sg:{1000004:14:700175:*}"));
-            removeKeys.addAll(jedis.keys("sg:{1000004:16:700200:*}"));
-            removeKeys.addAll(jedis.keys("sg:{1000004:16:700130:*}"));
-            removeKeys.addAll(jedis.keys("sg:{1000004:16:700150:*}"));
-            removeKeys.addAll(jedis.keys("sg:{1000004:16:700175:*}"));
+            Set<String> removeKeys = new HashSet<>();
             removeKeys.addAll(jedis.keys("sg:{1000004:2:700200:*}"));
             removeKeys.addAll(jedis.keys("sg:{1000004:2:700130:*}"));
             removeKeys.addAll(jedis.keys("sg:{1000004:2:700150:*}"));
             removeKeys.addAll(jedis.keys("sg:{1000004:2:700175:*}"));
-            removeKeys.addAll(jedis.keys("sg:{1000004:23:700200:*}"));
-            removeKeys.addAll(jedis.keys("sg:{1000004:23:700130:*}"));
-            removeKeys.addAll(jedis.keys("sg:{1000004:23:700150:*}"));
-            removeKeys.addAll(jedis.keys("sg:{1000004:23:700175:*}"));
-            removeKeys.addAll(jedis.keys("sg:{1000004:30:700200:*}"));
-            removeKeys.addAll(jedis.keys("sg:{1000004:30:700130:*}"));
-            removeKeys.addAll(jedis.keys("sg:{1000004:30:700150:*}"));
-            removeKeys.addAll(jedis.keys("sg:{1000004:30:700175:*}"));
-            removeKeys.addAll(jedis.keys("sg:{1000004:26:700200:*}"));
-            removeKeys.addAll(jedis.keys("sg:{1000004:26:700130:*}"));
-            removeKeys.addAll(jedis.keys("sg:{1000004:26:700150:*}"));
-            removeKeys.addAll(jedis.keys("sg:{1000004:26:700175:*}"));
-            removeKeys.addAll(jedis.keys("sg:{1000004:IncrRegionId:6:wuhui-release:*:}"));
-            removeKeys.addAll(jedis.keys("sg:{1000004:wuhui-release:6:wuhui-release:*:}"));
-            removeKeys.addAll(jedis.keys("sg:{1000004:wuhui-release:7:*}"));
+            //游戏邮件
+            removeKeys.addAll(jedis.keys("sg:{1000004:IncrRegionId:3:IncrOwnerId}"));
+            removeKeys.addAll(jedis.keys("sg:{1000004:mailRegion:3:mailOwner}"));
+            //追踪邮件
+            removeKeys.addAll(jedis.keys("sg:{1000004:mailTrackRegion:8:TrackMailOwner}"));
+            //uid邮件
+            removeKeys.addAll(jedis.keys("sg:{1000004:uidRegion:9:uidRegion}"));
+            //源
+            removeKeys.addAll(jedis.keys("sg:{1000004:IncrRegionId:5:*}"));
+            removeKeys.addAll(jedis.keys("sg:{1000004:mailRegion:5:*}"));
+            //玩家邮箱
+            removeKeys.addAll(jedis.keys("sg:{1000004:IncrRegionId:6:wuhui-1222:*}"));
+            removeKeys.addAll(jedis.keys("sg:{1000004:wuhui-1222:6:wuhui-1222:*}"));
+            //问卷
+            removeKeys.addAll(jedis.keys("sg:{1000004:questionnaire_region:4:*}"));
+
             System.out.println(">>>>>>>>>>>>>>开始删除缓存>>>>>>>>>>>>>>>>>");
             Iterator var3 = removeKeys.iterator();
 

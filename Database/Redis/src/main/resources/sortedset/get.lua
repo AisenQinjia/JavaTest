@@ -1,4 +1,4 @@
-#
+
 local function split2(str,sp)
     local index = string.find(str,sp)
     local pair = {}

@@ -20,6 +20,7 @@
         <module>K8S</module>
         <module>ApolloOpenApi</module>
         <module>OkHttp</module>
+        <module>Jackson</module>
     </modules>
     <artifactId>ThirdLib</artifactId>
 
