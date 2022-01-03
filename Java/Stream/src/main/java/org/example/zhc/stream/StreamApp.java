@@ -1,5 +1,6 @@
 package org.example.zhc.stream;
 
+import org.example.Util;
 import org.junit.Test;
 
 import java.util.Collection;
@@ -18,18 +19,26 @@ public class StreamApp {
     }
     @Test
     public void array2String(){
-        String[] strs1 = new String[4];
-//        strs[0] = "l";
-//        strs[1] = "o";
-//        strs[2] = "v";
-//        strs[3] = "e";
-        Collection<String> strs = new HashSet<>();
-       String[] a =   strs.stream().filter(new Predicate<String>() {
-            @Override
-            public boolean test(String s) {
-                return s.equals("l");
-            }
-        }).toArray(String[]::new);
 
+        Collection<String> strs = new HashSet<>();
+        strs.add("l");
+        strs.add("o");
+        strs.add("v");
+        strs.add("e");
+        String[] at = strs.stream().map(s -> s + " t").toArray(String[]::new);
+    }
+
+    @Test
+    public void parallelStream(){
+        Collection<Integer> iSet = new HashSet<>();
+        int i = 0;
+        while (i< 100000000){
+            iSet.add(i);
+            i++;
+        }
+        final Integer[][] array1 = new Integer[2][1];
+        System.out.println("stream time: " + Util.runTime(()-> array1[0] = iSet.stream().map(integer -> integer + 1).toArray(Integer[]::new)));
+        //OOM?
+        System.out.println("parallel stream time: " + Util.runTime(()->array1[1] = iSet.parallelStream().map(integer -> integer + 1).toArray(Integer[]::new)));
     }
 }
