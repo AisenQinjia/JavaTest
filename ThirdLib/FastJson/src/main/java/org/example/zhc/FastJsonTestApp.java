@@ -12,14 +12,14 @@ public class FastJsonTestApp {
 
     }
     @Test
-    void parseGson(){
+    public void parseGson(){
         Msg msg = Msg.newBuilder()
                 .setMsgId("main")
                 .build();
 
         String str = JsonFormat.printToString(msg);
         JSONObject jsonObject = new JSONObject();
-        jsonObject.put("msgId_", "main");
+        jsonObject.put("msgId", "main");
         Msg pbMsg = jsonObject.toJavaObject(Msg.class);
         System.out.println(pbMsg.getMsgId());
     }

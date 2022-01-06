@@ -21,6 +21,7 @@
         <module>ApolloOpenApi</module>
         <module>OkHttp</module>
         <module>Jackson</module>
+        <module>reactive-stream</module>
     </modules>
     <artifactId>ThirdLib</artifactId>
 

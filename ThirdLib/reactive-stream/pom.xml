@@ -9,12 +9,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>Jackson</artifactId>
+    <artifactId>reactive-stream</artifactId>
 
-<dependencies>
-    <dependency>
-        <groupId>com.fasterxml.jackson.core</groupId>
-        <artifactId>jackson-databind</artifactId>
-    </dependency>
-</dependencies>
+
 </project>

@@ -11,5 +11,10 @@
 
     <artifactId>Stream</artifactId>
 
-
+<dependencies>
+    <dependency>
+        <groupId>org.example</groupId>
+        <artifactId>Utils</artifactId>
+    </dependency>
+</dependencies>
 </project>

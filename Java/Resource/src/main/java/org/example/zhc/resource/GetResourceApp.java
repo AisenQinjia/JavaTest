@@ -7,7 +7,9 @@ import java.nio.charset.StandardCharsets;
 
 public class GetResourceApp {
     public static void main(String[] args){
-        InputStream url = GetResourceApp.class.getResourceAsStream("test");
+        //url not null running in idea,null running in power shell
+        //the path separator mush be `/`, the ClassLoader.getResource doc says so.
+        InputStream url = GetResourceApp.class.getResourceAsStream("/dir/test");
         System.out.println("url "+url);
     }
     @Test
@@ -18,4 +20,5 @@ public class GetResourceApp {
         String config =new String(bytes, StandardCharsets.UTF_8);
         System.out.println("config: "+ config);
     }
+
 }
