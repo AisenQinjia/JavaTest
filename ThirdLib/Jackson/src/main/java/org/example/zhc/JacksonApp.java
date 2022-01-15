@@ -4,15 +4,15 @@ import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.example.zhc.domain.*;
+import org.example.zhc.domain.AClass;
+import org.example.zhc.domain.FiledClass;
+import org.example.zhc.domain.MethodClass;
+import org.example.zhc.domain.SerialClass;
 import org.junit.Test;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class JacksonApp {
-    ObjectMapper mapper = new ObjectMapper().configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES,false);
-    { mapper.setVisibility(mapper.getSerializationConfig().getDefaultVisibilityChecker()
+    static ObjectMapper mapper = new ObjectMapper().configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES,false);
+    static { mapper.setVisibility(mapper.getSerializationConfig().getDefaultVisibilityChecker()
             .withFieldVisibility(JsonAutoDetect.Visibility.ANY)
             .withGetterVisibility(JsonAutoDetect.Visibility.NONE)
             .withIsGetterVisibility(JsonAutoDetect.Visibility.NONE)
@@ -45,19 +45,7 @@ public class JacksonApp {
     }
 
     final String absSubStr = "{\"privateField\":\"prif\",\"packageField\":\"packf\",\"protectedField\":\"prof\",\"publicField\":\"pubf\",\"subPrivateStr\":\"subPstr\"}";
-    @Test
-    public void AbstractClass() throws JsonProcessingException {
-        SubClass subClass = new SubClass();
-        subClass.ctor();
-        SerialClass bClass = new SerialClass();
-        bClass.setAbstractClass(subClass);
-        List<SubClass> subClassList = new ArrayList<>();
-        subClassList.add(subClass);
-        subClassList.add(subClass);
-        bClass.setSubClasses(subClassList);
-        String jsonStr = mapper.writeValueAsString(bClass);
-        SerialClass b = mapper.readValue(jsonStr, SerialClass.class);
-    }
+
 
     @Test
     public void serialTest() throws JsonProcessingException {
@@ -65,5 +53,9 @@ public class JacksonApp {
         serialClass.ctor();
         String jsonStr = mapper.writeValueAsString(serialClass);
         SerialClass ss = mapper.readValue(jsonStr,SerialClass.class);
+        System.out.println(mapper.writeValueAsString(ss));
+    }
+
+    public static void main(String[] args) throws JsonProcessingException {
     }
 }

@@ -22,6 +22,7 @@
         <module>OkHttp</module>
         <module>Jackson</module>
         <module>reactive-stream</module>
+        <module>netty</module>
     </modules>
     <artifactId>ThirdLib</artifactId>
 
