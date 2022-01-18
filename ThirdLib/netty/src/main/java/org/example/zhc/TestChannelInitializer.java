@@ -14,16 +14,4 @@ public class TestChannelInitializer extends ChannelInitializer<SocketChannel> {
         ch.pipeline().addLast(new TestServerHandler());
     }
 
-    @Override
-    public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
-        ByteBuf in = (ByteBuf) msg;
-        try {
-            while (in.isReadable()) { // (1)
-                System.out.print((char) in.readByte());
-                System.out.flush();
-            }
-        } finally {
-            ReferenceCountUtil.release(msg); // (2)
-        }
-    }
 }
