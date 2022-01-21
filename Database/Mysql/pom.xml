@@ -13,6 +13,10 @@
 
 <dependencies>
     <dependency>
+        <groupId>com.google.code.gson</groupId>
+        <artifactId>gson</artifactId>
+    </dependency>
+    <dependency>
         <groupId>redis.clients</groupId>
         <artifactId>jedis</artifactId>
         <version>2.9.0</version>
@@ -29,7 +33,7 @@
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-maven-plugin</artifactId>
         <configuration>
-            <mainClass>org.example.zhc.DeletRedisMysqlApp</mainClass>
+            <mainClass>org.example.zhc.StorageTransferApp</mainClass>
         </configuration>
         <executions>
             <execution>
