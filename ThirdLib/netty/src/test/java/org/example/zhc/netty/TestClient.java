@@ -1,18 +1,16 @@
 package org.example.zhc.netty;
 
 import io.netty.bootstrap.Bootstrap;
-import io.netty.channel.ChannelFuture;
-import io.netty.channel.ChannelInitializer;
-import io.netty.channel.ChannelOption;
-import io.netty.channel.EventLoopGroup;
+import io.netty.channel.*;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioSocketChannel;
+import io.netty.util.ReferenceCountUtil;
+import org.example.zhc.TestServer;
 
 public class TestClient {
     public static void main(String[] args) throws InterruptedException {
-        String host = args[0];
-        int port = Integer.parseInt(args[1]);
+        String host = "127.0.0.1";
         EventLoopGroup workerGroup = new NioEventLoopGroup();
 
         try {
@@ -22,13 +20,19 @@ public class TestClient {
             b.option(ChannelOption.SO_KEEPALIVE, true); // (4)
             b.handler(new ChannelInitializer<SocketChannel>() {
                 @Override
-                public void initChannel(SocketChannel ch)  {
-                    ch.pipeline().addLast(new TestClientHandler());
-                }
-            });
+                public void initChannel(SocketChannel ch) {
+                    ch.pipeline().addLast(new TestClientMessageHandler());
+                    ch.pipeline().addLast(new ClientHandler());
+                    ch.pipeline().addLast(new SimpleChannelInboundHandler() {
+                        @Override
+                        protected void channelRead0(ChannelHandlerContext ctx, Object msg) throws Exception {
+                            ReferenceCountUtil.safeRelease(msg);
+                        }
+                    });
 
+                }});
             // Start the client.
-            ChannelFuture f = b.connect(host, port).sync(); // (5)
+            ChannelFuture f = b.connect(host, TestServer.port).sync(); // (5)
 
             // Wait until the connection is closed.
             f.channel().closeFuture().sync();

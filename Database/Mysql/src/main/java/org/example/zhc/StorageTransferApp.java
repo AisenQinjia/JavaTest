@@ -38,7 +38,6 @@ public class StorageTransferApp {
             appIdServerType = config.getAppId() + "_" + config.getServerName().split(":")[0].replace("-","_");
             formattedRegionId = config.getRegionId().replace("-","_");
             log.println(String.format("appIdServerType:%s,formattedRegionId:%s",appIdServerType,formattedRegionId));
-
             //建立连接
             buildCon();
             //transfer

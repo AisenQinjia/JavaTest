@@ -3,11 +3,11 @@ package org.example.zhc;
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.*;
 import io.netty.channel.nio.NioEventLoopGroup;
-import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
 
 public class TestServer {
-    private int port;
+    public static int port = 12345;
+    public static int msg_size = 10*1024*1024*8;
     public TestServer(int port){
         this.port = port;
     }
@@ -39,7 +39,6 @@ public class TestServer {
     }
 
     public static void main(String[] args) throws Exception {
-        int port = 34511;
         if (args.length > 0) {
             port = Integer.parseInt(args[0]);
         }

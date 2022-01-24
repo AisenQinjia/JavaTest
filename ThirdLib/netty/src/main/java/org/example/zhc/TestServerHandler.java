@@ -1,15 +1,30 @@
 package org.example.zhc;
 
+import io.netty.buffer.ByteBuf;
+import io.netty.channel.ChannelFuture;
+import io.netty.channel.ChannelFutureListener;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInboundHandlerAdapter;
 
 public class TestServerHandler extends ChannelInboundHandlerAdapter {
-    public static boolean close = false;
+
+    @Override
+    public void channelActive(final ChannelHandlerContext ctx) { // (1)
+        final ByteBuf time = ctx.alloc().buffer(TestServer.msg_size); // (2)
+        time.writeBytes(new byte[TestServer.msg_size]);
+        System.out.println("send begin! " + TestServer.msg_size);
+        final ChannelFuture f = ctx.writeAndFlush(time); // (3)
+        f.addListener((ChannelFutureListener) future -> {
+            System.out.println("send complete! " + future.isSuccess());
+            future.channel().close();
+        });
+//        f.channel().close();
+    }
+
     @Override
     public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
         ctx.write(msg); // (1)
         ctx.flush(); // (2)
-
     }
 
     @Override
