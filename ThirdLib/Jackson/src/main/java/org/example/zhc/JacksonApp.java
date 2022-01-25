@@ -2,12 +2,10 @@ package org.example.zhc;
 
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.example.zhc.domain.AClass;
-import org.example.zhc.domain.FiledClass;
-import org.example.zhc.domain.MethodClass;
-import org.example.zhc.domain.SerialClass;
+import org.example.zhc.domain.*;
 import org.junit.Test;
 
 public class JacksonApp {
@@ -49,13 +47,16 @@ public class JacksonApp {
 
     @Test
     public void serialTest() throws JsonProcessingException {
-        SerialClass serialClass = new SerialClass();
+        SerialClass<Number> serialClass = new SerialClass<>();
+
         serialClass.ctor();
         String jsonStr = mapper.writeValueAsString(serialClass);
-        SerialClass ss = mapper.readValue(jsonStr,SerialClass.class);
+        SerialClass<IClass> ss = mapper.readValue(jsonStr, new TypeReference<SerialClass<IClass>>() {});
+//        serialClass.assertEqual(ss);
         System.out.println(mapper.writeValueAsString(ss));
     }
 
-    public static void main(String[] args) throws JsonProcessingException {
+    public static void main(String[] args)  {
+
     }
 }

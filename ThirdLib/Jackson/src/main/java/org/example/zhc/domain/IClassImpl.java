@@ -1,5 +1,7 @@
 package org.example.zhc.domain;
 
+import org.junit.Assert;
+
 public class IClassImpl implements IClass {
     private int interfaceImpl;
     public String getMyProperty() {
@@ -10,4 +12,10 @@ public class IClassImpl implements IClass {
     public void ctor(){
         interfaceImpl = 1;
     }
+
+    @Override
+    public void assertEqual(IClass iClass) {
+        Assert.assertEquals(interfaceImpl,((IClassImpl)iClass).interfaceImpl);
+    }
+
 }
