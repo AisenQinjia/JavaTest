@@ -1,0 +1,82 @@
+{
+  "regionId": "tpfdemo-dev-aisen",
+  "mysqlIp": "10.100.1.41",
+  "mysqlPort": 30006,
+  "mysqlUserName": "root",
+  "mysqlPassword": "password",
+  "mysqlDataBase": "tpf_storage_wuhui_dev_aisen",
+  "redisIp": "10.100.1.40",
+  "redisPort": 30379,
+  "redisDatabase": 0,
+  "redisAuth": "",
+
+  "appId": "1000004",
+  "serverName": "tpf-sdk-build-grpc",
+  "oldStorageConfigs": [
+    {
+      "appId": "700050",
+      "regionId": "1",
+      "logicType": 1
+    },
+    {
+      "appId": "700050",
+      "regionId": "1",
+      "logicType": 10
+    },
+    {
+      "appId": "700050",
+      "regionId": "1",
+      "logicType": 11
+    },
+    {
+      "appId": "700050",
+      "regionId": "1",
+      "logicType": 12
+    },
+    {
+      "appId": "700050",
+      "regionId": "1",
+      "logicType": 13
+    },
+    {
+      "appId": "700050",
+      "regionId": "1",
+      "logicType": 14
+    },
+    {
+      "appId": "700050",
+      "regionId": "1",
+      "logicType": 15
+    },
+    {
+      "appId": "700050",
+      "regionId": "1",
+      "logicType": 16
+    },
+    {
+      "appId": "700050",
+      "regionId": "1",
+      "logicType": 18
+    },
+    {
+      "appId": "700050",
+      "regionId": "1",
+      "logicType": 19
+    },
+    {
+      "appId": "700050",
+      "regionId": "1",
+      "logicType": 1
+    },
+//    {
+//      "appId": <appId>,
+//      "regionId": <channelId>,
+//      "logicType": 20
+//    }
+    {
+      "appId": "1000004",
+      "regionId": "2",
+      "logicType": 20
+    }
+  ]
+}

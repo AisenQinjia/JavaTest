@@ -1,20 +1,26 @@
 {
-  "mysqlIp": "10.100.1.41",
+  "mysqlIp": "10.100.2.25",
   "mysqlPort": 30006,
   "mysqlUserName": "root",
   "mysqlPassword": "password",
-  "mysqlDataBase": "tpf_storage_wuhui_dev_aisen",
-  "redisIp": "10.100.1.40",
+  "mysqlDataBase": "tpf_storage_huiyue_test",
+  "redisIp": "10.100.2.24",
   "redisPort": 30379,
   "redisDatabase": 0,
   "redisAuth": "",
+  "regionId": "tpf-test-huiyue",
   "appId": "1000004",
-  "serverName": "announcement",
-  "regionId": "tpfdemo-dev-aisen",
+
+  "serverName": "mail",
   "oldStorageConfigs": [
-    {
-      "appId": "501",
-      "regionId": "announcement_region"
-    }
+   {
+     "appId": "1000004",
+     "regionId": "uidRegion"
+   },
+   {
+     "appId": "1000004",
+     "regionId": "uidRegion",
+     "logicType": 6
+   }
   ]
 }

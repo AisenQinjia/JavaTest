@@ -1,0 +1,38 @@
+{
+  "appId": "1000004",
+  "regionId": "tpfdemo-dev-aisen",
+  "mysqlIp": "10.100.1.41",
+  "mysqlPort": 30006,
+  "mysqlUserName": "root",
+  "mysqlPassword": "password",
+  "mysqlDataBase": "tpf_storage_wuhui_dev_aisen",
+  "redisIp": "10.100.1.40",
+  "redisPort": 30379,
+  "redisDatabase": 0,
+  "redisAuth": "",
+
+  "serverName": "mail",
+  "oldStorageConfigs": [
+    {
+      "appId": "1000004",
+      "regionId": "IncrRegionId"
+    },
+    {
+      "appId": "1000004",
+      "regionId": "mailRegion"
+    },
+    {
+      "appId": "1000004",
+      "regionId": "mailTrackRegion"
+    },
+    {
+      "appId": "1000004",
+      "regionId": "uidRegion"
+    },
+    {
+      "appId": "1000004",
+      "regionId": "uidRegion",
+      "logicType": 6
+    }
+  ]
+}

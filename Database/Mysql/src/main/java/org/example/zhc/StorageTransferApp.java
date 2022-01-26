@@ -97,12 +97,18 @@ public class StorageTransferApp {
             try {
                 Set<String> redisKey = new HashSet<>();
                 String oldTableName = oldServerStorageConfig.getTableName();
+                //判断旧表存不存在
+                ResultSet oldTableRet = mysqlCon.getMetaData().getTables(null,null,oldTableName,null);
+                if(!oldTableRet.next()){
+                    log.println(String.format("不存在此表:%s,跳过",oldTableName));
+                    return;
+                }
                 String tmpTable = oldTableName +"_tpf_tmp";
                 log.println("operate old table: "+ tmpTable + " ......");
                 sqlExecute(sqlCreateTable(tmpTable,oldTableName));
                 try{
                     //转移目标数据到tmp表中
-                    sqlExecute(sqlInsertTable(tmpTable,oldServerStorageConfig.getTableName(),oldServerStorageConfig.getLogicType(),oldServerStorageConfig.getOwnerId()));
+                    sqlExecute(sqlReplaceTable(tmpTable,oldServerStorageConfig.getTableName(),oldServerStorageConfig.getLogicType(),oldServerStorageConfig.getOwnerId()));
                     //更新旧表
                     //ownerId
                     sqlExecute(sqlConcatTableFiled(tmpTable,STORAGE_OWNER_ID,
@@ -114,7 +120,7 @@ public class StorageTransferApp {
                     sqlExecute(sqlConcatTableFiled(tmpTable,STORAGE_QUERY_ALL_KEY,
                             STORAGE_LOGIC_TYPE,getQuotaStr(":"),STORAGE_OWNER_ID));
                     //复制到新表
-                    sqlExecute(sqlInsertTable(newTableName,tmpTable,null,null));
+                    sqlExecute(sqlReplaceTable(newTableName,tmpTable,null,null));
                     //获取redis key
                     ResultSet resultSet =  sqlExecuteQuery(sqlSelect(tmpTable,STORAGE_LOGIC_TYPE,STORAGE_OWNER_ID));
                     while (resultSet.next()){
@@ -169,15 +175,15 @@ public class StorageTransferApp {
     private static String sqlDropTable(String tableName){
         return "DROP TABLE "+tableName;
     }
-    private static String sqlInsertTable(String newTable,String oldTable,Integer logicType,String ownerId){
-        String base = "INSERT INTO "+newTable+" SELECT * FROM "+ oldTable;
+    private static String sqlReplaceTable(String newTable, String oldTable, Integer logicType, String ownerId){
+        String base = "REPLACE INTO "+newTable+" SELECT * FROM "+ oldTable;
         if(logicType!=null || !TransferConfig.checkIsNullOrEmpty(ownerId)){
             base = base + " WHERE ";
             if(logicType!=null){
                 base = base + "logic_type=" + logicType;
             }
             String and = (logicType!=null && !TransferConfig.checkIsNullOrEmpty(ownerId))? " AND " : "";
-            if(TransferConfig.checkIsNullOrEmpty(ownerId)){
+            if(!TransferConfig.checkIsNullOrEmpty(ownerId)){
                 base = base + and + "owner_id="+"'"+ownerId+"'";
             }
         }
