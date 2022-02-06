@@ -8,6 +8,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import org.example.zhc.domain.*;
 import org.junit.Test;
 
+import java.io.IOException;
+
 public class JacksonApp {
     static ObjectMapper mapper = new ObjectMapper().configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES,false);
     static { mapper.setVisibility(mapper.getSerializationConfig().getDefaultVisibilityChecker()
@@ -47,12 +49,22 @@ public class JacksonApp {
 
     @Test
     public void serialTest() throws JsonProcessingException {
-        SerialClass<Number> serialClass = new SerialClass<>();
+        SerialClass<IClass> serialClass = new SerialClass<>();
 
         serialClass.ctor();
         String jsonStr = mapper.writeValueAsString(serialClass);
         SerialClass<IClass> ss = mapper.readValue(jsonStr, new TypeReference<SerialClass<IClass>>() {});
-//        serialClass.assertEqual(ss);
+        serialClass.assertEqual(ss);
+        System.out.println(mapper.writeValueAsString(ss));
+    }
+
+    @Test
+    public void serialBytesTest() throws IOException {
+        SerialClass<IClass> serialClass = new SerialClass<>();
+        serialClass.ctor();
+        byte[] serialBytes = mapper.writeValueAsBytes(serialClass);
+        SerialClass<IClass> ss = mapper.readValue(serialBytes, new TypeReference<SerialClass<IClass>>() {});
+        serialClass.assertEqual(ss);
         System.out.println(mapper.writeValueAsString(ss));
     }
 
