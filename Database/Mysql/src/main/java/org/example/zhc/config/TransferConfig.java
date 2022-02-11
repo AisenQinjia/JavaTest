@@ -54,6 +54,10 @@ public class TransferConfig {
         public String getTableName(){
             return StorageTransferApp.STORAGE_PREFIX + appId + "_" + regionId;
         }
+
+        public String toInfo(){
+            return String.format("appId:%s,regionId:%s,logicType:%d,ownerId:%s",appId,regionId,logicType,ownerId);
+        }
     }
 
     public void checkParam(){

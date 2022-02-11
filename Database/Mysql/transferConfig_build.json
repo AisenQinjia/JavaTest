@@ -68,11 +68,6 @@
       "regionId": "1",
       "logicType": 1
     },
-//    {
-//      "appId": <appId>,
-//      "regionId": <channelId>,
-//      "logicType": 20
-//    }
     {
       "appId": "1000004",
       "regionId": "2",

@@ -104,7 +104,7 @@ public class StorageTransferApp {
                     return;
                 }
                 String tmpTable = oldTableName +"_tpf_tmp";
-                log.println("operate old table: "+ tmpTable + " ......");
+                log.println("operate old table: "+ oldTableName + " " + oldServerStorageConfig.toInfo() +  " ......");
                 sqlExecute(sqlCreateTable(tmpTable,oldTableName));
                 try{
                     //转移目标数据到tmp表中
@@ -167,16 +167,19 @@ public class StorageTransferApp {
     }
 
     private static String sqlCreateTable(String newTable, String oldTable){
-        return "CREATE TABLE "+newTable+" LIKE " + oldTable;
+        return "CREATE TABLE "+ mysqlTable(newTable)+ " LIKE " + "`" + oldTable + "`";
     }
     private static String sqlCleanTable(String tableName){
-        return "DELETE FROM " + tableName;
+        return "DELETE FROM " + mysqlTable(tableName);
     }
     private static String sqlDropTable(String tableName){
-        return "DROP TABLE "+tableName;
+        return "DROP TABLE "+ mysqlTable(tableName);
+    }
+    private static String mysqlTable(String tableName){
+        return "`" + tableName + "`";
     }
     private static String sqlReplaceTable(String newTable, String oldTable, Integer logicType, String ownerId){
-        String base = "REPLACE INTO "+newTable+" SELECT * FROM "+ oldTable;
+        String base = "REPLACE INTO "+ mysqlTable(newTable)+" SELECT * FROM "+ mysqlTable(oldTable);
         if(logicType!=null || !TransferConfig.checkIsNullOrEmpty(ownerId)){
             base = base + " WHERE ";
             if(logicType!=null){
@@ -190,7 +193,7 @@ public class StorageTransferApp {
         return base + ";";
     }
     private  static String sqlConcatTableFiled(String tableName,String fileName,String... concatStrs){
-        String base = "update "+tableName+" set "+fileName+"=CONCAT(";
+        String base = "update "+mysqlTable(tableName)+" set "+fileName+"=CONCAT(";
         for(int i =0;i<concatStrs.length;i++){
             if(i>0){
                 base  = base + ",";
@@ -201,7 +204,7 @@ public class StorageTransferApp {
 
     }
     private static String sqlSelect(String tableName,String... fields){
-        return  "SELECT " + String.join(",",fields) + " FROM " + "`"+tableName+"`";
+        return  "SELECT " + String.join(",",fields) + " FROM " + mysqlTable(tableName);
     }
     public static String concatOwnerId(String... subOwnerId){
         return String.join("_",subOwnerId);

@@ -15,23 +15,7 @@
   "oldStorageConfigs": [
     {
       "appId": "1000004",
-      "regionId": "IncrRegionId"
-    },
-    {
-      "appId": "1000004",
-      "regionId": "mailRegion"
-    },
-    {
-      "appId": "1000004",
-      "regionId": "mailTrackRegion"
-    },
-    {
-      "appId": "1000004",
-      "regionId": "uidRegion"
-    },
-    {
-      "appId": "1000004",
-      "regionId": "uidRegion",
+      "regionId": "tpf-test-huiyue",
       "logicType": 6
     }
   ]
