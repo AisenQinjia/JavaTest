@@ -6,12 +6,14 @@ import org.junit.Assert;
 
 @Setter
 @Getter
+
 public class SubClass extends AbstractClass {
     private String subPrivateStr;
-
+    private String name;
     public void ctor(){
         super.ctor();
         subPrivateStr = "SubPriStr";
+        name = "subClass";
     }
 
     @Override

@@ -20,7 +20,7 @@ public class SerialClass<T> {
     //内网类需要public的构造函数(和说明不符)
     private InnerClass innerClass;
     //抽象类可以在注解中声明具体的类
-    @JsonDeserialize(as=SubClass.class)
+//    @JsonDeserialize(as=SubClass.class)
     private AbstractClass abstractClass;
     //接口类可以在注解中声明具体的类
     @JsonDeserialize(as=IClassImpl.class)

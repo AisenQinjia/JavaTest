@@ -8,10 +8,11 @@ import org.junit.Assert;
 @Getter
 public class SubClass extends AbstractClass {
     private String subPrivateStr;
-
-    public void ctor(){
+    public SerialClass serialClass;
+    public void ctor(SerialClass sc){
         super.ctor();
         subPrivateStr = "SubPriStr";
+        serialClass = sc;
     }
 
     @Override

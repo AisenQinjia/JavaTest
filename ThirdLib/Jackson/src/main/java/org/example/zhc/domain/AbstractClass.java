@@ -1,7 +1,15 @@
 package org.example.zhc.domain;
 
+import com.fasterxml.jackson.annotation.JsonSubTypes;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import org.junit.Assert;
 
+@JsonTypeInfo(
+        use = JsonTypeInfo.Id.NAME,
+        property = "@type")
+@JsonSubTypes({
+        @JsonSubTypes.Type(value = SubClass.class, name = "subClass"),
+})
 public abstract class AbstractClass {
     private String privateField;
     String packageField;

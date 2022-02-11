@@ -5,7 +5,9 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
 import org.example.zhc.domain.*;
+import org.example.zhc.domain.getter.GetterClass;
 import org.junit.Test;
 
 import java.io.IOException;
@@ -17,6 +19,16 @@ public class JacksonApp {
             .withGetterVisibility(JsonAutoDetect.Visibility.NONE)
             .withIsGetterVisibility(JsonAutoDetect.Visibility.NONE)
             .withSetterVisibility(JsonAutoDetect.Visibility.NONE));}
+
+    public static ObjectMapper mapper2 = new ObjectMapper()
+            .configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES,false)
+            .configure(SerializationFeature.FAIL_ON_EMPTY_BEANS,false);
+    static { mapper2.setVisibility(mapper2.getSerializationConfig().getDefaultVisibilityChecker()
+            .withFieldVisibility(JsonAutoDetect.Visibility.PUBLIC_ONLY)
+            .withGetterVisibility(JsonAutoDetect.Visibility.PUBLIC_ONLY)
+            .withIsGetterVisibility(JsonAutoDetect.Visibility.PUBLIC_ONLY)
+            .withSetterVisibility(JsonAutoDetect.Visibility.PUBLIC_ONLY)
+            .withCreatorVisibility(JsonAutoDetect.Visibility.PUBLIC_ONLY));}
     @Test
     public void POJOs() throws JsonProcessingException {
         AClass aClass =  mapper.readValue(jsonStr, AClass.class);
@@ -68,7 +80,21 @@ public class JacksonApp {
         System.out.println(mapper.writeValueAsString(ss));
     }
 
-    public static void main(String[] args)  {
-
+    @Test
+    public void test2() throws JsonProcessingException {
+        GetterClass getterClass = new GetterClass();
+        getterClass.setEnabled(true);
+        String jsonStr = mapper2.writeValueAsString(getterClass);
+        GetterClass ss = mapper2.readValue(jsonStr,GetterClass.class );
+    }
+    public static void main(String[] args) throws IOException {
+        ClassA a = new ClassA();
+        ClassA a2 = new ClassA();
+        ClassB b = new ClassB();
+        a.classB =b;
+        b.classA = a;
+        b.classA2 = a2;
+        String jsonStr = mapper.writeValueAsString(a);
+        ClassA ss = mapper.readValue(jsonStr,ClassA.class );
     }
 }

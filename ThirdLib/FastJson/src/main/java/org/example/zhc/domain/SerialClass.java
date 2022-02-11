@@ -1,39 +1,55 @@
 package org.example.zhc.domain;
 
+import com.alibaba.fastjson.annotation.JSONCreator;
+import com.alibaba.fastjson.annotation.JSONField;
+import com.alibaba.fastjson.annotation.JSONType;
+import lombok.Getter;
+import lombok.Setter;
 import org.junit.Assert;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
 public class SerialClass<T> {
     /**
      *
      */
     public String publicField;
+    @Setter
     private String privateField;
+    @Getter
     String packageField;
+
+    @Getter
+    @Setter
     protected String protectedField;
-    private SubClass subClass;
+
+    public SubClass subClass;
+
     private List<SubClass> subClasses;
+
     private Map<String,IClassImpl> stringIClassImplMap;
+
     private T genericField;
-    //静态类等同于普通字段
-    private StaticClass staticClass;
-    //内网类需要public的构造函数(和说明不符)
-    private InnerClass innerClass;
-    //抽象类可以在注解中声明具体的类
-    private AbstractClass abstractClass;
-    //接口类可以在注解中声明具体的类
+
+    public StaticClass staticClass;
+
+//    private InnerClass innerClass;
+
+    public AbstractClass abstractClass;
+
     private IClass iClass;
-    /**
-     * serialize: 调用key类toString(),即使同名会序列化两个同名key
-     * deserialize: 需要有自定义的deserializer
-     */
-    private Map<MapKey,IClass> mapKeyIClassMap;
 
+    public Map<MapKey,IClass> mapKeyIClassMap;
 
+    public SerialClass(){
+
+    }
+
+    public SerialClass(String publicField){
+
+    }
     public void assertEqual(SerialClass<T> serialClass){
         Assert.assertEquals(privateField, serialClass.privateField);
         Assert.assertEquals(packageField, serialClass.packageField);
@@ -42,7 +58,7 @@ public class SerialClass<T> {
         subClass.assertEqual(serialClass.subClass);
         Assert.assertArrayEquals(subClasses.toArray(new SubClass[0]),serialClass.subClasses.toArray(new SubClass[0]));
         staticClass.assertEqual(serialClass.staticClass);
-        innerClass.assertEqual(serialClass.innerClass);
+//        innerClass.assertEqual(serialClass.innerClass);
         abstractClass.assertEqual(serialClass.abstractClass);
         iClass.assertEqual(serialClass.iClass);
         stringIClassImplMap.forEach((key,subClass)->{
@@ -55,7 +71,7 @@ public class SerialClass<T> {
         protectedField = "protF";
         publicField = "pubF";
         abstractClass = new SubClass();
-        abstractClass.ctor();
+        ((SubClass)abstractClass).ctor(this);
         subClasses = new ArrayList<>();
         subClasses.add((SubClass) abstractClass);
         subClass = (SubClass) abstractClass;
@@ -65,8 +81,8 @@ public class SerialClass<T> {
         iClassImpl.ctor();
         staticClass = new StaticClass();
         staticClass.ctor();
-        innerClass = new InnerClass();
-        innerClass.ctor();
+//        innerClass = new InnerClass();
+//        innerClass.ctor();
         stringIClassImplMap = new HashMap<>();
         stringIClassImplMap.put("IClassImplKey",iClassImpl);
         mapKeyIClassMap = new HashMap<>();
@@ -80,6 +96,8 @@ public class SerialClass<T> {
     }
 
     private static class StaticClass{
+        @Getter
+        @Setter
         private int staticInt;
         public void ctor(){
             staticInt = 12;
@@ -89,16 +107,17 @@ public class SerialClass<T> {
         }
     }
 
-    private class InnerClass{
-        private int innerInt;
-        public InnerClass(){}
-        public void ctor(){
-            innerInt = 13;
-        }
-        public void assertEqual(InnerClass innerClass){
-            Assert.assertEquals(innerInt,innerClass.innerInt);
-        }
-    }
+//    private class InnerClass{
+//        @Getter
+//        private int innerInt;
+//        public InnerClass(){}
+//        public void ctor(){
+//            innerInt = 13;
+//        }
+//        public void assertEqual(InnerClass innerClass){
+//            Assert.assertEquals(innerInt,innerClass.innerInt);
+//        }
+//    }
 
 }
 
