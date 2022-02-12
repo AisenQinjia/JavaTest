@@ -1,9 +1,12 @@
 package org.example.zhc;
 
+import lombok.var;
 import org.example.Log;
 import org.junit.Test;
 
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
 
 interface Factory<T>{
     T create();
@@ -46,5 +49,26 @@ public class GenericApp {
         GenericClass<String> genericClass = new GenericClass<>(String.class);
 
 //        GenericClass<String> genericClass2 = new GenericClass<String>(a.getClass());
+    }
+
+    @Test
+    public void setCompare(){
+        Set<String> stringSet = new HashSet<>();
+        stringSet.add("1");
+        ((Set)stringSet).add(1);
+        ((Set)stringSet).add("1");
+        stringSet.forEach(s -> {});
+        String a = getT();
+        Integer b = getT();
+        var c = this.<GenericApp>getT();
+    }
+
+    @Test
+    public void typeToken(){
+//        TypeToken
+    }
+    @SuppressWarnings("unchecked")
+    public <T> T getT(){
+        return (T)"a";
     }
 }

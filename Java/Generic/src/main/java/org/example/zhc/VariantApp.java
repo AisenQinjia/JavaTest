@@ -4,9 +4,7 @@ import org.example.Log;
 import org.junit.Test;
 import org.junit.experimental.theories.suppliers.TestedOn;
 
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.List;
+import java.util.*;
 
 class Fruit {}
 class Apple extends Fruit {}
@@ -17,6 +15,7 @@ public class VariantApp {
     public static void main(String[] args) {
 
     }
+
     @Test
     public void arrayVariance(){
         Fruit[] fruit = new Apple[10];

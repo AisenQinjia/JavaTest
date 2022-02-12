@@ -5,11 +5,14 @@ import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.TypeReference;
 import com.alibaba.fastjson.serializer.SerializerFeature;
 import com.googlecode.protobuf.format.JsonFormat;
+import lombok.var;
 import org.example.msg.proto.Msg;
 import org.example.zhc.domain.IClass;
 import org.example.zhc.domain.SerialClass;
 import org.example.zhc.domain.getter.GetterClass;
 import org.junit.Test;
+
+import java.lang.reflect.Type;
 
 
 public class FastJsonTestApp {
@@ -34,10 +37,21 @@ public class FastJsonTestApp {
         SerialClass<IClass> serialClass = new SerialClass<>();
         serialClass.ctor();
         String jsonStr = JSON.toJSONString(serialClass, SerializerFeature.WriteClassName);
-        SerialClass<IClass> ss = JSON.parseObject(jsonStr,new TypeReference<SerialClass<IClass>>(){});
-        serialClass.assertEqual(ss);
-        System.out.println(jsonStr);
+        JSON.parseObject(jsonStr,new TypeReference<SerialClass<IClass>>(){});
+        SerialClass<IClass>  ss = JSON.parseObject(jsonStr,new TypeReference<SerialClass<IClass>>(){});
+
+        SerialClass<IClass> ss2 = JSON.parseObject(jsonStr,(Type)SerialClass.class);
+        //type inference by Target types
+        SerialClass<IClass> ss22= JSON.parseObject(jsonStr,(Type)SerialClass.class);
+        FastJsonTestApp     ss3 = JSON.parseObject(jsonStr,(Type)SerialClass.class);
+        //type inference to Object
+        var                 ss4 = JSON.parseObject(jsonStr,(Type)SerialClass.class);
+        //type witness
+        var                 ss5 = JSON.<SerialClass<IClass>>parseObject(jsonStr,(Type)SerialClass.class);
+//        serialClass.assertEqual(ss);
+//        System.out.println(jsonStr);
     }
+
     @Test
     public void test2(){
         GetterClass getterClass = new GetterClass(1);

@@ -4,7 +4,6 @@ import org.junit.Test;
 
 import java.lang.management.ManagementFactory;
 import java.lang.management.MemoryManagerMXBean;
-
 import java.util.List;
 
 public class MemoryTest {
