@@ -5,8 +5,10 @@ import org.example.Log;
 import org.junit.Test;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.function.UnaryOperator;
 
 interface Factory<T>{
     T create();
@@ -61,12 +63,38 @@ public class GenericApp {
         String a = getT();
         Integer b = getT();
         var c = this.<GenericApp>getT();
+
+
     }
 
     @Test
     public void typeToken(){
 //        TypeToken
     }
+
+    //Generic singleton factory pattern
+    private static final UnaryOperator<Object> IDENTITY_FN = (t) -> t;
+
+    @SuppressWarnings("unchecked")
+    public static <T> UnaryOperator<T> identityFunction() {
+        return (UnaryOperator<T>) IDENTITY_FN;
+    }
+    @Test
+    public void UnaryOperator(){
+        //no compile error
+        UnaryOperator<String> a  = identityFunction();
+
+        UnaryOperator<Object> IDENTITY_FN2 = (t) -> t;
+        //compile error: can not cast UnaryOperator<Object> to UnaryOperator<String> ?
+//        UnaryOperator<String> b = (UnaryOperator<String>)IDENTITY_FN2;
+    }
+    @Test
+    public void immutable() {
+        Set a = new HashSet<String>();
+        Set<Integer> b = (Set<Integer>) a;
+        Collections.emptySet();
+    }
+
     @SuppressWarnings("unchecked")
     public <T> T getT(){
         return (T)"a";
