@@ -23,6 +23,7 @@ public class StorageTransferApp {
     public static final String STORAGE_QUERY_ALL_KEY = "query_all_key";
 
     private static final String REDIS_EXIST_KEY_TMPL = "sg:{%s:%s:%d:%s}exist";
+    private static final String REDIS_KEY_TMPL = "sg:{%s:%s:%d:%s}";
 
     static PrintStream log = System.out;
     static Gson gson = new Gson();
@@ -126,7 +127,7 @@ public class StorageTransferApp {
                     while (resultSet.next()){
                         int logicType = resultSet.getInt(STORAGE_LOGIC_TYPE);
                         String owner_id = resultSet.getString(STORAGE_OWNER_ID);
-                        redisKey.add(getRedisExistKey(appIdServerType,formattedRegionId,logicType,owner_id));
+                        redisKey.add(getRedisKey(appIdServerType,formattedRegionId,logicType,owner_id));
                     }
                 }catch (Exception e){
                     log.println(String.format("operate mysql oldTable: appId:%s,regionId:%s catch error:%s",oldServerStorageConfig.getAppId(),oldServerStorageConfig.getRegionId(),e.getMessage()));
@@ -146,12 +147,22 @@ public class StorageTransferApp {
     }
 
     public static void redisTransfer(Set<String> existKeys){
-        existKeys.forEach(key->jedis.set(key,"1"));
+        existKeys.forEach(key->{
+            //删除缓存数据
+            jedis.del(key);
+            //添加存在key
+            jedis.set(key + "exist","1");
+        });
     }
 
     private static String getRedisExistKey(String appId,String regionId,int logicType,String ownerId){
         return String.format(REDIS_EXIST_KEY_TMPL,appId,regionId,logicType,ownerId);
     }
+
+    private static String getRedisKey(String appId,String regionId,int logicType,String ownerId){
+        return String.format(REDIS_KEY_TMPL,appId,regionId,logicType,ownerId);
+    }
+
     private static String getQuotaStr(String str){
         return "'"+str+"'";
     }
