@@ -30,10 +30,21 @@ public class TransferConfig {
          * 使用过的appId
          */
         String appId;
+
+        /**
+         * 转移后使用的appId,不填写即为旧appId
+         */
+        String newAppId;
+
         /**
          * 使用过的regionId
          */
         String regionId;
+
+        /**
+         * 转移后使用的regionId,不填即为旧regionId
+         */
+        String newRegionId;
         /**
          * 使用过的logicType
          * 可为空
@@ -49,6 +60,12 @@ public class TransferConfig {
             if(checkIsNullOrEmpty(appId,regionId)){
                 System.out.print("OldServerStorageConfig config not valid!,param not enough!");
                 System.exit(1);
+            }
+            if(checkIsNullOrEmpty(newAppId)){
+                newAppId = appId;
+            }
+            if(checkIsNullOrEmpty(newRegionId)){
+                newRegionId = regionId;
             }
         }
         public String getTableName(){

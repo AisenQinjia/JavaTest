@@ -14,6 +14,7 @@
   "serverName": "tpf-sdk-build-grpc",
   "oldStorageConfigs": [
     {
+      "newAppId": true,
       "appId": "700050",
       "regionId": "1",
       "logicType": 1

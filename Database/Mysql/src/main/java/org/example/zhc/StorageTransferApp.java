@@ -112,7 +112,7 @@ public class StorageTransferApp {
                     //更新旧表
                     //ownerId
                     sqlExecute(sqlConcatTableFiled(tmpTable,STORAGE_OWNER_ID,
-                            getQuotaStr(oldServerStorageConfig.getAppId()),getQuotaStr("_"),getQuotaStr(oldServerStorageConfig.getRegionId()),getQuotaStr("_"),STORAGE_OWNER_ID));
+                            getQuotaStr(oldServerStorageConfig.getNewAppId()),getQuotaStr("_"),getQuotaStr(oldServerStorageConfig.getNewRegionId()),getQuotaStr("_"),STORAGE_OWNER_ID));
                     //primary key
                     sqlExecute(sqlConcatTableFiled(tmpTable,STORAGE_PRIMARY_KEY,
                             STORAGE_LOGIC_TYPE,getQuotaStr(":"),STORAGE_OWNER_ID,getQuotaStr(":"),STORAGE_KEY));
