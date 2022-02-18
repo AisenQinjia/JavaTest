@@ -19,6 +19,7 @@ public class FastJsonTestApp {
     public static void main(String[] args){
 
     }
+
     @Test
     public void parseGson(){
         Msg msg = Msg.newBuilder()

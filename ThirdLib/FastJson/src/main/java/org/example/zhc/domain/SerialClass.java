@@ -7,10 +7,8 @@ import lombok.Getter;
 import lombok.Setter;
 import org.junit.Assert;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
+
 public class SerialClass<T> {
     /**
      *
@@ -24,6 +22,35 @@ public class SerialClass<T> {
     @Getter
     @Setter
     protected String protectedField;
+
+    @JSONField(serialize = false)
+    public String getNotExistProperty1(){
+        System.out.println("getNotExistProperty1");
+        return "not exist str1";
+    }
+
+    @JSONField(deserialize = false)
+    public void setNotExistProperty1(String str){
+        System.out.println("setNotExistProperty1 with str param");
+    }
+
+    public String getNotExistProperty2(String str){
+        System.out.println("getNotExistProperty2");
+        return "not exist str2";
+    }
+
+
+
+    public void setNotExistProperty1(){
+        System.out.println("setNotExistProperty1");
+    }
+
+
+
+    public String setNotExistProperty1(String str,String str1){
+        System.out.println("setNotExistProperty1 with str param and str1");
+        return "not exist str3";
+    }
 
     public SubClass subClass;
 
