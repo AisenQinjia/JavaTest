@@ -19,6 +19,8 @@ public class SerialClass<T> {
     @Getter
     String packageField;
 
+    public TestKv<String> kv = new TestKv<>();
+
     @Getter
     @Setter
     protected String protectedField;
@@ -120,6 +122,7 @@ public class SerialClass<T> {
         mapKeyIClassMap.put(key,new IClassImpl());
         mapKeyIClassMap.put(key1,new IClassImpl());
         genericField = (T)iClass;
+        kv.ctor("genericStr");
     }
 
     private static class StaticClass{

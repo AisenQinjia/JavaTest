@@ -3,16 +3,23 @@ package org.example.zhc;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.TypeReference;
+import com.alibaba.fastjson.parser.ParserConfig;
 import com.alibaba.fastjson.serializer.SerializerFeature;
 import com.googlecode.protobuf.format.JsonFormat;
 import lombok.var;
 import org.example.msg.proto.Msg;
 import org.example.zhc.domain.IClass;
 import org.example.zhc.domain.SerialClass;
+import org.example.zhc.domain.TestKv;
+import org.example.zhc.domain.TestKv2;
 import org.example.zhc.domain.getter.GetterClass;
 import org.junit.Test;
 
 import java.lang.reflect.Type;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 
 public class FastJsonTestApp {
@@ -58,5 +65,20 @@ public class FastJsonTestApp {
         GetterClass getterClass = new GetterClass(1);
         String jsonStr = JSON.toJSONString(getterClass);
         GetterClass ss = JSON.parseObject(jsonStr,GetterClass.class);
+    }
+
+    @Test
+    public void customTypeToken(){
+        TestKv2 kv2 = new TestKv2();
+        kv2.ctor();
+        String kv2Str = JSON.toJSONString(kv2);
+        TestKv2 deKv2 = JSON.parseObject(kv2Str,TestKv2.class);
+
+        TestKv<List<Long>> ts = new TestKv<>();
+        List<Long> ls = new ArrayList<>();
+        ls.add(1L);
+        ts.ctor(ls);
+        String tsStr = JSON.toJSONString(ts);
+        TestKv<List<Long>> deTs3 = JSON.parseObject(tsStr,new TypeReference<TestKv<List<Long>>>(){});
     }
 }
