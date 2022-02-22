@@ -9,14 +9,19 @@
   "redisDatabase": 0,
   "redisAuth": "",
 
-  "appId": "50",
-  "serverName": "test-server",
-  "regionId": "tpfdemo-dev-aisen",
+  "appId": "1000004",
+  "regionId": "wuhui-test",
+  "serverName": "stateful-activity-service",
   "oldStorageConfigs": [
     {
       "appId": "1000004",
-      "regionId": "announcement_region",
-      "ownerId": "announcement_owner_daily_info"
+      "regionId": "wuhui-test",
+      "logicType":1111
+    },
+    {
+      "appId": "1000004",
+      "regionId": "wuhui-test",
+      "logicType":13
     }
   ]
 }

@@ -189,6 +189,7 @@ public class StorageTransferApp {
     private static String mysqlTable(String tableName){
         return "`" + tableName + "`";
     }
+    //将旧表数据插入到新表中, ownerId可以模糊查询
     private static String sqlReplaceTable(String newTable, String oldTable, Integer logicType, String ownerId){
         String base = "REPLACE INTO "+ mysqlTable(newTable)+" SELECT * FROM "+ mysqlTable(oldTable);
         if(logicType!=null || !TransferConfig.checkIsNullOrEmpty(ownerId)){
@@ -198,7 +199,7 @@ public class StorageTransferApp {
             }
             String and = (logicType!=null && !TransferConfig.checkIsNullOrEmpty(ownerId))? " AND " : "";
             if(!TransferConfig.checkIsNullOrEmpty(ownerId)){
-                base = base + and + "owner_id="+"'"+ownerId+"'";
+                base = base + and + "owner_id LIKE "+ "'%" + ownerId + "%'";
             }
         }
         return base + ";";
