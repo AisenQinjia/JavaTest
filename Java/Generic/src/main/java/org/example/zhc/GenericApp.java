@@ -4,10 +4,7 @@ import lombok.var;
 import org.example.Log;
 import org.junit.Test;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 import java.util.function.UnaryOperator;
 
 interface Factory<T>{
@@ -93,10 +90,85 @@ public class GenericApp {
         Set a = new HashSet<String>();
         Set<Integer> b = (Set<Integer>) a;
         Collections.emptySet();
+        Set<Object> stringSet = this.union(new HashSet<Integer>(),new HashSet<Long>());
     }
 
     @SuppressWarnings("unchecked")
     public <T> T getT(){
         return (T)"a";
+    }
+
+    public <E> Set<E> union(Set<? extends E> set1,Set<? extends E> set2){
+        Set<E> u = new HashSet<>(set1);
+        u.addAll(set2);
+        return u;
+    }
+
+    public void max(){
+//        ComparableImplParent n1 =  this.<ComparableImplParent>max1(new ArrayList<ComparableImplChild>());
+//        ComparableImplChild n2 =  this.max2(new ArrayList<ComparableImplChild>());
+//        ComparableImplChild n3 =  this.max3(new ArrayList<ComparableImplChild>());
+//        ComparableImplParent n4 =  this.max3(new ArrayList<ComparableImplChild>());
+//        ScheduledFuture<?> n5 = this.max2(new ArrayList<ScheduledFuture<Object>>());
+//        ScheduledFuture<?> n6 = this.max3(new ArrayList<ScheduledFuture<Object>>());
+    }
+    public <T extends Comparable<T>> T max1(List<T> ls){
+        return null;
+    }
+
+    //T works only when extends Comparable directly
+    public <T extends Comparable<T>> T max2(List<? extends T> ls){
+        return null;
+    }
+
+    //T works whether extends Comparable directly or not
+    public <T extends Comparable<? super T>> T max3(List<? extends T> ls){
+        return null;
+    }
+    public void swap(){
+
+    }
+
+    public static <E> void swap1(List<E> list,int i,int j){
+
+    }
+
+    //better than swap1, less type parameter
+    public static void swap2(List<?> list,int i,int j){
+       swap3(list,i,j);
+    }
+    private static <E> void swap3(List<E> list,int i,int j){
+
+    }
+    static class ComparableImplParent implements Comparable<ComparableImplParent>{
+
+        @Override
+        public int compareTo(ComparableImplParent o) {
+            return 0;
+        }
+    }
+
+    static class ComparableImplChild extends ComparableImplParent {
+
+    }
+    @Test
+    public void pickTwoTest(){
+        //runtime cast error: cannot cast Object to String
+//        String[] a = pickTwo("a","b","c");
+        String[] b = toArray("a","b");
+
+     }
+    //not safe though...
+    @SafeVarargs
+    public static <T> T[] toArray(T... e){
+        return e;
+    }
+
+    public static <T> T[] pickTwo(T a, T b, T c){
+        return toArray(a,b);
+
+    }
+    public static <T> T[] boundedArray(List<? extends Number> a){
+        return null;
     }
 }

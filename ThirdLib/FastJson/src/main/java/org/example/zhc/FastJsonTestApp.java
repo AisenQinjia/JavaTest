@@ -69,10 +69,10 @@ public class FastJsonTestApp {
 
     @Test
     public void customTypeToken(){
-        TestKv2 kv2 = new TestKv2();
-        kv2.ctor();
-        String kv2Str = JSON.toJSONString(kv2);
-        TestKv2 deKv2 = JSON.parseObject(kv2Str,TestKv2.class);
+//        TestKv2 kv2 = new TestKv2();
+//        kv2.ctor();
+//        String kv2Str = JSON.toJSONString(kv2);
+//        TestKv2 deKv2 = JSON.parseObject(kv2Str,TestKv2.class);
 
         TestKv<List<Long>> ts = new TestKv<>();
         List<Long> ls = new ArrayList<>();
