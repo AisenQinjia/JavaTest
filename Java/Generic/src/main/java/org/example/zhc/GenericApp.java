@@ -155,8 +155,8 @@ public class GenericApp {
     public void pickTwoTest(){
         //runtime cast error: cannot cast Object to String
 //        String[] a = pickTwo("a","b","c");
-        String[] b = toArray("a","b");
 
+        String[] b = toArray("a","b");
      }
     //not safe though...
     @SafeVarargs
