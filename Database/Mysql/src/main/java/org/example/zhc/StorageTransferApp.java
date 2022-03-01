@@ -59,8 +59,8 @@ public class StorageTransferApp {
                 throw new RuntimeException("msql connection is null");
             }
         }catch (Exception e){
-            log.print(String.format("mysql建立连接失败!addr:%s, port:%d,user:%s,password:%s,error:%s",
-                    config.getMysqlIp(),config.getMysqlPort(),config.getMysqlUserName(),config.getMysqlPassword(),e.getMessage()));
+            log.print(String.format("mysql建立连接失败!addr:%s, port:%d,user:%s,passwordLength:%d,error:%s",
+                    config.getMysqlIp(),config.getMysqlPort(),config.getMysqlUserName(),config.getMysqlPassword().length(),e.getMessage()));
             e.printStackTrace();
             System.exit(1);
         }
@@ -71,8 +71,8 @@ public class StorageTransferApp {
             }
             jedis.select(config.getRedisDatabase());
         }catch (Exception e){
-            log.println(String.format("redis建立连接失败!addr:%s, port:%d,auth:%s,error:%s",
-                    config.getRedisIp(),config.getRedisPort(),config.getRedisAuth(),e.getMessage()));
+            log.println(String.format("redis建立连接失败!addr:%s, port:%d,authLength:%d,error:%s",
+                    config.getRedisIp(),config.getRedisPort(),config.getRedisAuth().length(),e.getMessage()));
             e.printStackTrace();
             System.exit(1);
         }
