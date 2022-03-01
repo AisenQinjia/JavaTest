@@ -1,5 +1,6 @@
 package org.example.zhc.domain;
 
+import com.alibaba.fastjson.annotation.JSONType;
 import org.junit.Assert;
 
 public abstract class AbstractClass {

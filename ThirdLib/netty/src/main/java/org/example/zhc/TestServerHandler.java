@@ -9,16 +9,17 @@ import io.netty.channel.ChannelInboundHandlerAdapter;
 public class TestServerHandler extends ChannelInboundHandlerAdapter {
 
     @Override
-    public void channelActive(final ChannelHandlerContext ctx) { // (1)
+    public void channelActive(final ChannelHandlerContext ctx) throws InterruptedException { // (1)
         final ByteBuf time = ctx.alloc().buffer(TestServer.msg_size); // (2)
         time.writeBytes(new byte[TestServer.msg_size]);
         System.out.println("send begin! " + TestServer.msg_size);
         final ChannelFuture f = ctx.writeAndFlush(time); // (3)
-        f.addListener((ChannelFutureListener) future -> {
-            System.out.println("send complete! " + future.isSuccess());
-            future.channel().close();
-        });
-//        f.channel().close();
+//        f.addListener((ChannelFutureListener) future -> {
+//            System.out.println("send complete! " + future.isSuccess());
+//            future.channel().close();
+//        });
+        f.channel().flush();
+        f.channel().close().sync();
     }
 
     @Override

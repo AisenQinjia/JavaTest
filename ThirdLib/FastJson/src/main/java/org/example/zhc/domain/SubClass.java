@@ -1,12 +1,14 @@
 package org.example.zhc.domain;
 
+import com.alibaba.fastjson.annotation.JSONType;
 import lombok.Getter;
 import lombok.Setter;
 import org.junit.Assert;
 
-@Setter
-@Getter
+
 public class SubClass extends AbstractClass {
+    @Setter
+    @Getter
     private String subPrivateStr;
     public SerialClass serialClass;
     public void ctor(SerialClass sc){

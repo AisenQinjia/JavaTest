@@ -44,8 +44,7 @@ public class FastJsonTestApp {
     public void serialTest(){
         SerialClass<IClass> serialClass = new SerialClass<>();
         serialClass.ctor();
-        String jsonStr = JSON.toJSONString(serialClass, SerializerFeature.WriteClassName);
-        JSON.parseObject(jsonStr,new TypeReference<SerialClass<IClass>>(){});
+        String jsonStr = JSON.toJSONString(serialClass);
         SerialClass<IClass>  ss = JSON.parseObject(jsonStr,new TypeReference<SerialClass<IClass>>(){});
 
         SerialClass<IClass> ss2 = JSON.parseObject(jsonStr,(Type)SerialClass.class);

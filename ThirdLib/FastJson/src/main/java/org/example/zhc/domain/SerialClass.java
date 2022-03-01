@@ -1,8 +1,7 @@
 package org.example.zhc.domain;
 
-import com.alibaba.fastjson.annotation.JSONCreator;
 import com.alibaba.fastjson.annotation.JSONField;
-import com.alibaba.fastjson.annotation.JSONType;
+import com.alibaba.fastjson.serializer.SerializerFeature;
 import lombok.Getter;
 import lombok.Setter;
 import org.junit.Assert;
@@ -58,7 +57,8 @@ public class SerialClass<T> {
 
     private List<SubClass> subClasses;
 
-    private Map<String,IClassImpl> stringIClassImplMap;
+    @JSONField(serialzeFeatures = SerializerFeature.WriteClassName)
+    public Map<String,IClass> stringIClassMap;
 
     private T genericField;
 
@@ -66,11 +66,12 @@ public class SerialClass<T> {
 
 //    private InnerClass innerClass;
 
+    @JSONField(serialzeFeatures = SerializerFeature.WriteClassName)
     public AbstractClass abstractClass;
 
     private IClass iClass;
 
-    public Map<MapKey,IClass> mapKeyIClassMap;
+    private Map<MapKey,IClass> mapKeyIClassMap;
 
     public SerialClass(){
 
@@ -90,8 +91,8 @@ public class SerialClass<T> {
 //        innerClass.assertEqual(serialClass.innerClass);
         abstractClass.assertEqual(serialClass.abstractClass);
         iClass.assertEqual(serialClass.iClass);
-        stringIClassImplMap.forEach((key,subClass)->{
-            subClass.assertEqual(serialClass.stringIClassImplMap.get(key));
+        stringIClassMap.forEach((key, subClass)->{
+            subClass.assertEqual(serialClass.stringIClassMap.get(key));
         });
     }
     public void ctor(){
@@ -112,8 +113,9 @@ public class SerialClass<T> {
         staticClass.ctor();
 //        innerClass = new InnerClass();
 //        innerClass.ctor();
-        stringIClassImplMap = new HashMap<>();
-        stringIClassImplMap.put("IClassImplKey",iClassImpl);
+        stringIClassMap = new HashMap<>();
+        stringIClassMap.put("IClassImplKey",iClassImpl);
+        stringIClassMap.put("IClassImpl2Key",new IClassImpl2());
         mapKeyIClassMap = new HashMap<>();
         MapKey key = new MapKey();
         key.ctor();
