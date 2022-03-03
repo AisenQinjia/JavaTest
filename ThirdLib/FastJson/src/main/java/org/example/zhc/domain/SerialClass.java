@@ -20,6 +20,7 @@ public class SerialClass<T> {
 
     public TestKv<String> kv = new TestKv<>();
 
+    public StaticEnum staticEnum = StaticEnum.DARK;
     @Getter
     @Setter
     protected String protectedField;
@@ -137,6 +138,11 @@ public class SerialClass<T> {
         public void assertEqual(StaticClass staticClass){
             Assert.assertEquals(staticInt,staticClass.staticInt);
         }
+    }
+
+    private static enum StaticEnum{
+        LIGHT,
+        DARK
     }
 
 //    private class InnerClass{
