@@ -16,7 +16,7 @@ import java.util.List;
 
 /**
  * redis 连接 lettuce 实现
- * @author zhanghaochen
+ * @author aisen
  */
 public class LettucePool {
     RedisClient redisClient;
@@ -29,6 +29,7 @@ public class LettucePool {
         this.redisClient = redisClient;
         this.connection = redisClient.connect();
         this.byteConnection = redisClient.connect(ByteArrayCodec.INSTANCE);
+
         this.stringByteConnection = redisClient.connect(new RedisCodec<String, byte[]>() {
             @Override
             public String decodeKey(ByteBuffer byteBuffer) {
@@ -62,17 +63,4 @@ public class LettucePool {
         return commands.eval(script, ScriptOutputType.MULTI, keys, args);
     }
 
-//    public Object eval(String script, String[] keys, byte[]... args){
-//        RedisCommands<String, byte[]> commands = stringByteConnection.sync();
-//        return commands.eval(script, ScriptOutputType.MULTI, keys, args);
-//    }
-//
-//    public Object eval(byte[] script, List<byte[]> keys, List<byte[]> args) {
-//        RedisScriptingCommands<byte[], byte[]> commands = byteConnection.sync();
-//        byte[][] keyArray = new byte[keys.size()][];
-//        byte[][] argsArray = new byte[args.size()][];
-//        keyArray = keys.toArray(keyArray);
-//        argsArray = args.toArray(argsArray);
-//        return commands.eval(script, ScriptOutputType.MULTI, keyArray, argsArray);
-//    }
 }
