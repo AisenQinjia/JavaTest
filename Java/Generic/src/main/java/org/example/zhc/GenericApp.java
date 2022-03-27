@@ -166,9 +166,50 @@ public class GenericApp {
 
     public static <T> T[] pickTwo(T a, T b, T c){
         return toArray(a,b);
-
     }
     public static <T> T[] boundedArray(List<? extends Number> a){
         return null;
+    }
+
+    private Map<Class<?>,Object> fMap = new HashMap<>();
+
+    public <T> void putFavorite(Class<T> clazz,T inst){
+        fMap.put(clazz,clazz.cast(inst));
+    }
+
+    public <T> T getFavorite(Class<T> clazz){
+        return clazz.cast(fMap.get(clazz));
+    }
+
+    @Test
+    public void heterogeneousContainer(){
+//        Class<ArrayList> arrayListClass = ArrayList.class;
+//        List<Integer> intList = new ArrayList<>();
+//        Class<? extends List> aClass = intList.getClass();
+//        Class<List> listClass = List.class;
+//        Class<? extends ArrayList> aClass1 = new ArrayList<Integer>().getClass();
+//        putFavorite(List.class,new ArrayList<Integer>());
+//        List favorite = getFavorite(List.class);
+//        List favorite1 = getFavorite(listClass);
+//        ArrayList favorite2 = getFavorite(aClass1);
+
+        putFavorite(ArrayList.class,new ArrayList<String>());
+        ArrayList<Integer> favorite = getFavorite(ArrayList.class);
+        favorite.add(1);
+        ArrayList<String> favorite2 = getFavorite(ArrayList.class);
+        favorite2.add("sdf");
+
+//        List<Integer> integers = Collections.checkedList(new ArrayList<Integer>(), Integer.class);
+//        integers.add(1);
+//        putFavorite(List.class,integers);
+//        List favorite = getFavorite(List.class);
+//        favorite.add("dsfds");
+    }
+
+    @Test
+    public void subClass(){
+        List<Integer> i = new ArrayList<>();
+        Class<? extends Integer> aClass = List.class.asSubclass(Integer.class);
+
     }
 }
