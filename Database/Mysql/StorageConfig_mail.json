@@ -1,0 +1,50 @@
+{
+  "mysqlIp": "10.100.1.41",
+  "mysqlPort": 30006,
+  "mysqlUserName": "root",
+  "mysqlPassword": "password",
+  "mysqlDataBase": "tpf_storage_wuhui_dev_aisen",
+  "redisIp": "10.100.1.40",
+  "redisPort": 30379,
+  "redisDatabase": 0,
+  "redisAuth": "",
+
+  "svcConfigs": [
+    //邮件
+    {
+      "appId": "50",
+      "regionId": "tpfdemo-dev-aisen",
+      "serverName": "mail",
+      //邮件只保留模板
+      "operations": [
+        {
+          "logicType":3
+        },
+        {
+          "logicType":8
+        },
+        {
+          "logicType":9
+        },
+        {
+          "logicType":5
+        },
+        {
+          "logicType":6
+        }
+      ]
+    },
+    //问卷
+    {
+      "appId": "50",
+      "regionId": "tpfdemo-dev-aisen",
+      "serverName": "questionnaire",
+      "operations": [
+        {
+          "logicType":4
+        }
+      ]
+    }
+
+  ]
+}

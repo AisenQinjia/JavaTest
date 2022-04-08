@@ -16,7 +16,6 @@ public class DeletRedisMysqlApp {
 
 
     /**
-     *
      * @param args: mysql_ip mysql_database redis_ip role_id regionId channelId
      */
     public static void main(String[] args) throws SQLException {
