@@ -5,6 +5,7 @@ import org.junit.Test;
 public class EnumApp {
     @Test
     public void enumTest(){
+        assert false;
         LogicType[] values = LogicType.values();
         for(LogicType type: values){
             System.out.println("type.name: "+type.name());

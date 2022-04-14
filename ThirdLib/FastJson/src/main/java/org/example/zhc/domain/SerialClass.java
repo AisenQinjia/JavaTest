@@ -17,6 +17,7 @@ public class SerialClass<T> {
     private String privateField;
     @Getter
     String packageField;
+    private boolean isDestoryed = false;
 
     public TestKv<String> kv = new TestKv<>();
 
