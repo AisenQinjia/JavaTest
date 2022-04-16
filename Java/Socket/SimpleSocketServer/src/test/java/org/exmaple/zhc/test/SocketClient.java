@@ -1,6 +1,6 @@
 package org.exmaple.zhc.test;
 
-import org.example.zhc.SocketServerApp;
+import org.example.zhc.validation.SocketServerApp;
 import org.junit.Test;
 
 import java.io.BufferedReader;

@@ -23,6 +23,7 @@
         <module>Jackson</module>
         <module>reactive-stream</module>
         <module>netty</module>
+        <module>validation-hibernate</module>
     </modules>
     <artifactId>ThirdLib</artifactId>
 
