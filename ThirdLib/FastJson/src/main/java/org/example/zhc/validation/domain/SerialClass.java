@@ -22,8 +22,7 @@ public class SerialClass<T> {
     public TestKv<String> kv = new TestKv<>();
 
     public StaticEnum staticEnum = StaticEnum.DARK;
-    @Getter
-    @Setter
+
     protected String protectedField;
 
     @JSONField(serialize = false)
@@ -42,7 +41,12 @@ public class SerialClass<T> {
         return "not exist str2";
     }
 
-
+    /**
+     * protected 方法对fastjson不可见
+     */
+    protected String getProtectedField(){
+        return "protected field";
+    }
 
     public void setNotExistProperty1(){
         System.out.println("setNotExistProperty1");
