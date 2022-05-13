@@ -2,10 +2,14 @@ package org.example.zhc.validation.reflection;
 
 import lombok.SneakyThrows;
 import org.example.Log;
+import org.example.zhc.validation.reflection.internal.Bird;
 import org.junit.Test;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Set;
 
 public class ReflectApp {
     public static void main(String[] args){
@@ -44,6 +48,31 @@ public class ReflectApp {
         System.out.println(String.format("serviceChild isAnnotationPresent OneAnnotation: %s",sc.getClass().isAnnotationPresent(OneAnnotation.class)));
     }
 
+    @Test
+    public void getInterfaces(){
+        Bird bird = new Bird();
+        printInterface(bird.getClass());
+    }
+
+    void printInterface(Class<?> clazz){
+        Set<Class<?>> interfaces = getAllInterfaces(clazz);
+        for (Class<?> anInterface : interfaces) {
+            System.out.println("detected interfaces: " + anInterface.getName());
+        }
+    }
+
+    public static Set<Class<?>> getAllInterfaces(Class<?> clazz){
+        Class<?>[] parentInterfaces = clazz.getInterfaces();
+        Set<Class<?>> interfaces = new HashSet<>(Arrays.asList(parentInterfaces));
+        for(Class<?> parentItf: parentInterfaces){
+            interfaces.addAll(getAllInterfaces(parentItf));
+        }
+        if(clazz.getSuperclass() == null){
+            return interfaces;
+        }
+        interfaces.addAll(getAllInterfaces(clazz.getSuperclass()));
+        return interfaces;
+    }
 //    @Test
 //    public void isAnnotationPresent2(){
 //        ServiceChild sc = new ServiceChild();
