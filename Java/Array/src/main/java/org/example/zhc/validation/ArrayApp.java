@@ -54,4 +54,14 @@ public class ArrayApp {
         l.forEach(System.out::println);
     }
 
+    @Test
+    public void varragsTest(){
+        byte[] b1 = new byte[1];
+        varargs(b1);
+    }
+
+    private void varargs(byte[]... bytes){
+        System.out.println("varargs type: " + bytes.getClass());
+        System.out.println("varargs length: " + bytes.length);
+    }
 }
