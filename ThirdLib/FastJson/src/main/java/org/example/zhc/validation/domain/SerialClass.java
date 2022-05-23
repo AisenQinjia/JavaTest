@@ -4,6 +4,7 @@ import com.alibaba.fastjson.annotation.JSONField;
 import com.alibaba.fastjson.serializer.SerializerFeature;
 import lombok.Getter;
 import lombok.Setter;
+import org.example.zhc.domain.Style;
 import org.junit.Assert;
 
 import java.util.*;
@@ -22,6 +23,8 @@ public class SerialClass<T> {
     public TestKv<String> kv = new TestKv<>();
 
     public StaticEnum staticEnum = StaticEnum.DARK;
+
+    public Style style;
 
     protected String protectedField;
 
@@ -100,6 +103,7 @@ public class SerialClass<T> {
         stringIClassMap.forEach((key, subClass)->{
             subClass.assertEqual(serialClass.stringIClassMap.get(key));
         });
+        Assert.assertEquals(style,serialClass.style);
     }
     public void ctor(){
         privateField = "priF";
@@ -131,6 +135,7 @@ public class SerialClass<T> {
         mapKeyIClassMap.put(key1,new IClassImpl());
         genericField = (T)iClass;
         kv.ctor("genericStr");
+        style = Style.BOLD;
     }
 
     private static class StaticClass{
