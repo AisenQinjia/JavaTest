@@ -1,6 +1,6 @@
 package org.example.zhc.validation;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.omg.PortableInterceptor.SYSTEM_EXCEPTION;
 import org.springframework.boot.origin.SystemEnvironmentOrigin;
 

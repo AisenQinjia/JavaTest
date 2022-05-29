@@ -1,5 +1,5 @@
 package org.example.zhc.validation.gc;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.lang.management.ClassLoadingMXBean;
 import java.lang.management.CompilationMXBean;

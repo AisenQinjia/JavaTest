@@ -10,7 +10,7 @@ import io.org.example.zhc.rpc.proto.TestServerGrpc;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.After;
 import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.AfterEach;
 
 import java.util.Iterator;

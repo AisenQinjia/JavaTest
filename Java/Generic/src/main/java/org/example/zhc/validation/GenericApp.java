@@ -2,7 +2,7 @@ package org.example.zhc.validation;
 
 import lombok.var;
 import org.example.Log;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.util.*;
 import java.util.function.UnaryOperator;

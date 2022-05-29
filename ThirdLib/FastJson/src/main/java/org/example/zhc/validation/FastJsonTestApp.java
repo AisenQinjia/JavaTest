@@ -10,7 +10,7 @@ import org.example.zhc.validation.domain.IClass;
 import org.example.zhc.validation.domain.SerialClass;
 import org.example.zhc.validation.domain.TestKv;
 import org.example.zhc.validation.domain.getter.GetterClass;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;

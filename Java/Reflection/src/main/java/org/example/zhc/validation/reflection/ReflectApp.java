@@ -3,7 +3,7 @@ package org.example.zhc.validation.reflection;
 import lombok.SneakyThrows;
 import org.example.Log;
 import org.example.zhc.validation.reflection.internal.Bird;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;

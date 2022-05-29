@@ -10,7 +10,7 @@ import org.apache.http.util.EntityUtils;
 import org.elasticsearch.client.*;
 import org.junit.After;
 import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.net.PasswordAuthentication;
 import java.util.concurrent.CountDownLatch;

@@ -30,3 +30,6 @@ logs/
 
 # Maven Wrapper
 .mvn/wrapper/maven-wrapper.jar
+
+## custom
+*.ignore

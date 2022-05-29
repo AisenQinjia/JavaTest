@@ -1,6 +1,6 @@
 package org.example.zhc.validation;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 public class waitNofiyApp {
     public static final Object lock = new Object();
     public static void main(String[] args){

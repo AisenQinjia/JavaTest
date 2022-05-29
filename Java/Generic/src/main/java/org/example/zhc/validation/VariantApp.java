@@ -1,7 +1,7 @@
 package org.example.zhc.validation;
 
 import org.example.Log;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.util.*;
 

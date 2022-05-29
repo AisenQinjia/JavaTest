@@ -14,7 +14,7 @@ import org.example.zhc.validation.redis.pool.LettucePool;
 import org.example.zhc.validation.redis.util.LuaScriptConfig;
 import org.junit.After;
 import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import reactor.core.publisher.Flux;
 
 import java.util.ArrayList;

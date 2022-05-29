@@ -5,7 +5,7 @@ import com.google.gson.reflect.TypeToken;
 import org.example.FileUtil;
 import org.example.zhc.validation.gson.serialize.RegionDefine;
 import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
 import java.lang.reflect.Type;
