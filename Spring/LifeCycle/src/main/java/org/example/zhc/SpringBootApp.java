@@ -1,6 +1,7 @@
-package org.example.zhc.validation;
+package org.example.zhc;
 
 import org.example.Log;
+import org.example.zhc.validation.BeanByFactoryBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;

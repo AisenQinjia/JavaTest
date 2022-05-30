@@ -1,8 +1,16 @@
 package org.example;
 
+import org.junit.jupiter.api.Test;
+
 import java.io.*;
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class FileUtil {
     public static String readResourceFile(String path){
@@ -27,4 +35,9 @@ public class FileUtil {
         fileInputStream.close();
         return new String(bytes, StandardCharsets.UTF_8);
     }
+
+    public static BufferedReader reader(String pathName) throws FileNotFoundException {
+        return new BufferedReader(new FileReader(new File(pathName)));
+    }
+
 }
