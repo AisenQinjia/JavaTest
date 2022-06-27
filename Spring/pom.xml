@@ -17,6 +17,7 @@
     <module>Spring-Property</module>
     <module>Web-Server</module>
     <module>LifeCycle</module>
+    <module>spring-data-redis</module>
 </modules>
     <dependencies>
         <dependency>
