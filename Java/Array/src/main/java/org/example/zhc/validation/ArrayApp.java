@@ -3,6 +3,7 @@ package org.example.zhc.validation;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -63,5 +64,16 @@ public class ArrayApp {
     private void varargs(byte[]... bytes){
         System.out.println("varargs type: " + bytes.getClass());
         System.out.println("varargs length: " + bytes.length);
+    }
+
+    @Test
+    public void sublist(){
+        LinkedList<Object> objects = new LinkedList<>();
+        objects.add(0);
+        objects.add(1);
+        objects.add(2);
+        objects.add(3);
+        List<Object> objects1 = objects.subList(0, objects.size());
+        LinkedList<Object> lo = new LinkedList<>(objects1);
     }
 }
