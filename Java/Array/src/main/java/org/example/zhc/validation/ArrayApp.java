@@ -1,10 +1,9 @@
 package org.example.zhc.validation;
 
 import org.junit.jupiter.api.Test;
+import org.w3c.dom.NodeList;
 
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
 
 /**
  * array 测试
@@ -69,11 +68,24 @@ public class ArrayApp {
     @Test
     public void sublist(){
         LinkedList<Object> objects = new LinkedList<>();
+//        objects.first
         objects.add(0);
         objects.add(1);
         objects.add(2);
         objects.add(3);
         List<Object> objects1 = objects.subList(0, objects.size());
         LinkedList<Object> lo = new LinkedList<>(objects1);
+    }
+
+    @Test
+    public void nodeList(){
+        Set<Long> a = new HashSet<>();
+        a.add(1L);
+        List<Long> b = new ArrayList<>();
+        b.add(new Long(2));
+        b.add(new Long(2));
+
+        a.addAll(b);
+        a.size();
     }
 }

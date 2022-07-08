@@ -18,6 +18,7 @@ public class PropertyApp implements CommandLineRunner {
     public static void main(String[] args){
         SpringApplication.run(PropertyApp.class);
         try {
+            System.exit(1);
             countDownLatch.await();
         }catch (Exception e){
 
