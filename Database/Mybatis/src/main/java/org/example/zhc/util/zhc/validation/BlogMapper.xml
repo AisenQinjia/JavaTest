@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.example.zhc.util.zhc.validation.BlogMapper">
+    <select id="selectBlog" resultType="org.example.zhc.util.zhc.validation.User">
+    select * from storage_1000004_1 where primary_key = #{id}
+  </select>
+</mapper>

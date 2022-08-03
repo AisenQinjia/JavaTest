@@ -10,7 +10,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>Mysql</artifactId>
-    <version>0.1</version>
+    <version>0.6</version>
 <dependencies>
     <dependency>
         <groupId>com.google.code.gson</groupId>
@@ -26,6 +26,19 @@
         <artifactId>mysql-connector-java</artifactId>
         <version>8.0.23</version>
     </dependency>
+    <dependency>
+        <groupId>org.example</groupId>
+        <artifactId>Utils</artifactId>
+    </dependency>
+    <dependency>
+        <groupId>com.alibaba</groupId>
+        <artifactId>fastjson</artifactId>
+        <version>1.2.76</version>
+    </dependency>
+    <dependency>
+        <groupId>org.example</groupId>
+        <artifactId>Utils</artifactId>
+    </dependency>
 </dependencies>
 <build>
 <plugins>
@@ -33,7 +46,7 @@
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-maven-plugin</artifactId>
         <configuration>
-            <mainClass>org.example.zhc.validation.StorageOperationApp</mainClass>
+            <mainClass>org.example.zhc.repeatCollectScanApp</mainClass>
         </configuration>
         <executions>
             <execution>

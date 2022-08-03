@@ -1,6 +1,6 @@
 package org.zhc.lsp;
 
-import org.example.Log;
+import org.example.zhc.util.Log;
 
 import java.util.HashMap;
 import java.util.Map;

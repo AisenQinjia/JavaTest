@@ -23,7 +23,7 @@
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-maven-plugin</artifactId>
         <configuration>
-            <mainClass>org.example.zhc.validation.JacksonApp</mainClass>
+            <mainClass>org.example.zhc.util.zhc.validation.JacksonApp</mainClass>
         </configuration>
         <executions>
             <execution>

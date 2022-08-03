@@ -24,6 +24,7 @@
         <module>reactive-stream</module>
         <module>netty</module>
         <module>validation-hibernate</module>
+        <module>poi</module>
     </modules>
     <artifactId>ThirdLib</artifactId>
 

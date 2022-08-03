@@ -15,9 +15,11 @@ import org.junit.jupiter.api.TestInstance;
 
 import java.io.IOException;
 import java.io.StringReader;
+import java.net.InetAddress;
+import java.net.UnknownHostException;
 import java.util.Objects;
 
-import static org.example.FileUtil.readCharacterFileToStr;
+import static org.example.zhc.util.FileUtil.readCharacterFileToStr;
 
 /**
  *
@@ -32,6 +34,11 @@ public class OfficialApi {
         appsV1Api = new AppsV1Api();
         coreV1Api = new CoreV1Api();
 
+    }
+    @Test
+    public void sdf() throws UnknownHostException {
+        byte[] ipAddr = new byte[] { 127, 0, 0, 1 };
+        String canonicalHostName = InetAddress.getByAddress(ipAddr).getCanonicalHostName();
     }
     @Test
     public void updateStatefulSet() throws IOException, ApiException {
