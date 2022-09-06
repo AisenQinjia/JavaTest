@@ -26,4 +26,16 @@ message Rsp {
   repeated bytes msgContent = 2;
 }
 
+message SizeProto{
+    int64 longFiled = 1;
+}
+
+message Resp{
+    enum EnumType{
+        OK = 0;
+        ERROR = 1;
+    }
+    EnumType errorCode = 1;
+}
+
 

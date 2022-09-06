@@ -31,6 +31,7 @@ public class OpenApiApp {
 
 
     public static ApolloOpenApiClient client;
+
     @Before
     public void createClient(){
         client = ApolloOpenApiClient.newBuilder()

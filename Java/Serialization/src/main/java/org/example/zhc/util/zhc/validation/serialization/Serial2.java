@@ -1,6 +1,7 @@
 package org.example.zhc.util.zhc.validation.serialization;
 
 public class Serial2 extends Serial1 {
+    public int propertyA = 5;
     public Serial2(){
         super(1,1,1,1,1,1);
     }
@@ -19,5 +20,9 @@ public class Serial2 extends Serial1 {
 
     private final void  privateFinalOvr(){
 
+    }
+
+    public String getPropertyA(){
+        return "sdf";
     }
 }

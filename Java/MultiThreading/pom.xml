@@ -16,5 +16,9 @@
         <groupId>org.example</groupId>
         <artifactId>Utils</artifactId>
     </dependency>
+    <dependency>
+        <groupId>junit</groupId>
+        <artifactId>junit</artifactId>
+    </dependency>
 </dependencies>
 </project>

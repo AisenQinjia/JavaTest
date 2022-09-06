@@ -6,9 +6,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.junit.After;
 import org.junit.jupiter.api.Test;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.sql.Time;
+import java.util.*;
 import java.util.concurrent.CountDownLatch;
 
 @Slf4j
@@ -114,6 +113,55 @@ public class ZhcThread  {
             });
             thread.start();
         }
+
+    }
+    
+    @Test
+    public void timerTask() throws InterruptedException {
+        short a = Short.MAX_VALUE;
+        a += 1;
+        CountDownLatch countDownLatch = new CountDownLatch(1);
+        Timer timer = new Timer();
+        timer.scheduleAtFixedRate(new TimerTask() {
+            int count;
+            @Override
+            public void run() {
+                log.info("task-1 run count:{}",++count);
+                if(count == 2){
+                    throw new RuntimeException("exception!");
+                }
+            }
+        },500,1000);
+        timer.scheduleAtFixedRate(new TimerTask() {
+            int count;
+            @Override
+            public void run() {
+                log.info("task-2 run count:{}",++count);
+            }
+        },600,1000);
+        Thread.sleep(3000);
+        timer.scheduleAtFixedRate(new TimerTask() {
+            int count;
+            @Override
+            public void run() {
+                log.info("task-2 run count:{}",++count);
+            }
+        },600,1000);
+    }
+
+    @Test
+    public void timerCancel() throws InterruptedException {
+        Timer timer = new Timer();
+        TimerTask timerTask = new TimerTask() {
+            @Override
+            public void run() {
+                System.out.println("run task!");
+            }
+        };
+        timer.schedule(timerTask,0);
+        Thread.sleep(1000);
+        boolean cancel = timerTask.cancel();
+        System.out.println("cancel timer ret:" + cancel);
 
     }
 

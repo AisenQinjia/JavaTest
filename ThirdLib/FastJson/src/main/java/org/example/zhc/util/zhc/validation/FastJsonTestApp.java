@@ -3,6 +3,7 @@ package org.example.zhc.util.zhc.validation;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.TypeReference;
+import com.alibaba.fastjson.serializer.SerializeConfig;
 import com.googlecode.protobuf.format.JsonFormat;
 import lombok.var;
 import org.example.zhc.util.msg.proto.Msg;
@@ -70,7 +71,9 @@ public class FastJsonTestApp {
         objectHashSet2.add(iClass2);
         objectHashSet2.add(iClass3);
         two.ysetMap.put(2,objectHashSet2);
-        String jsonStr = JSON.toJSONString(two);
+        SerializeConfig serializeConfig = new SerializeConfig();
+        serializeConfig.setAsmEnable(false);
+        String jsonStr = JSON.toJSONString(two,serializeConfig);
         SerialClassTwo ss2 = JSON.parseObject(jsonStr,SerialClassTwo.class);
     }
 

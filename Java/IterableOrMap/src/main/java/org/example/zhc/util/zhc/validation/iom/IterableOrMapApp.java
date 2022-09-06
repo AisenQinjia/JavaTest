@@ -1,11 +1,13 @@
 package org.example.zhc.util.zhc.validation.iom;
 
+import org.apache.commons.collections4.queue.CircularFifoQueue;
 import org.junit.jupiter.api.Test;
 
 import java.io.PrintStream;
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.function.Predicate;
+import java.util.logging.Logger;
 
 public class IterableOrMapApp {
     public static PrintStream out = System.out;
@@ -77,4 +79,15 @@ public class IterableOrMapApp {
         ssMap.computeIfAbsent("ss",key->null);
         out.println("contains key : " + ssMap.containsKey("ss"));
     }
+    @Test
+    public void ringBuff(){
+        CircularFifoQueue<String> strings = new CircularFifoQueue<>(3);
+        strings.add("1");
+        strings.add("2");
+//        strings.add("3");
+        String s = strings.get(0);
+        String s2 = strings.get(strings.size()-1);
+        strings.maxSize();
+    }
+
 }
