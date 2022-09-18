@@ -28,6 +28,16 @@ public class FileUtil {
         return new String(bytes, StandardCharsets.UTF_8);
     }
 
+    public static void write2File(String pathName, String content) throws IOException {
+        BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(pathName,true),"UTF-8"));
+        PrintWriter out = new PrintWriter(writer);
+        byte [] bs = { (byte)0xEF, (byte)0xBB, (byte)0xBF};
+        out.write(new String(bs));
+        out.write(content);
+        writer.close();
+        out.close();
+    }
+
     public static BufferedReader reader(String pathName) throws FileNotFoundException {
         return new BufferedReader(new FileReader(new File(pathName)));
     }

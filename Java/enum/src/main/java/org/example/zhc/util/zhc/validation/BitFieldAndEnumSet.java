@@ -20,4 +20,9 @@ public class BitFieldAndEnumSet {
         boolean contains = StyleSet.contains(Style.BOLD);
         System.out.println("StyleSet.contains(Style.BOLD): " + contains);
     }
+    @Test
+    public void bitWiseOperation(){
+        String s = "9";
+        byte[] bytes = "".getBytes();
+    }
 }

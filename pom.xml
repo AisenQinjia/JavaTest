@@ -23,6 +23,7 @@
         <module>ThirdLib</module>
         <module>Maven</module>
         <module>grpc</module>
+        <module>app</module>
     </modules>
     <properties>
         <revision>0.0.0.1</revision>
