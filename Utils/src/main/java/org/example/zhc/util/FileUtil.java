@@ -3,6 +3,7 @@ package org.example.zhc.util;
 import java.io.*;
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
+import java.util.Properties;
 
 public class FileUtil {
     public static String readResourceFile(String path){
@@ -27,7 +28,12 @@ public class FileUtil {
         fileInputStream.close();
         return new String(bytes, StandardCharsets.UTF_8);
     }
-
+    public static Properties readFileAsProperties(String pathName,boolean isResource) throws IOException {
+        Properties properties = new Properties();
+        InputStream fileInputStream = isResource? Thread.currentThread().getContextClassLoader().getResourceAsStream(pathName):new FileInputStream(pathName);
+        properties.load(new InputStreamReader(fileInputStream));
+        return properties;
+    }
     public static void write2File(String pathName, String content) throws IOException {
         BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(pathName,true),"UTF-8"));
         PrintWriter out = new PrintWriter(writer);

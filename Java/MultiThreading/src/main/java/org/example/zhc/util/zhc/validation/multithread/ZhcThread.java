@@ -164,12 +164,50 @@ public class ZhcThread  {
         System.out.println("cancel timer ret:" + cancel);
 
     }
+    @Test
+    public void t(){
+        SynchronizedClass synchronizedClass = new SynchronizedClass();
+        Thread thread = new Thread(() -> {
+            try {
+                synchronizedClass.writeA("fsdf");
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        });
+        Thread thread2 = new Thread(() -> {
+            try {
+                synchronizedClass.writeA2("fsdf");
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        });
+        thread.start();
+        thread2.start();
+        try {
+            Thread.sleep(3000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
 
 }
 @Getter
 @Slf4j
 class SynchronizedClass{
     public String b;
+
+    public synchronized void writeA(String a) throws InterruptedException {
+        System.out.println("1111111111111");
+        Thread.sleep(1000);
+        System.out.println("22222222222222");
+
+    }
+    public synchronized void writeA2(String a) throws InterruptedException {
+        System.out.println("3333333333333");
+        Thread.sleep(1000);
+        System.out.println("444444444444444");
+
+    }
     @SneakyThrows
     public synchronized void wirteB(String b){
         log.info("{} is writing", b);

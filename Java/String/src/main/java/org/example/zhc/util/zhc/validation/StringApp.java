@@ -21,7 +21,9 @@ public class StringApp {
         Map<String,Object> o1 = new HashMap<>();
         o1.put("key", "value");
         System.out.printf(String.format("%s  || %s", o, o1==null));
+
     }
+
 
     @Test
     public void divisionOpt(){

@@ -26,6 +26,7 @@
         <module>validation-hibernate</module>
         <module>poi</module>
         <module>zipkin-test</module>
+        <module>docker</module>
     </modules>
     <artifactId>ThirdLib</artifactId>
 

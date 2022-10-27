@@ -3,31 +3,30 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
-        <artifactId>Database</artifactId>
+        <artifactId>ThirdLib</artifactId>
         <groupId>org.example</groupId>
         <version>${revision}</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
-    <version>0.1</version>
-    <artifactId>Redis</artifactId>
+
+    <artifactId>docker</artifactId>
+    <properties>
+        <docker.version>3.2.7</docker.version>
+    </properties>
 <dependencies>
     <dependency>
-        <groupId>io.lettuce</groupId>
-        <artifactId>lettuce-core</artifactId>
-        <version>6.0.1.RELEASE</version>
+        <groupId>com.github.docker-java</groupId>
+        <artifactId>docker-java</artifactId>
+        <version>${docker.version}</version>
+    </dependency>
+    <dependency>
+        <groupId>com.github.docker-java</groupId>
+        <artifactId>docker-java-transport-httpclient5</artifactId>
+        <version>${docker.version}</version>
     </dependency>
     <dependency>
         <groupId>org.example</groupId>
         <artifactId>Utils</artifactId>
-    </dependency>
-    <dependency>
-        <groupId>redis.clients</groupId>
-        <artifactId>jedis</artifactId>
-        <version>2.9.0</version>
-    </dependency>
-    <dependency>
-        <groupId>junit</groupId>
-        <artifactId>junit</artifactId>
     </dependency>
 </dependencies>
 
