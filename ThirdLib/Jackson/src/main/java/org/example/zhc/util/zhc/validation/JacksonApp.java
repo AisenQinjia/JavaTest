@@ -1,11 +1,15 @@
 package org.example.zhc.util.zhc.validation;
 
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
+import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 import org.example.zhc.util.zhc.validation.domain.*;
 import org.example.zhc.util.zhc.validation.domain.getter.GetterClass;
 import org.junit.jupiter.api.Test;
@@ -29,6 +33,34 @@ public class JacksonApp {
             .withIsGetterVisibility(JsonAutoDetect.Visibility.PUBLIC_ONLY)
             .withSetterVisibility(JsonAutoDetect.Visibility.PUBLIC_ONLY)
             .withCreatorVisibility(JsonAutoDetect.Visibility.PUBLIC_ONLY));}
+
+    public static ObjectMapper mapper3 = new ObjectMapper()
+            .configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES,false)
+            .configure(SerializationFeature.FAIL_ON_EMPTY_BEANS,false);
+    static { mapper3.setVisibility(mapper3.getSerializationConfig().getDefaultVisibilityChecker()
+            .withFieldVisibility(JsonAutoDetect.Visibility.NONE)
+            .withGetterVisibility(JsonAutoDetect.Visibility.NONE)
+            .withIsGetterVisibility(JsonAutoDetect.Visibility.NONE)
+            .withSetterVisibility(JsonAutoDetect.Visibility.NONE)
+            .withCreatorVisibility(JsonAutoDetect.Visibility.PUBLIC_ONLY));}
+
+    @Test
+    public void annotatedOnly() throws JsonProcessingException {
+        AnnotatedClass annotatedClass = new AnnotatedClass();
+        String out = mapper3.writeValueAsString(annotatedClass);
+        System.out.println("out");
+    }
+
+    public static class AnnotatedClass{
+        public String shouldNotSerial = "error";
+        @JsonProperty("shouldSerial")
+        private String shouldSerial = "should";
+
+        @Getter
+        @Setter
+        private String getterProperties = "getterProperties";
+
+    }
     @Test
     public void POJOs() throws JsonProcessingException {
         AClass aClass =  mapper.readValue(jsonStr, AClass.class);
