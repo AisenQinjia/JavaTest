@@ -85,7 +85,9 @@ public class SerialClass<T> {
     public SerialClass(){
 
     }
-
+    String getPackageField(){
+        return "errrror";
+    }
     public SerialClass(String publicField){
 
     }

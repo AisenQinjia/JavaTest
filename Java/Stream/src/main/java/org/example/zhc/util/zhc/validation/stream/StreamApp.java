@@ -1,14 +1,13 @@
 package org.example.zhc.util.zhc.validation.stream;
 
+import javafx.util.Pair;
 import lombok.Data;
 import org.example.zhc.util.Util;
 import org.junit.jupiter.api.Test;
 
-import java.util.Collection;
-import java.util.Comparator;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 import java.util.function.Predicate;
+import java.util.stream.Collectors;
 
 
 /**
@@ -74,5 +73,19 @@ public class StreamApp {
         System.out.println("stream time: " + Util.runTime(()-> array1[0] = iSet.stream().map(integer -> integer + 1).toArray(Integer[]::new)));
         //OOM?
         System.out.println("parallel stream time: " + Util.runTime(()->array1[1] = iSet.parallelStream().map(integer -> integer + 1).toArray(Integer[]::new)));
+    }
+
+    @Test
+    public void toRestAllTest(){
+        List<Pair<Integer, Number>> resetFields = new ArrayList<>();
+        resetFields.add(new Pair<>(1,1));
+        resetFields.add(new Pair<>(0,0));
+        resetFields.add(new Pair<>(3,3));
+        List<Number> numbers = toResetAll(resetFields);
+    }
+
+    public static List<Number> toResetAll(List<Pair<Integer, Number>> resetFields){
+        return resetFields.stream().sorted(Comparator.comparingInt(Pair::getKey))
+                .map(Pair::getValue).collect(Collectors.toList());
     }
 }

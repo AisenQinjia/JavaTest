@@ -4,6 +4,8 @@ import lombok.ToString;
 import org.junit.jupiter.api.Test;
 
 import java.io.*;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 public class IoApp {
     public static void main(String[] args){
@@ -31,5 +33,12 @@ public class IoApp {
 //        fileWriter.append("aa");
         fileWriter.flush();
         fileWriter.close();
+    }
+
+    @Test
+    public void filePathMerge(){
+        Path path = Paths.get("./a/b", "1");
+        File file = new File("a/b/c/");
+        file.mkdirs();
     }
 }

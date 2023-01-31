@@ -27,6 +27,7 @@
     <module>String</module>
     <module>ClassAndType</module>
     <module>enum</module>
+    <module>random</module>
 </modules>
 
 </project>

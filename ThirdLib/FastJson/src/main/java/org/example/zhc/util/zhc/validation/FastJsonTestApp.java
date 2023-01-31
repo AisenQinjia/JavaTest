@@ -56,6 +56,8 @@ public class FastJsonTestApp {
     public void serialTest2(){
         SerialClassTwo two = new SerialClassTwo();
         IClassImpl iClass = new IClassImpl();
+        String string = JSON.toJSONString(iClass);
+        JSON.parseObject(string,IClassImpl.class);
         IClassImpl iClass2 = new IClassImpl();
         IClassImpl iClass3 = new IClassImpl();
         iClass.interfaceImpl = 1;

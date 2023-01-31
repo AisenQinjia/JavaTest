@@ -18,4 +18,11 @@ public class IClassImpl implements IClass {
         Assert.assertEquals(interfaceImpl,((IClassImpl)iClass).interfaceImpl);
     }
 
+    public Boolean isOpen(){
+        return false;
+    }
+
+    String getAbc(){
+        return "sdf";
+    }
 }
