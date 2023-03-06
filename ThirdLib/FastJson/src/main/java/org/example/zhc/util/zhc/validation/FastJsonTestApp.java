@@ -80,6 +80,15 @@ public class FastJsonTestApp {
     }
 
     @Test
+    public void t(){
+        AClass aClass = new AClass();
+        aClass.a.add("asdf");
+        String s = JSON.toJSONString(aClass);
+        AClass aClass1 = JSON.parseObject(s, AClass.class);
+
+    }
+
+    @Test
     public void test2(){
         GetterClass getterClass = new GetterClass(1);
         String jsonStr = JSON.toJSONString(getterClass);
