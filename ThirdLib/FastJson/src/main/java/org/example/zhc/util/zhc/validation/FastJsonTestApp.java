@@ -82,7 +82,10 @@ public class FastJsonTestApp {
     @Test
     public void t(){
         AClass aClass = new AClass();
+        AClass ta = new AClass();
         aClass.a.add("asdf");
+        aClass.transientInt = 10;
+        ta.transientAClass = ta;
         String s = JSON.toJSONString(aClass);
         AClass aClass1 = JSON.parseObject(s, AClass.class);
 
