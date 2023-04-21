@@ -9,6 +9,12 @@ import com.github.dockerjava.core.DockerClientConfig;
 import com.github.dockerjava.core.DockerClientImpl;
 import com.github.dockerjava.httpclient5.ApacheDockerHttpClient;
 import com.github.dockerjava.transport.DockerHttpClient;
+import org.apache.hc.client5.http.auth.CredentialsProvider;
+import org.apache.hc.client5.http.classic.methods.HttpHead;
+import org.apache.hc.client5.http.impl.auth.BasicCredentialsProvider;
+import org.apache.hc.core5.http.HttpHeaders;
+import org.apache.hc.core5.http.HttpStatus;
+import org.apache.http.client.HttpClient;
 import org.example.zhc.util.FileUtil;
 
 import java.io.IOException;
@@ -30,7 +36,15 @@ public class DockerTest {
                 .start()
                 .awaitCompletion();
     }
-
+    public static void checkImage() throws IOException, InterruptedException {
+        DockerClient dockerClient = getDockerClient();
+        String nameWithRepository = "default.registry.tke-syyx.com/syyx-tpf/tpf-managercenter-client";
+        String tag = "1.0.1.2";
+        dockerClient.pullImageCmd(nameWithRepository)
+                .withTag(tag)
+                .start()
+                .awaitCompletion();
+    }
     public static DockerClient getDockerClient() throws IOException {
         String host = isOSWindows() ? "tcp://localhost:2375" : "unix:///var/run/docker.sock";
         Properties properties = FileUtil.readFileAsProperties("config.properties.ignore", false);

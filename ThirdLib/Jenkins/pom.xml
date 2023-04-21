@@ -20,9 +20,10 @@
 <dependencies>
     <!-- https://mvnrepository.com/artifact/com.cdancy/jenkins-rest -->
     <dependency>
-        <groupId>com.cdancy</groupId>
+        <groupId>io.github.cdancy</groupId>
         <artifactId>jenkins-rest</artifactId>
-        <version>0.0.29</version>
+        <version>1.0.1</version>
+        <classifier>all</classifier>
     </dependency>
     <dependency>
         <groupId>com.google.guava</groupId>

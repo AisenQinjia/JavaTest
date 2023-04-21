@@ -1,14 +1,13 @@
 package org.example.zhc.util.zhc.validation;
 
 import com.codahale.metrics.*;
-import com.codahale.metrics.jvm.CachedThreadStatesGaugeSet;
 import com.codahale.metrics.jvm.GarbageCollectorMetricSet;
 import com.codahale.metrics.jvm.MemoryUsageGaugeSet;
+import com.sun.management.OperatingSystemMXBean;
 import lombok.SneakyThrows;
-import org.junit.After;
-import org.junit.Before;
 import org.junit.jupiter.api.Test;
 
+import java.lang.management.ManagementFactory;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;
 
@@ -17,7 +16,6 @@ public class MetricsApp {
     static  Timer timer1;
     static final CountDownLatch latch = new CountDownLatch(1);
     ConsoleReporter reporter;
-    @Before
     public void init() {
 //        metrics.register("gauges1", new Gauge<Integer>() {
 //            @Override
@@ -60,6 +58,12 @@ public class MetricsApp {
         thread.start();
     }
 
+    @Test
+    public void cpu(){
+        OperatingSystemMXBean sys = (OperatingSystemMXBean) ManagementFactory.getOperatingSystemMXBean();
+        sys.getSystemCpuLoad();
+        sys.getProcessCpuLoad();
+    }
     @Test
     public void histogram(){
         Histogram histogram = registry.histogram("histogram1");
@@ -160,7 +164,7 @@ public class MetricsApp {
     private void slidingTime(){
 //        SlidingTimeWindowReservoir
     }
-    @After
+
     public void hold() throws InterruptedException {
         reporter = ConsoleReporter.forRegistry(registry).build();
         reporter.start(1,TimeUnit.SECONDS);

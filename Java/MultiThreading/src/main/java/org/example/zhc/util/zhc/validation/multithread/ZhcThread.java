@@ -132,6 +132,7 @@ public class ZhcThread  {
                 }
             }
         },500,1000);
+
         timer.scheduleAtFixedRate(new TimerTask() {
             int count;
             @Override
