@@ -1,0 +1,86 @@
+kind: StatefulSet
+apiVersion: apps/v1
+metadata:
+  name: stateful-container-proxy
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: tpf-container-proxy-rpc-app
+  template:
+    metadata:
+      labels:
+        app: tpf-container-proxy-rpc-app
+    spec:
+      volumes:
+        - name: volume-apollo
+          configMap:
+            name: apollo-config
+            defaultMode: 420
+      containers:
+        - name: tpf-container-proxy-rpc-container
+          image: >-
+            default.registry.tke-syyx.com/syyx-tpf/tpf-container-proxy-rpc:1.0.0.1_12656_lockstep4
+          command:
+            - java
+            - '-jar'
+            - '-Xmx200m'
+            - '-Xms200m'
+            - '-XX:+UseG1GC'
+            - app.jar
+          ports:
+            - containerPort: 30088
+              protocol: TCP
+          env:
+            - name: POD_NAME
+              valueFrom:
+                fieldRef:
+                  apiVersion: v1
+                  fieldPath: metadata.name
+            - name: TPF_NAMESPACE
+              valueFrom:
+                fieldRef:
+                  apiVersion: v1
+                  fieldPath: metadata.namespace
+            - name: TPF_IMAGE
+              value: >-
+                default.registry.tke-syyx.com/syyx-tpf/tpf-container-proxy-rpc:1.0.0.1_12656_lockstep4
+          resources:
+            limits:
+              cpu: '1'
+              memory: 1Gi
+            requests:
+              cpu: '0'
+              memory: 1Gi
+          volumeMounts:
+            - name: volume-apollo
+              mountPath: /opt/settings/server.properties
+              subPath: server.properties
+        - name: wh-ds-container
+          image: >-
+            default.registry.tke-syyx.com/syyx-tpf/wuhui_ds2:wuhui_ds2
+          ports:
+            - containerPort: 28883
+              protocol: TCP
+          resources:
+            limits:
+              cpu: '1'
+              memory: 1Gi
+            requests:
+              cpu: '1'
+              memory: 1Gi
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+          imagePullPolicy: Always
+      restartPolicy: Always
+      terminationGracePeriodSeconds: 30
+      dnsPolicy: ClusterFirst
+      securityContext: {}
+      schedulerName: default-scheduler
+  serviceName: stateful-container-proxy
+  podManagementPolicy: Parallel
+  updateStrategy:
+    type: RollingUpdate
+    rollingUpdate:
+      partition: 0
+  revisionHistoryLimit: 10

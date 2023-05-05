@@ -1,0 +1,14 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: stateful-container-proxy
+spec:
+  ports:
+    - protocol: TCP
+      port: 30088
+      targetPort: 30088
+  selector:
+    app: tpf-container-proxy-rpc-app
+  clusterIP: None
+  type: ClusterIP
+  sessionAffinity: None

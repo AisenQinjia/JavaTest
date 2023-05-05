@@ -1,0 +1,8 @@
+{
+  "dsImageName": "wh-ds:1.0-abcd", //仲裁服镜像名格式:<名称:版本>, 不允许大写,
+  "namespace": "tpfdemo-dev-aisen", //需要部署的命名空间
+  "imageRegistry": "default.registry.tke-syyx.com", //镜像仓库地址,内网不用改
+  "imageDir": "/syyx-tpf/", //镜像目录, 内网不用改
+  "imageUserName": "tkestack",
+  "imagePassword": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE5ODA3NDcwMzUsImp0aSI6IjdhYTciLCJpYXQiOjE2NjUzODcwMzUsInVzciI6ImppYW50dSIsInRlZCI6ImRlZmF1bHQifQ.anEJJzQS1XYisFfMc1uWNMTo-ZKu7SDQh9X49sTnggvc3rUb-tusibjxBa2oittAOsRbgeL8d_7UD85bxiNIBaaKgrthMplZaU3ZuaRdziDE34mTkOZ8dH54gtpenpRAr7q45QtXAQ6ClE9PQaIs1Y21wb88mk5gzVVqOklXA9X0ZeHtMwZf-cZz-8y3bZX_bEnT6pqLO6XIaMA1FahYhyE8Qs2SXiHrayyYaBae1WMVBPwI2SdF8_fkpqAKnVe0OYUHvyq7IGAOMevusGuzYzvUNVafexwCC8jaBsU21bIPMhJVlYVLnX1BFwdsnR-ToGNuIX9u19azK6dEPLVIkA"
+}
