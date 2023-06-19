@@ -29,7 +29,7 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <configuration>
-                    <mainClass>com.example.zhc.k8s.DeployWhDs</mainClass>
+                    <mainClass>com.example.zhc.k8s.DeployMulti</mainClass>
                 </configuration>
                 <executions>
                     <execution>

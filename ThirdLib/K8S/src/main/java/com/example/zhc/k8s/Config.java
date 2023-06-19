@@ -9,7 +9,7 @@ import java.io.Serializable;
 @Data
 @Slf4j
 public class Config implements Serializable {
-    String namespace;
+    public String namespace;
     String dsImageName;
     String imageRegistry;
     String imageDir;

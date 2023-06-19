@@ -15,12 +15,9 @@ import io.kubernetes.client.util.KubeConfig;
 import io.kubernetes.client.util.Yaml;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.logging.log4j.core.config.Configurator;
-import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
 import java.io.StringReader;
-import java.net.InetAddress;
-import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -31,7 +28,7 @@ import static org.example.zhc.util.FileUtil.readCharacterFileToStr;
  *
  */
 @Slf4j
-public class DeployWhDs {
+public class DeployMulti {
     static AppsV1Api appsV1Api;
     static CoreV1Api coreV1Api;
     static Gson gson = new Gson();
@@ -54,7 +51,7 @@ public class DeployWhDs {
             String imageNameWithRep = String.format("%s%s%s",registry,registryDir,dsImageName);
             List<String> execResult = new ArrayList<>();
             List<String> execCommand = new ArrayList<>();
-            execCommand.add(String.format("docker login -u %s -p %s %s",userName,password,registry));
+            execCommand.add(String.format("docker login -u %s -p \"%s\" \"%s\"",userName,password,registry));
             execCommand.add(String.format("docker build -t %s .",imageNameWithRep));
             execCommand.add(String.format("docker push %s",imageNameWithRep));
             boolean result = CommandUtil.executeCommand(execCommand, execResult);
