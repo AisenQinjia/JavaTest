@@ -52,5 +52,30 @@ public class ReactorApp {
 
     }
 
+    @Test
+    public void fluxTest(){
+        List<Integer> ints = new ArrayList<>();
+        //从1开始，递增1，共10个
+        for (int i = 1; i <= 10; i++) {
+            ints.add(i);
+        }
+        Flux.fromIterable(ints)
+                .doOnNext(System.out::println)
+                .flatMap(i->{
+                    if(i%2==0){
+                        return Mono.just(i);
+                    }else{
+                        return Mono.empty();
+                    }
+                }).flatMap(i->{
+                    if(i%4==0){
+                        return Mono.just(i);
+                    }else{
+                        return Mono.empty();
+                    }
+                })
+                .collectList()
+                .subscribe(System.out::println);
+    }
 
 }

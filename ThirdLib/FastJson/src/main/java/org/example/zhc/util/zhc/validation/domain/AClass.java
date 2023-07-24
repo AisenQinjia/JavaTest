@@ -27,5 +27,9 @@ public class AClass {
     public void setAbc(){
         System.out.println("setAbc");
     }
+
+    public String getBac(){
+        return "transientAClass";
+    }
 }
 

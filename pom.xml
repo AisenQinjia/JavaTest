@@ -25,6 +25,7 @@
         <module>grpc</module>
         <module>app</module>
         <module>ThirdLib/fst</module>
+        <module>ThirdLib/git</module>
     </modules>
     <properties>
         <revision>0.0.0.1</revision>

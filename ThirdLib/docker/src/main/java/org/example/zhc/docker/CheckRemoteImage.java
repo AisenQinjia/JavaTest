@@ -30,14 +30,34 @@ import java.util.regex.Pattern;
 
 public class CheckRemoteImage {
 
-    public static void main(String[] args) {
-        String account = "tkestack";
-        String password = "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE5ODA3NDcwMzUsImp0aSI6IjdhYTciLCJpYXQiOjE2NjUzODcwMzUsInVzciI6ImppYW50dSIsInRlZCI6ImRlZmF1bHQifQ.anEJJzQS1XYisFfMc1uWNMTo-ZKu7SDQh9X49sTnggvc3rUb-tusibjxBa2oittAOsRbgeL8d_7UD85bxiNIBaaKgrthMplZaU3ZuaRdziDE34mTkOZ8dH54gtpenpRAr7q45QtXAQ6ClE9PQaIs1Y21wb88mk5gzVVqOklXA9X0ZeHtMwZf-cZz-8y3bZX_bEnT6pqLO6XIaMA1FahYhyE8Qs2SXiHrayyYaBae1WMVBPwI2SdF8_fkpqAKnVe0OYUHvyq7IGAOMevusGuzYzvUNVafexwCC8jaBsU21bIPMhJVlYVLnX1BFwdsnR-ToGNuIX9u19azK6dEPLVIkA";
-        String repository = "syyx-tpf/tpf-managercenter-client";
-        String tag = "1.0.0.11";
+    public static void main(String[] args) throws IOException {
+//        String account = "tkestack";
+//        String password = "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE5ODA3NDcwMzUsImp0aSI6IjdhYTciLCJpYXQiOjE2NjUzODcwMzUsInVzciI6ImppYW50dSIsInRlZCI6ImRlZmF1bHQifQ.anEJJzQS1XYisFfMc1uWNMTo-ZKu7SDQh9X49sTnggvc3rUb-tusibjxBa2oittAOsRbgeL8d_7UD85bxiNIBaaKgrthMplZaU3ZuaRdziDE34mTkOZ8dH54gtpenpRAr7q45QtXAQ6ClE9PQaIs1Y21wb88mk5gzVVqOklXA9X0ZeHtMwZf-cZz-8y3bZX_bEnT6pqLO6XIaMA1FahYhyE8Qs2SXiHrayyYaBae1WMVBPwI2SdF8_fkpqAKnVe0OYUHvyq7IGAOMevusGuzYzvUNVafexwCC8jaBsU21bIPMhJVlYVLnX1BFwdsnR-ToGNuIX9u19azK6dEPLVIkA";
+//        String repository = "syyx-tpf/tpf-managercenter-client";
+//        String tag = "1.0.0.11";
+//
+//        boolean imageExists = checkImageExists(account, password, repository, tag);
+//        System.out.println("Image exists: " + imageExists);
 
-        boolean imageExists = checkImageExists(account, password, repository, tag);
-        System.out.println("Image exists: " + imageExists);
+        CloseableHttpClient httpClient = createInsecureHttpClient();
+        String imageUrl = "http://10.100.2.69/";
+        HttpGet httpGet = new HttpGet(imageUrl);
+        while (true){
+            try {
+                CloseableHttpResponse re = httpClient.execute(httpGet);
+                boolean success = re.getStatusLine().getStatusCode() == 200;
+                if(!success){
+                    System.out.println("false! " + re.getEntity());
+                }else{
+                    System.out.println(success);
+                }
+                re.close();
+                Thread.sleep(1000);
+            } catch (Exception e) {
+                System.out.println("error! e: " + e.getMessage());
+            }
+        }
+
     }
 
     public static boolean checkImageExists(String account, String password, String repository, String tag) {

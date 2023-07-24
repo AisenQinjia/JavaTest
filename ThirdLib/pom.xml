@@ -27,6 +27,7 @@
         <module>poi</module>
         <module>zipkin-test</module>
         <module>docker</module>
+        <module>quartz</module>
     </modules>
     <artifactId>ThirdLib</artifactId>
 
