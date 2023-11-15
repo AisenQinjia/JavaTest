@@ -1,6 +1,5 @@
 package org.example.zhc.util.grpc.test;
 
-import io.grpc.Channel;
 import io.grpc.ManagedChannel;
 import io.grpc.ManagedChannelBuilder;
 import io.grpc.stub.StreamObserver;
@@ -8,13 +7,11 @@ import io.org.example.zhc.rpc.proto.Req;
 import io.org.example.zhc.rpc.proto.Rsp;
 import io.org.example.zhc.rpc.proto.TestServerGrpc;
 import lombok.extern.slf4j.Slf4j;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.jupiter.api.Test;
+
 import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.Test;
 
 import java.util.Iterator;
-import java.util.List;
 import java.util.concurrent.CountDownLatch;
 
 @Slf4j
@@ -30,7 +27,7 @@ public class GrpcClient {
         blockingStub = TestServerGrpc.newBlockingStub(channel);
         asyncStub = TestServerGrpc.newStub(channel);
     }
-    @Before
+
     public void before(){
 
     }
@@ -100,7 +97,7 @@ public class GrpcClient {
         req.onNext(Req.newBuilder().build());
         req.onNext(Req.newBuilder().build());
     }
-    @After
+    @AfterEach
     public void after() throws InterruptedException {
         countDownLatch.await();
     }

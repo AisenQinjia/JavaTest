@@ -54,4 +54,61 @@ public class SerialTest {
         Serial2 serial2 = new Serial2();
         String s = JSON.toJSONString(serial2);
     }
+
+    @Test
+    public void primetiveTest(){
+        int a = 1;
+        Integer b = 1;
+        int count = 1000;
+        IntClass intClass = new IntClass();
+        IntegerClass integerClass = new IntegerClass();
+        intClass.a = 1;
+        integerClass.a = b;
+        System.out.println("序列化次数 :"+count);
+        //预热
+        for(int i=0;i<count;i++){
+            JSON.toJSONBytes(intClass);
+            JSON.toJSONBytes(integerClass);
+        }
+
+
+        byte[] intBytes=null;
+        long start = System.currentTimeMillis();
+        for(int i=0;i<count;i++){
+            intBytes = JSON.toJSONBytes(intClass);
+        }
+        long end = System.currentTimeMillis();
+        System.out.println("序列化int cost:"+(end-start));
+
+        byte[] integerBytes=null;
+        long start2 = System.currentTimeMillis();
+        for(int i=0;i<count;i++){
+            integerBytes = JSON.toJSONBytes(integerClass);
+        }
+        long end2 = System.currentTimeMillis();
+        System.out.println("序列化Integer cost:"+(end2-start2));
+
+        //预热
+        for(int i=0;i<count;i++){
+            JSON.parseObject(intBytes,IntClass.class);
+            JSON.parseObject(integerBytes,IntegerClass.class);
+        }
+        //反序列化
+
+
+        long start3 = System.currentTimeMillis();
+        for(int i=0;i<count;i++){
+            JSON.parseObject(intBytes,IntClass.class);
+        }
+        long end3 = System.currentTimeMillis();
+        System.out.println("反序列化 int cost:"+(end3-start3));
+
+        long start4 = System.currentTimeMillis();
+        for(int i=0;i<count;i++){
+            JSON.parseObject(integerBytes,IntegerClass.class);
+        }
+        long end4 = System.currentTimeMillis();
+        System.out.println("反序列化 Integer cost:"+(end4-start4));
+
+    }
 }

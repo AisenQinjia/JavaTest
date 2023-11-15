@@ -14,4 +14,8 @@ public class MapKey  {
         return key;
     }
 
+    public static void main(String[] args) {
+        String substring = UUID.randomUUID().toString().substring(0, 8);
+        System.out.println(substring);
+    }
 }

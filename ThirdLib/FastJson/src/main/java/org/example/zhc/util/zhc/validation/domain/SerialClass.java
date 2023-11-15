@@ -8,6 +8,7 @@ import org.example.zhc.util.zhc.domain.Style;
 import org.junit.Assert;
 
 import java.util.*;
+import java.util.concurrent.ConcurrentLinkedQueue;
 
 public class SerialClass<T> {
     /**
@@ -19,7 +20,7 @@ public class SerialClass<T> {
     @Getter
     String packageField;
     private boolean isDestoryed = false;
-
+    public FiledClass[] filedClasses;
     public TestKv<String> kv = new TestKv<>();
 
     public StaticEnum staticEnum = StaticEnum.DARK;
@@ -28,6 +29,7 @@ public class SerialClass<T> {
 
     protected String protectedField;
 
+    public Queue<Integer> queue = new ConcurrentLinkedQueue<>();
     @JSONField(serialize = false)
     public String getNotExistProperty1(){
         System.out.println("getNotExistProperty1");
@@ -138,6 +140,15 @@ public class SerialClass<T> {
         genericField = (T)iClass;
         kv.ctor("genericStr");
         style = Style.BOLD;
+        FiledClass fc = new FiledClass();
+        fc.dd();
+        FiledClass fc2 = new FiledClass();
+        fc2.dd();
+        filedClasses = new FiledClass[]{fc,fc2};
+        queue.add(1);
+        queue.add(2);
+        queue.add(4);
+        queue.add(7);
     }
 
     private static class StaticClass{
