@@ -2,17 +2,16 @@ package org.example.zhc.util.zhc.validation.serialization;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
-import com.alibaba.fastjson.JSONObject;
-import com.alibaba.fastjson.TypeReference;
 import lombok.extern.slf4j.Slf4j;
 import lombok.val;
 import org.example.zhc.util.Log;
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.nio.file.Paths;
+import java.util.*;
 
 @Slf4j
 public class SerialTest {
@@ -55,6 +54,42 @@ public class SerialTest {
         String s = JSON.toJSONString(serial2);
     }
 
+    @Test
+    public void commandTest() throws IOException, InterruptedException {
+        String outPutDir = Paths.get("repoDir", "sourceCode.zip").toString();
+
+        // 构建命令数组
+        String[] command = {
+                "cmd",
+                "/X",
+                "/C",
+                "set GIT_SSH_COMMAND=ssh -o StrictHostKeyChecking=no && git archive --format=zip --output=\"K:\\50\\tpfdemo-dev-aisen\\10\\tpf-mail\\sourceCode.zip\" --remote=git@192.168.10.51:/tpf-service-group/tpf-mail.git 2edc49e6 && jar -xf \"K:\\50\\tpfdemo-dev-aisen\\10\\tpf-mail\\sourceCode.zip\" -DestinationPath \"K:\\50\\tpfdemo-dev-aisen\\10\\tpf-mail"
+        };
+        int i = 0;
+        while (i++<100){
+            System.out.println("第"+i+"次");
+            Process process = Runtime.getRuntime().exec(command);
+            BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
+            BufferedReader reader2 = new BufferedReader(new InputStreamReader(process.getErrorStream()));
+            String line;
+            while ((line = reader.readLine()) != null) {
+                System.out.println(line);
+            }
+            while ((line = reader2.readLine()) != null) {
+                System.out.println(line);
+            }
+            process.waitFor();
+        }
+    }
+    @Test
+    public void linkedMapTest(){
+        LinkedHashMap<String,String> a = new LinkedHashMap<>();
+        a.put("1","1");
+        a.put("3","3");
+        a.put("2","2");
+        String jsonString = JSON.toJSONString(a);
+        LinkedHashMap<String,String> b = JSON.<LinkedHashMap<String,String>>parseObject(jsonString, LinkedHashMap.class);
+    }
     @Test
     public void primetiveTest(){
         int a = 1;

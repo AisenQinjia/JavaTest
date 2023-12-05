@@ -93,6 +93,7 @@ public class GenericApp {
         Set<Object> stringSet = this.union(new HashSet<Integer>(),new HashSet<Long>());
     }
 
+
     @SuppressWarnings("unchecked")
     public <T> T getT(){
         return (T)"a";
