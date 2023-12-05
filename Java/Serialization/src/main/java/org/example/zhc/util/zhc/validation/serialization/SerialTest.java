@@ -83,7 +83,7 @@ public class SerialTest {
     }
     @Test
     public void linkedMapTest(){
-        LinkedHashMap<String,String> a = new LinkedHashMap<>();
+        HashMap<String,String> a = new HashMap<>();
         a.put("1","1");
         a.put("3","3");
         a.put("2","2");
