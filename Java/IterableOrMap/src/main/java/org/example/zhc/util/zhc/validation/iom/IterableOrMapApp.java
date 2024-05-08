@@ -1,5 +1,6 @@
 package org.example.zhc.util.zhc.validation.iom;
 
+import lombok.Data;
 import org.apache.commons.collections4.queue.CircularFifoQueue;
 import org.junit.jupiter.api.Test;
 
@@ -7,7 +8,6 @@ import java.io.PrintStream;
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.function.Predicate;
-import java.util.logging.Logger;
 
 public class IterableOrMapApp {
     public static PrintStream out = System.out;
@@ -88,6 +88,33 @@ public class IterableOrMapApp {
         String s = strings.get(0);
         String s2 = strings.get(strings.size()-1);
         strings.maxSize();
+    }
+
+    @Test
+    public void sameObjectInSet(){
+        Set<ClassA> aSet = new HashSet<>();
+        ClassA classA = new ClassA();
+        classA.setInt1(1);
+        classA.setStr11("str");
+        //true
+        System.out.println(aSet.add(classA));
+        //false
+        System.out.println(aSet.add(classA));
+        classA.setInt1(2);
+        classA.setStr11("str2");
+        //true!
+        System.out.println(aSet.add(classA));
+    }
+
+    @Data
+    public static class ClassA{
+        String str11;
+        Integer int1;
+    }
+
+    @Data
+    public static class ClassB{
+        int a;
     }
 
 }

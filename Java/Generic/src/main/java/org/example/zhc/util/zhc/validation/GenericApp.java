@@ -4,6 +4,8 @@ import lombok.var;
 import org.example.zhc.util.Log;
 import org.junit.jupiter.api.Test;
 
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.util.*;
 import java.util.function.UnaryOperator;
 
@@ -34,6 +36,40 @@ class Foo<T>{
     }
 }
 public class GenericApp {
+    @Test
+    public void reflectInvoke() throws NoSuchMethodException {
+        ChangeListenerImpl changeListener = new ChangeListenerImpl();
+        Method addChangeListener = ChangeListenerImpl.class.getMethod("addListener", ChangeListener.class);
+        try {
+            addChangeListener.invoke(changeListener,new ChangeListener<Object>() {
+                @Override
+                public void onChange(List<Object> changes) {
+                    try {
+                        Method onChange2 = this.getClass().getMethod("onChange2", List.class);
+                        onChange2.invoke(this,changes);
+                    } catch (NoSuchMethodException e) {
+                        throw new RuntimeException(e);
+                    } catch (InvocationTargetException e) {
+                        throw new RuntimeException(e);
+                    } catch (IllegalAccessException e) {
+                        throw new RuntimeException(e);
+                    }
+                    System.out.println("onChange: " + changes);
+                }
+
+                public void onChange2(List<String> changes){
+                    System.out.println("onChange: " + changes);
+                }
+            });
+        } catch (IllegalAccessException e) {
+            throw new RuntimeException(e);
+        } catch (InvocationTargetException e) {
+            throw new RuntimeException(e);
+        }
+        changeListener.onChange("hello");
+    }
+
+
     @Test
     public void erasure(){
         Class a = new ArrayList<Integer>().getClass();
