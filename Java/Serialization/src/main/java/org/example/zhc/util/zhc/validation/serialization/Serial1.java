@@ -19,6 +19,8 @@ public class Serial1 implements Serializable {
     private int privateInt;
     private Integer privateInteger;
 
+    private byte[] bytes;
+
     public static void methodStaticOverride(){
         System.out.println("1111");
     }

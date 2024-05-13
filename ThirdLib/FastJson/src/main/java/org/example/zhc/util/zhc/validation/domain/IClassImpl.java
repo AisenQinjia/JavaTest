@@ -4,6 +4,8 @@ import org.junit.Assert;
 
 public class IClassImpl implements IClass {
     public int interfaceImpl;
+
+    public FiledClass filedClass;
     public String getMyProperty() {
         return "getMethodReturn";
     }
@@ -11,6 +13,8 @@ public class IClassImpl implements IClass {
     @Override
     public void ctor(){
         interfaceImpl = 1;
+        filedClass = new FiledClass();
+        filedClass.dd();
     }
 
     @Override

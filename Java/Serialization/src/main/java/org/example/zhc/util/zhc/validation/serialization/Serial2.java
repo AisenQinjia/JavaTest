@@ -3,7 +3,7 @@ package org.example.zhc.util.zhc.validation.serialization;
 public class Serial2 extends Serial1 {
     public int propertyA = 5;
     public Serial2(){
-        super(1,1,1,1,1,1);
+        super(1,1,1,1,1,1,"sr".getBytes());
     }
 
     public static void methodStaticOverride(){
