@@ -39,7 +39,7 @@ public class FastJsonTestApp {
         SerialClass<IClass> serialClass = new SerialClass<>();
         serialClass.ctor();
         String jsonStr = JSON.toJSONString(serialClass);
-        SerialClass<IClass>  ss = JSON.parseObject(jsonStr,new TypeReference<SerialClass<IClass>>(){});
+            SerialClass<IClass>  ss = JSON.parseObject(jsonStr,new TypeReference<SerialClass<IClass>>(){});
 
         SerialClass<IClass> ss2 = JSON.parseObject(jsonStr,(Type)SerialClass.class);
         //type inference by Target types

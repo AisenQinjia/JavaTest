@@ -5,7 +5,9 @@ import com.alibaba.fastjson.serializer.SerializerFeature;
 import lombok.Getter;
 import lombok.Setter;
 import org.example.zhc.util.zhc.domain.Style;
+import org.example.zhc.util.zhc.validation.CustomDeserializer;
 import org.junit.Assert;
+import org.springframework.core.serializer.Deserializer;
 
 import java.util.*;
 import java.util.concurrent.ConcurrentLinkedQueue;
@@ -71,6 +73,10 @@ public class SerialClass<T> {
     @JSONField(serialzeFeatures = SerializerFeature.WriteClassName)
     public Map<String,IClass> stringIClassMap;
 
+    @JSONField(deserializeUsing = CustomDeserializer.class)
+    public Object[] objectArray;
+    @JSONField(serialzeFeatures = SerializerFeature.WriteClassName)
+    public ArrayList<Object> variables;
     private T genericField;
 
     public StaticClass staticClass;
@@ -149,6 +155,11 @@ public class SerialClass<T> {
         queue.add(2);
         queue.add(4);
         queue.add(7);
+        objectArray = new Object[1];
+        List<String>  tmpStrs = Arrays.asList("have","fun");
+        objectArray[0] = tmpStrs;
+        variables = new ArrayList<>();
+        variables.add(Arrays.asList("have","fun"));
     }
 
     private static class StaticClass{
