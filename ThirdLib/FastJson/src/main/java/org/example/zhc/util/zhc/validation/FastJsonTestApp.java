@@ -113,4 +113,15 @@ public class FastJsonTestApp {
         String tsStr = JSON.toJSONString(ts);
         TestKv<List<Long>> deTs3 = JSON.parseObject(tsStr,new TypeReference<TestKv<List<Long>>>(){});
     }
+
+    @Test
+    public void refTest(){
+        SerialClass2 s2 = new SerialClass2();
+        Map<String, String> m = new HashMap<>();
+        m.put("key","vale");
+        s2.setAlpha(m);
+        String jsonString = JSON.toJSONString(s2);
+        SerialClass2 serialClass2 = JSON.parseObject(jsonString, SerialClass2.class);
+
+    }
 }
