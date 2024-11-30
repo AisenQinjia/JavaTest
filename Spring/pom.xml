@@ -18,6 +18,7 @@
     <module>Web-Server</module>
     <module>LifeCycle</module>
     <module>spring-data-redis</module>
+    <module>cycle-dependency</module>
 </modules>
     <dependencies>
         <dependency>
