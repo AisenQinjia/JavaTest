@@ -3,6 +3,11 @@ package org.example.zhc.util.zhc.validation;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.TypeReference;
+import com.alibaba.fastjson.parser.DefaultJSONParser;
+import com.alibaba.fastjson.parser.Feature;
+import com.alibaba.fastjson.parser.ParserConfig;
+import com.alibaba.fastjson.parser.deserializer.ObjectDeserializer;
+import com.alibaba.fastjson.parser.deserializer.ParseProcess;
 import com.alibaba.fastjson.serializer.SerializeConfig;
 import com.googlecode.protobuf.format.JsonFormat;
 import lombok.var;
@@ -36,10 +41,42 @@ public class FastJsonTestApp {
 
     @Test
     public void serialTest(){
+        ClassA1 a1 = new ClassA1();
+        a1.setAnInt(5);
+        String jsonString = JSON.toJSONString(a1);
+        ClassA2 classA2 = JSON.parseObject(jsonString, ClassA2.class);
+        ParserConfig.getGlobalInstance().setAutoTypeSupport(true);
         SerialClass<IClass> serialClass = new SerialClass<>();
         serialClass.ctor();
         String jsonStr = JSON.toJSONString(serialClass);
-            SerialClass<IClass>  ss = JSON.parseObject(jsonStr,new TypeReference<SerialClass<IClass>>(){});
+        Map map = JSON.parseObject(jsonStr, Map.class);
+        String prefix = "ooo";
+//        // 创建自定义的 JSONParser
+//        DefaultJSONParser parser = new DefaultJSONParser(jsonStr);
+//
+//        // 设置自定义的解析器处理器
+//        parser.getConfig().putDeserializer(Object.class, new ObjectDeserializer() {
+//
+//            @Override
+//            public <T> T deserialze(DefaultJSONParser parser, Type type, Object fieldName) {
+//                return parser.parse(fieldName);
+//            }
+//
+//            @Override
+//            public int getFastMatchToken() {
+//                return 0;
+//            }
+//        });
+        JSONObject jsonObject = (JSONObject)JSONObject.parse(jsonStr);
+        JSONObject o = (JSONObject)jsonObject.get("mapKeyIClassMap");
+
+        Set strings = o.keySet();
+        for (Object string : strings) {
+            JSONObject jsonObject1 = (JSONObject)string;
+            jsonObject1.isEmpty();
+        }
+
+        SerialClass<IClass>  ss = JSON.parseObject(jsonStr,new TypeReference<SerialClass<IClass>>(){});
 
         SerialClass<IClass> ss2 = JSON.parseObject(jsonStr,(Type)SerialClass.class);
         //type inference by Target types

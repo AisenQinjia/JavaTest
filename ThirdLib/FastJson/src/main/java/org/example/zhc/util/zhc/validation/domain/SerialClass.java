@@ -13,6 +13,8 @@ import java.util.*;
 import java.util.concurrent.ConcurrentLinkedQueue;
 
 public class SerialClass<T> {
+    @JSONField(serialzeFeatures = SerializerFeature.WriteClassName)
+    public Map<Object,String> primitiveKeyMap;
     /**
      *
      */
@@ -75,7 +77,7 @@ public class SerialClass<T> {
 
     @JSONField(deserializeUsing = CustomDeserializer.class)
     public Object[] objectArray;
-    @JSONField(serialzeFeatures = SerializerFeature.WriteClassName)
+//    @JSONField(serialzeFeatures = SerializerFeature.WriteClassName)
     public ArrayList<Object> variables;
     private T genericField;
 
@@ -83,12 +85,12 @@ public class SerialClass<T> {
 
 //    private InnerClass innerClass;
 
-    @JSONField(serialzeFeatures = SerializerFeature.WriteClassName)
+//    @JSONField(serialzeFeatures = SerializerFeature.WriteClassName)
     public AbstractClass abstractClass;
 
     private IClass iClass;
 
-    private Map<MapKey,IClass> mapKeyIClassMap;
+    public Map<MapKey,IClass> mapKeyIClassMap;
 
     public SerialClass(){
 
@@ -131,6 +133,9 @@ public class SerialClass<T> {
         iClassImpl.ctor();
         staticClass = new StaticClass();
         staticClass.ctor();
+        primitiveKeyMap = new HashMap<>();
+        primitiveKeyMap.put(1,"xxx");
+        primitiveKeyMap.put("str","xxx");
 //        innerClass = new InnerClass();
 //        innerClass.ctor();
         stringIClassMap = new HashMap<>();

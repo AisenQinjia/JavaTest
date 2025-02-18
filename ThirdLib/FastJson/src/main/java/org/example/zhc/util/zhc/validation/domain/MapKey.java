@@ -4,9 +4,11 @@ package org.example.zhc.util.zhc.validation.domain;
 import java.util.UUID;
 
 public class MapKey  {
-    private String key;
+    public String key;
+    public String m1;
     public void ctor(){
         key = UUID.randomUUID().toString();
+        m1= UUID.randomUUID().toString();
     }
 
     @Override
